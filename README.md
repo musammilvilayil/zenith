@@ -1,22 +1,9 @@
-# Zenith Softworks — Official Website
+# Zenith Softworks
 
-Premium, dependency-free production website for Zenith Softworks.
-
-## Features
-- Responsive editorial design
-- Accessible navigation and reduced-motion support
-- Service, work, process, technology, about and enquiry sections
-- Working WhatsApp project enquiry flow
-- Privacy and terms modals
-- SEO metadata, JSON-LD, sitemap and robots.txt
-- Security headers for Vercel
-- Custom 404 page
+Complete multi-page production website.
 
 ## Local preview
-```bash
-python3 -m http.server 8080
-```
-Open `http://localhost:8080`.
+`python3 -m http.server 8000`
 
 ## Deploy
-Import this repository into Vercel. No build command is required; output directory is the repository root.
+Import this repository into Vercel. No build command is required. The `/api/enquiry` function validates enquiry submissions.
