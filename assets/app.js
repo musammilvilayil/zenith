@@ -5,6 +5,7 @@ const WHATSAPP_DISPLAY='+91 94976 65504';
 
 document.querySelectorAll('a[href*="wa.me/"]').forEach(a=>{a.href=a.href.replace(/wa\.me\/\d+/,`wa.me/${WHATSAPP_NUMBER}`);if(/^\+91\s?62821/.test(a.textContent.trim()))a.textContent=WHATSAPP_DISPLAY});
 document.querySelectorAll('body *').forEach(el=>{if(el.children.length===0&&el.textContent.includes('+91 62821 35504'))el.textContent=el.textContent.replace('+91 62821 35504',WHATSAPP_DISPLAY)});
+const studentHome=document.querySelector('.student-home');if(studentHome){studentHome.querySelectorAll('p,a,strong').forEach(el=>{el.textContent=el.textContent.replace('100 curated','500 curated').replace('100 project ideas','500 project ideas');if(el.tagName==='STRONG'&&el.textContent.trim()==='100')el.textContent='500'})}
 
 const menu=document.querySelector('.menu'),links=document.querySelector('.links');
 if(menu)menu.onclick=()=>links.classList.toggle('open');
@@ -37,12 +38,7 @@ if(form){
       }catch{}
 
       if(!delivered){
-        const formSubmitPayload={
-          ...payload,
-          _subject:`New Zenith website enquiry — ${payload.service||'General project'}`,
-          _template:'table',
-          _captcha:'false'
-        };
+        const formSubmitPayload={...payload,_subject:`New Zenith website enquiry — ${payload.service||'General project'}`,_template:'table',_captcha:'false'};
         const fallback=await fetch('https://formsubmit.co/ajax/musammilvilayil@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(formSubmitPayload)});
         if(!fallback.ok)throw new Error('Email fallback failed');
       }
@@ -53,8 +49,6 @@ if(form){
       const msg=encodeURIComponent(`Hello Zenith Softworks,\nName: ${payload.name||''}\nEmail: ${payload.email||''}\nPhone: ${payload.phone||''}\nProject: ${payload.service||''}\nBudget: ${payload.budget||''}\nTimeline: ${payload.timeline||''}\nDetails: ${payload.message||''}`);
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`,'_blank','noopener');
       status.textContent='Email delivery was unavailable, so WhatsApp was opened with your project brief.';
-    }finally{
-      btn.disabled=false;btn.textContent='Submit Project Brief';
-    }
+    }finally{btn.disabled=false;btn.textContent='Submit Project Brief'}
   });
 }
