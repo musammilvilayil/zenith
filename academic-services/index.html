@@ -15,7 +15,7 @@ const f=new FormData(this);
 const labels={name:'Name',email:'Email',college:'College / Organization',team:'Team size',category:'Project category',idea:'Idea status',deadline:'Expected deadline',referral:'Referral code',details:'Project details'};
 const body='New Zenith Project Enquiry\n\n'+Object.entries(labels).map(([key,label])=>label+': '+String(f.get(key)||'Not provided').replace(/[\r\n]+/g,' ')).join('\n');
 document.getElementById('enquiryStatus').textContent='WhatsApp will open with your enquiry. Please tap Send in WhatsApp to submit it.';
-const url='https://wa.me/916282135504?text='+encodeURIComponent(body);
+const url='https://wa.me/919497665504?text='+encodeURIComponent(body);
 const opened=window.open(url,'_blank','noopener,noreferrer');
 if(!opened)window.location.href=url;
 });
