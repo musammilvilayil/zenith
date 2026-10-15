@@ -1,8 +1,10 @@
-/* Brand presentation: transparent Z mark, consistent navbar/footer proportions. */
-.nav .brand.brand-logo{display:inline-flex!important;align-items:center!important;gap:10px!important;min-width:0!important;max-width:calc(100% - 56px)!important;line-height:1!important;font-size:1rem!important;font-weight:750!important;white-space:nowrap!important}
-.nav .brand-logo .brand-mark{display:block!important;width:48px!important;height:48px!important;flex:0 0 48px!important;object-fit:contain!important;filter:drop-shadow(0 0 5px rgba(0,170,255,.24))}
-.nav .brand-logo .brand-name{display:inline-block!important;white-space:nowrap!important;letter-spacing:-.02em!important}
+/* Zenith logo: consistent lockup regardless of page typography. */
+.nav .brand.brand-logo{display:inline-flex!important;align-items:center!important;gap:9px!important;min-width:0!important;max-width:calc(100% - 58px)!important;text-decoration:none!important;line-height:1!important}
+.nav .brand-logo .brand-mark{display:block!important;width:49px!important;height:49px!important;flex:0 0 49px!important;object-fit:contain!important;filter:drop-shadow(0 1px 2px rgba(0,120,240,.16))}
+.nav .brand-logo .brand-name{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:3px!important;white-space:nowrap!important;font-family:Arial,Helvetica,sans-serif!important;font-style:normal!important;text-transform:none!important;color:#071b38!important}
+.nav .brand-logo .brand-wordmark{display:block!important;font-family:Arial,Helvetica,sans-serif!important;font-size:22px!important;line-height:1!important;font-weight:900!important;letter-spacing:1.4px!important;color:#071b38!important}
+.nav .brand-logo .brand-subline{display:block!important;font-family:Arial,Helvetica,sans-serif!important;font-size:9px!important;line-height:1.1!important;font-weight:600!important;letter-spacing:5px!important;color:#087fd6!important}
 .footer-brand-logo{display:block!important;width:min(225px,100%)!important;max-width:100%!important;line-height:0!important}
 .footer-logo-image{display:block!important;width:100%!important;height:auto!important;object-fit:contain!important}
-@media(max-width:760px){.nav .brand.brand-logo{gap:7px!important;font-size:.9rem!important;max-width:calc(100% - 52px)!important}.nav .brand-logo .brand-mark{width:40px!important;height:40px!important;flex-basis:40px!important}.footer-brand-logo{width:min(205px,100%)!important}}
-@media(max-width:360px){.nav .brand.brand-logo{font-size:.79rem!important}.nav .brand-logo .brand-mark{width:35px!important;height:35px!important;flex-basis:35px!important}}
+@media(max-width:620px){.nav .brand.brand-logo{gap:7px!important;max-width:calc(100% - 48px)!important}.nav .brand-logo .brand-mark{width:44px!important;height:44px!important;flex-basis:44px!important}.nav .brand-logo .brand-wordmark{font-size:18px!important;letter-spacing:1px!important}.nav .brand-logo .brand-subline{font-size:8px!important;letter-spacing:3.7px!important}.footer-brand-logo{width:min(205px,100%)!important}}
+@media(max-width:360px){.nav .brand-logo .brand-mark{width:37px!important;height:37px!important;flex-basis:37px!important}.nav .brand-logo .brand-wordmark{font-size:16px!important}.nav .brand-logo .brand-subline{letter-spacing:3px!important}}
