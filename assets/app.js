@@ -1,6 +1,6 @@
 if(!document.querySelector('link[href="/assets/agency.css"]')){const css=document.createElement('link');css.rel='stylesheet';css.href='/assets/agency.css';document.head.append(css)}
 if(document.querySelector('.student-home')&&!document.querySelector('link[href="/assets/student-projects.css"]')){const css=document.createElement('link');css.rel='stylesheet';css.href='/assets/student-projects.css';document.head.append(css)}
-if(!document.querySelector('link[href^="/assets/mobile-logo-fix.css"]')){const css=document.createElement('link');css.rel='stylesheet';css.href='/assets/mobile-logo-fix.css?v=3';document.head.append(css)}
+if(!document.querySelector('link[href^="/assets/mobile-logo-fix.css"]')){const css=document.createElement('link');css.rel='stylesheet';css.href='/assets/mobile-logo-fix.css?v=4';document.head.append(css)}
 const WHATSAPP_NUMBER='919497665504',WHATSAPP_DISPLAY='+91 94976 65504';
 const navItems=[['/services/','Services'],['/work/','Work'],['/talent/','Join Talent'],['/student-projects/','Project Ideas'],['/academic-services/','Student Services'],['/about/','About'],['/contact/','Contact']];
 document.querySelectorAll('.links').forEach(box=>{box.innerHTML=navItems.map(([href,label])=>`<a href="${href}">${label}</a>`).join('')});
