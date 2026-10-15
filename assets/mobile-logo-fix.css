@@ -1,10 +1,13 @@
-/* Zenith logo: consistent lockup regardless of page typography. */
-.nav .brand.brand-logo{display:inline-flex!important;align-items:center!important;gap:9px!important;min-width:0!important;max-width:calc(100% - 58px)!important;text-decoration:none!important;line-height:1!important}
-.nav .brand-logo .brand-mark{display:block!important;width:49px!important;height:49px!important;flex:0 0 49px!important;object-fit:contain!important;filter:drop-shadow(0 1px 2px rgba(0,120,240,.16))}
-.nav .brand-logo .brand-name{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:3px!important;white-space:nowrap!important;font-family:Arial,Helvetica,sans-serif!important;font-style:normal!important;text-transform:none!important;color:#071b38!important}
-.nav .brand-logo .brand-wordmark{display:block!important;font-family:Arial,Helvetica,sans-serif!important;font-size:22px!important;line-height:1!important;font-weight:900!important;letter-spacing:1.4px!important;color:#071b38!important}
-.nav .brand-logo .brand-subline{display:block!important;font-family:Arial,Helvetica,sans-serif!important;font-size:9px!important;line-height:1.1!important;font-weight:600!important;letter-spacing:5px!important;color:#087fd6!important}
+/* Original-brand-inspired dark navigation with one complete transparent logo. */
+.nav{background:#030a17!important;background-image:radial-gradient(ellipse at 18% 0%,rgba(0,69,151,.22),transparent 48%)!important;border-bottom:1px solid rgba(52,173,255,.18)!important;box-shadow:0 8px 24px rgba(1,8,20,.15)!important}
+.nav .nav-inner{min-height:78px!important;align-items:center!important}
+.nav .brand.brand-logo{display:inline-flex!important;align-items:center!important;justify-content:flex-start!important;flex:0 0 auto!important;width:178px!important;max-width:calc(100% - 60px)!important;min-width:0!important;padding:0!important;line-height:0!important;text-decoration:none!important}
+.nav .brand-logo .brand-full-logo{display:block!important;width:174px!important;height:68px!important;max-width:100%!important;object-fit:contain!important;object-position:left center!important;filter:drop-shadow(0 0 5px rgba(0,145,255,.12))}
+.nav .links a{color:#e6f1ff!important}
+.nav .links a:hover,.nav .links a:focus-visible{color:#51d9ff!important}
+.nav .menu{color:#45baff!important;border-color:rgba(72,172,255,.35)!important}
+.nav .btn.primary{background:#0799ed!important;color:#fff!important}
 .footer-brand-logo{display:block!important;width:min(225px,100%)!important;max-width:100%!important;line-height:0!important}
 .footer-logo-image{display:block!important;width:100%!important;height:auto!important;object-fit:contain!important}
-@media(max-width:620px){.nav .brand.brand-logo{gap:7px!important;max-width:calc(100% - 48px)!important}.nav .brand-logo .brand-mark{width:44px!important;height:44px!important;flex-basis:44px!important}.nav .brand-logo .brand-wordmark{font-size:18px!important;letter-spacing:1px!important}.nav .brand-logo .brand-subline{font-size:8px!important;letter-spacing:3.7px!important}.footer-brand-logo{width:min(205px,100%)!important}}
-@media(max-width:360px){.nav .brand-logo .brand-mark{width:37px!important;height:37px!important;flex-basis:37px!important}.nav .brand-logo .brand-wordmark{font-size:16px!important}.nav .brand-logo .brand-subline{letter-spacing:3px!important}}
+@media(max-width:760px){.nav .nav-inner{min-height:74px!important}.nav .brand.brand-logo{width:156px!important}.nav .brand-logo .brand-full-logo{width:156px!important;height:65px!important}.nav .links.open{background:#061328!important;border:1px solid rgba(72,172,255,.2)!important}.nav .links.open a{color:#eef7ff!important}.footer-brand-logo{width:min(205px,100%)!important}}
+@media(max-width:360px){.nav .brand.brand-logo{width:139px!important}.nav .brand-logo .brand-full-logo{width:139px!important;height:61px!important}}
