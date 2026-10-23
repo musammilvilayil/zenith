@@ -187,7 +187,7 @@ label{color:#d8e2f3;font-size:.88rem;font-weight:650}
 .footer .brand{color:#f4f7ff}
 .footer-grid{gap:32px}
 .menu{color:#d9eaff!important;border:1px solid rgba(160,181,220,.28)!important;background:rgba(255,255,255,.04)!important;border-radius:12px!important;padding:8px 12px!important}
-.reveal{opacity:1;transform:none}
+/* Reveal states are controlled by the existing IntersectionObserver in app.js. */
 .wa-float{background:#2563eb!important;border:1px solid rgba(147,197,253,.45)!important;color:white!important;box-shadow:0 14px 34px rgba(37,99,235,.32)!important;border-radius:999px!important}
 hr{border:0;border-top:1px solid var(--line)}
 @media(max-width:900px){
