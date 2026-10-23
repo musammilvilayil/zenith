@@ -41,3 +41,32 @@ body.zenith-cinematic{--black:#202625;--panel:#292f2e;--white:#f8f7f4;--muted:#b
 .brand-logo{display:block;width:clamp(132px,14vw,178px);height:auto;max-height:48px;object-fit:contain;object-position:left center}
 .site-footer .brand-logo{width:158px;max-height:44px}
 @media(max-width:700px){.brand-logo{width:132px;max-height:40px}.site-footer .brand-logo{width:145px}}
+
+/* Final brand-alignment pass: match the existing Zenith orange/red identity. */
+body.zenith-cinematic{--black:#0b0b0c;--panel:#151313;--white:#f7f4ef;--muted:#b0a7a0;--line:rgba(247,244,239,.16);--orange:#ff5937;--orange2:#ff9a4b;background:#0b0b0c;color:#f7f4ef}
+.cinematic-hero{background:radial-gradient(ellipse at 78% 46%,rgba(245,72,36,.22),transparent 32%),linear-gradient(115deg,#111113 0%,#0b0b0c 54%,#1b0d0a 100%)}
+.hero-orb.orb-one{background:radial-gradient(circle at 35% 30%,#ff9a4b 0,#ff512e 23%,rgba(144,35,29,.65) 48%,rgba(10,10,11,0) 70%)}
+.hero-orb.orb-two{background:radial-gradient(circle,rgba(255,85,44,.2),transparent 68%)}
+.art-ring{border-color:rgba(255,196,163,.22)}.art-sun{background:radial-gradient(circle at 33% 25%,#ffbd73 0,#ff6739 25%,#7e211d 58%,#1c0c0b 76%);box-shadow:0 0 100px rgba(255,73,42,.2)}
+.art-sculpture span{border-color:rgba(18,13,14,.9);border-left-color:#ffad62;border-bottom-color:rgba(255,101,56,.8);box-shadow:inset 0 0 0 2px rgba(255,255,255,.13),0 0 18px rgba(255,100,53,.18)}
+.art-sculpture span:nth-child(2){border-top-color:#ff6c3d;border-right-color:#351515}.art-sculpture span:nth-child(3){border-left-color:#ff7c45;border-top-color:#281313}.art-sculpture span:nth-child(4){border-bottom-color:#ffb46c;border-right-color:#481a15}.art-sculpture span:nth-child(5){border-color:#171113 #ff9855 #3a1714 #ff663d}
+.marquee-band{background:#e9532f;color:#160d0a}
+.story-heading h2 em,.services-intro h2 em,.work-intro h2 em,.approach-layout h2 em,.packages-heading h2 em,.talent-layout h2 em,.student-section h2 em,.final-cta h2 em{background:linear-gradient(100deg,#ff5937 10%,#ffb05b 90%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.pill-button.bright span,.pill-button.outline span{background:#e9532f;color:white}
+.text-link span,.under-link span,.nav-cta span,.package-list b{color:#ff9a4b}
+.work-visual.visual-cloud{background:radial-gradient(ellipse at 50% 50%,#563026,#211715 42%,#121112 75%)}
+.cloud-core span{color:#ff6435}.cloud-orbit{border-color:rgba(255,187,140,.65)}
+.visual-health{background:radial-gradient(circle at 48% 44%,#354a46,#17211f 48%,#111312 78%)}
+.visual-shield{background:radial-gradient(circle at 50% 45%,#50352a,#241b18 44%,#121111 78%)}
+.shield-shape{background:linear-gradient(145deg,#ffad70,#f35432 45%,#6f261c);color:#1c1110}
+.shield-pulse{border-color:rgba(255,168,122,.4)}.shield-pulse:before,.shield-pulse:after{border-color:rgba(255,168,122,.22)}
+.talent-layout h2 em{background:linear-gradient(100deg,#c34426,#e87939);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.student-section{background:#161211}
+.final-cta .cta-glow{background:radial-gradient(circle,rgba(255,104,54,.18),transparent 68%)}
+.final-cta h2 em{background:linear-gradient(100deg,#c74628,#f4773b);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mark span{color:#ff6435}.site-nav>a:not(.nav-cta):hover{color:#ff9a4b}
+.wordmark{min-width:0}
+.brand-logo{width:clamp(142px,15vw,184px);height:auto;max-height:46px;object-fit:contain;object-position:left center}
+.site-footer .brand-logo{width:166px;max-height:44px}
+@media(max-width:700px){.brand-logo{width:138px;max-height:38px}.site-footer .brand-logo{width:148px}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
