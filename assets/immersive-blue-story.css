@@ -1,0 +1,27 @@
+/* Zenith immersive blue storytelling system — site-wide */
+:root{--midnight:#021024;--navy:#052659;--steel:#5483B3;--soft-blue:#7DA0CA;--ice:#C1E8FF;--ink:#eaf7ff;--muted:#a9c6e2;--line:rgba(193,232,255,.18);--accent:#C1E8FF;--accent-2:#7DA0CA}
+html{background:var(--midnight);scroll-behavior:smooth;scroll-padding-top:92px}
+body{background:radial-gradient(ellipse at 50% -10%,rgba(84,131,179,.25),transparent 44%),linear-gradient(180deg,#052659 0%,#021024 46%,#03152c 100%);color:var(--ink)}
+body::selection{background:var(--ice);color:var(--midnight)}
+body :is(h1,h2,h3,h4){letter-spacing:-.045em}
+body :is(p,.muted,.subtext){color:var(--muted)}
+body :is(a,button,input,select,textarea):focus-visible{outline:2px solid var(--ice);outline-offset:4px}
+body :is(.site-header,header,.nav,.navbar){background:rgba(2,16,36,.74);border-color:var(--line);backdrop-filter:blur(18px)}
+body :is(.btn,.button,.cta,.nav-cta,[type=submit]){background:var(--ice);color:var(--midnight);border-color:var(--ice);transition:transform .3s ease,box-shadow .3s ease,background .3s ease}
+body :is(.btn,.button,.cta,.nav-cta,[type=submit]):hover{background:#fff;transform:translateY(-2px);box-shadow:0 12px 38px rgba(193,232,255,.16)}
+body :is(.card,.service-card,.project-card,.feature-card,.panel,.form-card,.pricing-card,.step-card){background:linear-gradient(145deg,rgba(5,38,89,.68),rgba(84,131,179,.09));border:1px solid var(--line);box-shadow:0 20px 70px rgba(0,0,0,.12);backdrop-filter:blur(12px);transition:transform .45s cubic-bezier(.2,.7,.1,1),border-color .35s,background .35s}
+body :is(.card,.service-card,.project-card,.feature-card,.panel,.pricing-card,.step-card):hover{transform:translateY(-4px);border-color:rgba(193,232,255,.45)}
+body :is(.eyebrow,.kicker,.section-label,.section-index,.tag,.badge,.eyebrow span){color:var(--soft-blue)}
+body :is(.hero,.hero-section,.page-hero,.section-hero){background:transparent;position:relative;isolation:isolate;overflow:hidden}
+body :is(.hero,.hero-section,.page-hero,.section-hero)::before{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;background:radial-gradient(ellipse at 75% 45%,rgba(84,131,179,.28),transparent 42%),linear-gradient(135deg,rgba(5,38,89,.24),transparent 60%)}
+body :is(.hero h1,.page-hero h1,.hero-section h1) em,body :is(h1,h2) .accent{color:var(--ice)}
+body :is(section,main>div){scroll-margin-top:88px}
+body :is(.site-footer,footer,.footer){background:rgba(2,16,36,.8);border-top:1px solid var(--line)}
+body :is(input,textarea,select){background:rgba(2,16,36,.72);color:var(--ink);border-color:rgba(193,232,255,.24)}
+body input::placeholder,body textarea::placeholder{color:#7DA0CA}
+body img{max-width:100%}
+body .brand-logo{object-fit:contain}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+.story-reveal{opacity:0;transform:translateY(26px);transition:opacity .85s ease,transform .95s cubic-bezier(.2,.7,.1,1)}.story-reveal.story-in{opacity:1;transform:translateY(0)}
+@media(max-width:700px){.story-reveal{transform:translateY(14px)}}
