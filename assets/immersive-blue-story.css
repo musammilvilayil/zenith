@@ -22,3 +22,6 @@ body input::placeholder,body textarea::placeholder{color:#7DA0CA}
 body img{max-width:100%}
 body .brand-logo{object-fit:contain}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+.story-reveal{opacity:0;transform:translateY(26px);transition:opacity .85s ease,transform .95s cubic-bezier(.2,.7,.1,1)}.story-reveal.story-in{opacity:1;transform:translateY(0)}
+@media(max-width:700px){.story-reveal{transform:translateY(14px)}}
