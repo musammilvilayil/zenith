@@ -35,3 +35,9 @@ body.zenith-cinematic{--black:#202625;--panel:#292f2e;--white:#f8f7f4;--muted:#b
 .final-cta h2 em{background:linear-gradient(100deg,#006665,#00817f);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .mark span{color:#00817f}.site-nav>a:not(.nav-cta):hover{color:#53c7bc}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+/* Use the supplied original Zenith logo asset consistently in the header and footer. */
+.wordmark{display:flex;align-items:center;flex:0 0 auto}
+.brand-logo{display:block;width:clamp(132px,14vw,178px);height:auto;max-height:48px;object-fit:contain;object-position:left center}
+.site-footer .brand-logo{width:158px;max-height:44px}
+@media(max-width:700px){.brand-logo{width:132px;max-height:40px}.site-footer .brand-logo{width:145px}}
