@@ -32,3 +32,13 @@ if(!document.querySelector('.wa-float')){const wa=document.createElement('a');wa
 const observer='IntersectionObserver'in window?new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12}):null;document.querySelectorAll('.reveal').forEach(el=>observer?observer.observe(el):el.classList.add('visible'));
 if(location.pathname.startsWith('/student-projects/'))window.addEventListener('load',()=>{if(!document.querySelector('script[data-sustainability-projects]')){const script=document.createElement('script');script.src='/assets/sustainability-projects.js?v=1';script.dataset.sustainabilityProjects='true';document.body.append(script)}});
 if(location.pathname.startsWith('/contact/')){const button=document.querySelector('#enquiryForm button[type=submit]'),notice=document.querySelector('#formStatus');if(button)button.textContent='Send project brief';if(notice)notice.textContent='Your details are sent securely to Zenith Softworks. If delivery is unavailable, we will show a WhatsApp option.'}
+
+
+// Homepage enhancement: expose reveal content without animation when scripting or
+// intersection observation is unavailable, and support keyboard-friendly anchor navigation.
+if (document.body.classList.contains('home-page')) {
+  document.documentElement.classList.add('zenith-home');
+  document.querySelectorAll('.launch-card[href]').forEach(card => {
+    card.setAttribute('aria-label', card.innerText.replace(/\s+/g, ' ').trim());
+  });
+}
