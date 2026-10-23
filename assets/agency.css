@@ -322,3 +322,60 @@ hr{border:0;border-top:1px solid var(--line)}
  .vision-core{width:72px}
  .faq-list summary{font-size:.93rem}
 }
+
+
+/* Refinement pass: accessible controls, stable small-screen rhythm and overflow guards */
+:focus-visible{outline:3px solid #7db5ff;outline-offset:4px}
+.nav .menu{align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(166,190,230,.3);border-radius:50%;color:#f4f7ff;background:rgba(255,255,255,.04);font:inherit;font-size:1.25rem;line-height:1;cursor:pointer}
+.nav .menu:hover{background:rgba(125,180,255,.12)}
+.nav .links a[aria-current="page"]{color:#fff!important}
+.nav .links a:focus-visible,.footer a:focus-visible,.btn:focus-visible{outline-color:#7db5ff;outline-offset:4px}
+.field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{outline:3px solid #2563eb;outline-offset:2px;border-color:#2563eb}
+.form-trap{pointer-events:none}
+@media(max-width:900px){
+  .nav-inner{position:relative;gap:12px;min-height:72px}
+  .nav .links,.nav .links.open{position:absolute;top:calc(100% + 1px);left:0;right:0;z-index:60;display:none;align-items:stretch;gap:0;max-height:calc(100dvh - 84px);overflow-y:auto;overscroll-behavior:contain;padding:10px 16px 18px;background:#080e1b;border:1px solid rgba(160,181,220,.18);border-top:0;box-shadow:0 24px 48px rgba(0,0,0,.32)}
+  .nav .links.open{display:flex;flex-direction:column}
+  .nav .links a{display:flex;align-items:center;min-height:46px;padding:10px 4px;border-bottom:1px solid rgba(160,181,220,.12);font-size:.88rem}
+  .nav .links a:last-child{border-bottom:0}
+  .nav .menu{display:inline-flex;flex:0 0 44px}
+  .agency-hero{min-height:auto;padding:96px 0 64px}
+  .agency-hero-grid{grid-template-columns:minmax(0,1fr);gap:36px}
+  .hero-showcase{min-height:420px;max-width:680px;width:100%;margin-inline:auto}
+  .browser-panel{inset:20px 18px 56px 12px;padding:clamp(18px,4vw,28px)}
+  .browser-content h3{font-size:clamp(2.1rem,7vw,3.2rem)}
+  .service-row{grid-template-columns:48px minmax(0,1fr);gap:12px 18px}
+  .service-row p,.service-row a{grid-column:2}
+  .service-row a{white-space:normal;justify-self:start}
+}
+@media(max-width:600px){
+  .container{width:min(100% - 32px,var(--max))}
+  .agency-hero{padding:78px 0 48px}
+  .agency-hero h1{font-size:clamp(2.8rem,12vw,4.4rem);line-height:.96;overflow-wrap:anywhere}
+  .agency-hero .lead{font-size:1.03rem;line-height:1.7}
+  .agency-hero .actions{align-items:stretch}
+  .agency-hero .actions .btn{width:100%}
+  .hero-showcase{min-height:350px}
+  .browser-panel{inset:12px 10px 48px 4px;transform:rotate(-1deg);padding:16px}
+  .browser-top{padding-bottom:12px}
+  .browser-content{padding-top:25px}
+  .browser-content h3{font-size:clamp(1.8rem,8vw,2.7rem)}
+  .browser-content p{font-size:.9rem;line-height:1.6}
+  .showcase-chip{width:min(220px,72%);padding:16px;bottom:0}
+  .showcase-chip strong{font-size:1.5rem}
+  .proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .proof-grid div{padding:16px 10px;font-size:.67rem;border-bottom:1px solid var(--line)}
+  .proof-grid div:nth-child(2n){border-right:0}
+  .proof-grid div:last-child{grid-column:1/-1;border-bottom:0}
+  .launch-grid,.package-grid{grid-template-columns:minmax(0,1fr)}
+  .launch-card.large{min-height:440px}
+  .launch-card{min-height:320px;padding:24px}
+  .package-card{min-height:0;padding:26px}
+  .actions .btn{max-width:100%}
+  .faq-list summary{gap:12px}
+  .faq-list details p{padding-right:8px}
+  .vision-visual-top,.vision-visual-bottom{letter-spacing:.07em}
+}
+@media(prefers-reduced-motion:reduce){
+  .nav .menu,a,.text-link span,.approach-rows article>b{transition:none!important}
+}
