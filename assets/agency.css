@@ -641,3 +641,53 @@ hr{border:0;border-top:1px solid var(--line)}
 @media (prefers-reduced-motion: reduce) {
   .home-page .launch-card::after { transition: none; }
 }
+
+
+/* Final interaction and accessibility refinement for the homepage. */
+.home-page :focus-visible {
+  outline: 3px solid #55d9f0;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.home-page .launch-card:focus-visible,
+.home-page .package-card a:focus-visible { outline-offset: 6px; }
+.home-page .launch-card,
+.home-page .package-card,
+.home-page .service-row a,
+.home-page .agency-process .step {
+  min-width: 0;
+}
+.home-page .service-row h3,
+.home-page .section-head h2,
+.home-page .package-card h3,
+.home-page .mini-student h3 {
+  text-wrap: balance;
+}
+.home-page .section { scroll-margin-top: 88px; }
+.home-page .proof-bar { position: relative; }
+.home-page .proof-grid div { line-height: 1.45; }
+.home-page .package-card .eyebrow { color: #79b9ff; }
+.home-page .package-card .btn { white-space: normal; text-align: center; }
+.home-page .launch-card::after { flex: 0 0 auto; }
+.home-page .launch-card:hover h3 { color: #b8d7ff; }
+.home-page .section.dark .agency-process .step:hover b { color: #fff; }
+.home-page .service-row { transition: border-color .2s ease; }
+.home-page .service-row:hover { border-bottom-color: #70aaf5; }
+@media (max-width: 600px) {
+  .home-page .service-row { padding: 26px 0; }
+  .home-page .proof-grid div { overflow-wrap: anywhere; }
+  .home-page .package-card .btn { width: 100%; }
+  .home-page .launch-card:hover,
+  .home-page .launch-card.large:hover,
+  .home-page .launch-card.dark-card:hover,
+  .home-page .launch-card.warm:hover { padding-left: 0; }
+}
+@media (hover: none) {
+  .home-page .launch-card:hover,
+  .home-page .launch-card.large:hover,
+  .home-page .launch-card.dark-card:hover,
+  .home-page .launch-card.warm:hover { padding-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-page .service-row { transition: none; }
+}
