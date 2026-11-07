@@ -364,3 +364,5 @@ body :is(a,button):focus-visible{
   body :is(.card,.work-card,.work-feature,.service-line,.package-list>a,.role-card,.article){transition:none!important}
   body :is(.card,.work-card,.work-feature,.package-list>a,.role-card):hover{transform:none}
 }
+
+body:not(.zenith-cinematic) .cta p{color:#164B7E}
