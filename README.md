@@ -18,3 +18,12 @@ Static marketing site with a protected serverless enquiry endpoint. Contact and 
 ## Protection included
 
 Server-side required-field, email, phone and URL validation; field length limits; HTML escaping in emails; same-origin checks; JSON-only payloads; a hidden honeypot; completion-time heuristic; no-store responses; and per-instance rate limiting. For higher-volume traffic, move rate limits to Cloudflare WAF/Turnstile or a shared store—serverless in-memory limits are intentionally only a first line of defence.
+
+
+## Visual system update
+
+The site uses a static multi-page HTML/CSS/JavaScript architecture with a Vercel serverless enquiry endpoint. The visual refresh therefore adapts selected **free React Bits interaction patterns**—ambient aurora lighting, layered grid depth, restrained hover lift and scroll reveals—as lightweight CSS/vanilla-JS treatments rather than introducing an unnecessary React runtime.
+
+The shared `assets/immersive-blue-story.css` stylesheet now provides the midnight-blue / ice-blue palette across the existing pages, with dedicated overrides for the cinematic homepage, accessible focus states, responsive layouts and reduced-motion preferences. Existing page routes, enquiry handling and WhatsApp fallback remain in place.
+
+See [VISUAL_AUDIT.md](./VISUAL_AUDIT.md) for the repository audit, implementation notes and verification scope.
