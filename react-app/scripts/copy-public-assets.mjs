@@ -5,7 +5,7 @@ const root = resolve(process.cwd(), "..");
 const publicDir = resolve(process.cwd(), "public");
 await mkdir(resolve(publicDir, "assets"), { recursive: true });
 await cp(resolve(root, "assets"), resolve(publicDir, "assets"), { recursive: true, force: true });
-for (const file of ["robots.txt", "sitemap.xml"]) {
+for (const file of ["robots.txt", "sitemap.xml", "404.html"]) {
   try { await copyFile(resolve(root, file), resolve(publicDir, file)); }
   catch (error) { if (error.code !== "ENOENT") throw error; }
 }
