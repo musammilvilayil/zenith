@@ -25,3 +25,344 @@ body .brand-logo{object-fit:contain}
 
 .story-reveal{opacity:0;transform:translateY(26px);transition:opacity .85s ease,transform .95s cubic-bezier(.2,.7,.1,1)}.story-reveal.story-in{opacity:1;transform:translateY(0)}
 @media(max-width:700px){.story-reveal{transform:translateY(14px)}}
+
+
+/* --------------------------------------------------------------------------
+   ZENITH FUTURE SYSTEM — React Bits-inspired, framework-free implementation
+   Adapted for the existing static HTML/CSS/JS site. No WebGL dependency.
+   Palette: midnight / electric blue / ice. Accessible static fallbacks included.
+   -------------------------------------------------------------------------- */
+:root{
+  --midnight:#021024;
+  --navy:#052659;
+  --steel:#5483B3;
+  --soft-blue:#7DA0CA;
+  --ice:#C1E8FF;
+  --ink:#EAF7FF;
+  --muted:#A9C6E2;
+  --line:rgba(193,232,255,.18);
+  --accent:#C1E8FF;
+  --accent-2:#7DA0CA;
+  --surface:rgba(5,38,89,.54);
+  --surface-strong:rgba(5,38,89,.82);
+}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body:not(.zenith-cinematic){
+  background:
+    radial-gradient(ellipse at 50% -18%,rgba(84,131,179,.22),transparent 48%),
+    linear-gradient(180deg,#052659 0%,#021024 58%,#03152c 100%);
+  color:#EAF7FF;
+}
+body:not(.zenith-cinematic) :is(h1,h2,h3,h4){color:#F2FAFF;letter-spacing:-.045em}
+body:not(.zenith-cinematic) :is(p,.muted,.subtext){color:#A9C6E2}
+body:not(.zenith-cinematic) .nav{
+  background:rgba(2,16,36,.78);
+  border-bottom:1px solid rgba(193,232,255,.16);
+  box-shadow:0 12px 40px rgba(0,0,0,.12);
+}
+body:not(.zenith-cinematic) .nav .brand{color:#F2FAFF}
+body:not(.zenith-cinematic) .links a{color:#C1D9EE;transition:color .2s ease}
+body:not(.zenith-cinematic) .links a:hover,
+body:not(.zenith-cinematic) .links a[aria-current=page]{color:#fff}
+body:not(.zenith-cinematic) .btn{
+  border-color:rgba(193,232,255,.42);
+  color:#EAF7FF;
+  background:rgba(5,38,89,.28);
+  transition:transform .25s ease,background .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+body:not(.zenith-cinematic) .btn:hover{
+  transform:translateY(-2px);
+  border-color:#C1E8FF;
+  background:rgba(84,131,179,.24);
+  box-shadow:0 12px 32px rgba(84,131,179,.16);
+}
+body:not(.zenith-cinematic) .btn.primary{
+  color:#021024;
+  background:linear-gradient(110deg,#C1E8FF,#7DA0CA);
+  border-color:#C1E8FF;
+}
+body:not(.zenith-cinematic) .btn.primary:hover{background:#fff;color:#021024}
+body:not(.zenith-cinematic) .page-hero{
+  min-height:390px;
+  padding:clamp(88px,11vw,150px) 0 76px;
+  border-bottom:1px solid rgba(193,232,255,.14);
+  background:
+    radial-gradient(ellipse at 82% 38%,rgba(84,131,179,.25),transparent 42%),
+    linear-gradient(135deg,rgba(5,38,89,.2),transparent 70%);
+}
+body:not(.zenith-cinematic) .page-hero h1{max-width:15ch;text-wrap:balance}
+body:not(.zenith-cinematic) .section{background:transparent}
+body:not(.zenith-cinematic) .section.soft,
+body:not(.zenith-cinematic) .proof-bar{
+  background:linear-gradient(145deg,rgba(5,38,89,.82),rgba(3,21,44,.92));
+  color:#EAF7FF;
+  border-block:1px solid rgba(193,232,255,.13);
+}
+body:not(.zenith-cinematic) .section-head p,
+body:not(.zenith-cinematic) .card p,
+body:not(.zenith-cinematic) .article p{color:#A9C6E2}
+body:not(.zenith-cinematic) .grid-3,
+body:not(.zenith-cinematic) .article-grid,
+body:not(.zenith-cinematic) .tech,
+body:not(.zenith-cinematic) .role-grid{
+  background:rgba(193,232,255,.14);
+  border-color:rgba(193,232,255,.14);
+}
+body:not(.zenith-cinematic) .card,
+body:not(.zenith-cinematic) .article,
+body:not(.zenith-cinematic) .tech div,
+body:not(.zenith-cinematic) .role-card{
+  color:#EAF7FF;
+  background:linear-gradient(145deg,rgba(5,38,89,.78),rgba(84,131,179,.09));
+  border-color:rgba(193,232,255,.15);
+}
+body:not(.zenith-cinematic) .card .num,
+body:not(.zenith-cinematic) .card a{color:#C1E8FF}
+body:not(.zenith-cinematic) .work-card{
+  color:#F2FAFF;
+  background:radial-gradient(circle at 78% 18%,rgba(84,131,179,.35),transparent 40%),linear-gradient(145deg,#052659,#03152c);
+  border:1px solid rgba(193,232,255,.16);
+}
+body:not(.zenith-cinematic) .work-card:nth-child(2),
+body:not(.zenith-cinematic) .work-card:nth-child(3),
+body:not(.zenith-cinematic) .work-card:nth-child(4){
+  background:radial-gradient(circle at 80% 18%,rgba(84,131,179,.26),transparent 42%),linear-gradient(145deg,#092b58,#03152c);
+}
+body:not(.zenith-cinematic) .step{border-color:rgba(193,232,255,.17)}
+body:not(.zenith-cinematic) .step b{color:#C1E8FF}
+body:not(.zenith-cinematic) .cta{
+  color:#021024;
+  background:linear-gradient(115deg,#C1E8FF,#7DA0CA);
+}
+body:not(.zenith-cinematic) .cta h2{color:#021024}
+body:not(.zenith-cinematic) .cta .btn{color:#021024;border-color:#021024}
+body:not(.zenith-cinematic) .form .field label{color:#C1D9EE}
+body:not(.zenith-cinematic) .field input,
+body:not(.zenith-cinematic) .field select,
+body:not(.zenith-cinematic) .field textarea{
+  color:#F2FAFF;
+  background:rgba(2,16,36,.68);
+  border:1px solid rgba(193,232,255,.24);
+  border-radius:10px;
+}
+body:not(.zenith-cinematic) .field input:focus,
+body:not(.zenith-cinematic) .field select:focus,
+body:not(.zenith-cinematic) .field textarea:focus{
+  outline:2px solid #C1E8FF;
+  outline-offset:2px;
+}
+body:not(.zenith-cinematic) .field input::placeholder,
+body:not(.zenith-cinematic) .field textarea::placeholder{color:#7DA0CA}
+body:not(.zenith-cinematic) .notice,
+body:not(.zenith-cinematic) .talent-form-note{
+  color:#EAF7FF;
+  background:rgba(84,131,179,.14);
+  border-left-color:#C1E8FF;
+}
+body:not(.zenith-cinematic) .footer{
+  color:#C1D9EE;
+  background:#010B19;
+  border-top:1px solid rgba(193,232,255,.16);
+}
+body:not(.zenith-cinematic) .footer h4{color:#F2FAFF}
+body:not(.zenith-cinematic) .footer-bottom{border-color:rgba(193,232,255,.16)}
+body:not(.zenith-cinematic) .menu{color:#EAF7FF}
+body:not(.zenith-cinematic) .wa-float{
+  color:#021024;
+  background:#C1E8FF;
+  box-shadow:0 12px 38px rgba(0,0,0,.32),0 0 24px rgba(193,232,255,.12);
+}
+
+/* Cinematic homepage — replace the previous orange treatment with Zenith blue. */
+body.zenith-cinematic{
+  --orange:#7DA0CA;
+  --orange2:#C1E8FF;
+  --line:rgba(193,232,255,.18);
+  background:#021024;
+  color:#EAF7FF;
+}
+body.zenith-cinematic .site-header{
+  background:rgba(2,16,36,.78);
+  border-bottom-color:rgba(193,232,255,.16);
+}
+body.zenith-cinematic .site-nav{color:#C1D9EE}
+body.zenith-cinematic .site-nav>a:not(.nav-cta):hover{color:#C1E8FF}
+body.zenith-cinematic .nav-cta{border-color:rgba(193,232,255,.36);color:#EAF7FF}
+body.zenith-cinematic .nav-cta span{color:#C1E8FF}
+body.zenith-cinematic .cinematic-hero{
+  background:
+    radial-gradient(ellipse at 78% 46%,rgba(84,131,179,.34),transparent 34%),
+    radial-gradient(ellipse at 16% 90%,rgba(5,38,89,.55),transparent 48%),
+    linear-gradient(115deg,#021024 0%,#052659 55%,#03152c 100%);
+}
+body.zenith-cinematic .hero-gridline{
+  opacity:.2;
+  background-image:linear-gradient(rgba(193,232,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(193,232,255,.12) 1px,transparent 1px);
+  mask-image:linear-gradient(90deg,transparent,black 48%,transparent 100%);
+}
+body.zenith-cinematic .orb-one{
+  background:radial-gradient(circle at 35% 30%,#C1E8FF 0,#5483B3 24%,rgba(5,38,89,.78) 49%,rgba(2,16,36,0) 72%);
+  opacity:.78;
+}
+body.zenith-cinematic .orb-two{background:radial-gradient(circle,rgba(193,232,255,.22),transparent 68%)}
+body.zenith-cinematic .art-sun{background:radial-gradient(circle,#C1E8FF 0,#5483B3 34%,rgba(5,38,89,.1) 72%)}
+body.zenith-cinematic .art-sculpture span{
+  border-top-color:rgba(193,232,255,.9);
+  border-right-color:rgba(84,131,179,.8);
+  border-bottom-color:rgba(125,160,202,.85);
+  border-left-color:rgba(193,232,255,.75);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.13),0 0 22px rgba(193,232,255,.2);
+}
+body.zenith-cinematic .art-sculpture b{color:#C1E8FF}
+body.zenith-cinematic .hero-copy h1 em,
+body.zenith-cinematic .story-heading h2 em,
+body.zenith-cinematic .services-intro h2 em,
+body.zenith-cinematic .work-intro h2 em,
+body.zenith-cinematic .approach-layout h2 em,
+body.zenith-cinematic .packages-heading h2 em,
+body.zenith-cinematic .talent-layout h2 em,
+body.zenith-cinematic .student-section h2 em,
+body.zenith-cinematic .final-cta h2 em{
+  background:linear-gradient(105deg,#C1E8FF 5%,#7DA0CA 55%,#EAF7FF 100%);
+  background-clip:text;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+body.zenith-cinematic .eyebrow i{background:#C1E8FF;box-shadow:0 0 18px rgba(193,232,255,.8)}
+body.zenith-cinematic .pill-button.bright{background:#C1E8FF;color:#021024!important}
+body.zenith-cinematic .pill-button.bright span{background:#052659;color:#fff}
+body.zenith-cinematic .pill-button.outline{border-color:rgba(193,232,255,.4)}
+body.zenith-cinematic .marquee-band{
+  background:#C1E8FF;
+  color:#021024;
+  box-shadow:0 10px 40px rgba(84,131,179,.12);
+}
+body.zenith-cinematic .story-section,
+body.zenith-cinematic .work-section,
+body.zenith-cinematic .approach-section,
+body.zenith-cinematic .packages-section{
+  background:linear-gradient(180deg,#03152c 0%,#021024 100%);
+}
+body.zenith-cinematic .services-section,
+body.zenith-cinematic .talent-section,
+body.zenith-cinematic .final-cta{
+  color:#06182B;
+  background:linear-gradient(145deg,#EAF7FF 0%,#D7E9F7 100%);
+}
+body.zenith-cinematic .services-section :is(h2,h3),
+body.zenith-cinematic .talent-section :is(h2,h3),
+body.zenith-cinematic .final-cta h2{color:#06182B}
+body.zenith-cinematic .services-section p,
+body.zenith-cinematic .talent-section p,
+body.zenith-cinematic .final-cta p{color:#405B76}
+body.zenith-cinematic .services-section .section-kicker,
+body.zenith-cinematic .talent-section .section-kicker,
+body.zenith-cinematic .final-cta .section-kicker{border-color:rgba(5,38,89,.2)}
+body.zenith-cinematic .services-section .section-kicker span,
+body.zenith-cinematic .talent-section .section-kicker span,
+body.zenith-cinematic .final-cta .section-kicker span{color:#45617C}
+body.zenith-cinematic .services-section .eyebrow,
+body.zenith-cinematic .talent-section .eyebrow,
+body.zenith-cinematic .final-cta .eyebrow{color:#315E8A}
+body.zenith-cinematic .service-list{border-color:rgba(5,38,89,.2)}
+body.zenith-cinematic .service-line{border-color:rgba(5,38,89,.2)}
+body.zenith-cinematic .service-line:hover{color:#164B7E!important}
+body.zenith-cinematic .service-num,
+body.zenith-cinematic .service-arrow{color:#315E8A}
+body.zenith-cinematic .service-desc{color:#526D87}
+body.zenith-cinematic .work-section{background:#021024}
+body.zenith-cinematic .visual-cloud{background:radial-gradient(ellipse at 50% 50%,#164B7E,#092B58 42%,#03152c 75%)}
+body.zenith-cinematic .cloud-core{color:#EAF7FF}
+body.zenith-cinematic .cloud-core span{color:#C1E8FF}
+body.zenith-cinematic .cloud-orbit{border-color:rgba(193,232,255,.56);box-shadow:0 0 60px rgba(84,131,179,.13)}
+body.zenith-cinematic .floating-label{border-color:rgba(193,232,255,.34);background:rgba(2,16,36,.55)}
+body.zenith-cinematic .work-meta span:last-child{color:#C1E8FF}
+body.zenith-cinematic .health-cross,
+body.zenith-cinematic .shield-shape{color:#C1E8FF}
+body.zenith-cinematic .visual-health{background:radial-gradient(circle at center,#164B7E,#03152c 72%)}
+body.zenith-cinematic .visual-shield{background:radial-gradient(circle at center,#0B3568,#021024 72%)}
+body.zenith-cinematic .talent-section .talent-values{border-color:rgba(5,38,89,.2)}
+body.zenith-cinematic .talent-section .talent-values>div+div{border-color:rgba(5,38,89,.2)}
+body.zenith-cinematic .talent-section .talent-values span{color:#315E8A}
+body.zenith-cinematic .student-section{background:#03152c}
+body.zenith-cinematic .student-number{color:#EAF7FF}
+body.zenith-cinematic .student-number span{color:#C1E8FF}
+body.zenith-cinematic .student-number small{color:#8DAFCE}
+body.zenith-cinematic .final-cta .cta-glow{background:radial-gradient(circle,rgba(84,131,179,.28),transparent 68%)}
+body.zenith-cinematic .final-cta .cta-bottom p{color:#405B76}
+body.zenith-cinematic .final-cta .cta-contact a{color:#164B7E}
+body.zenith-cinematic .site-footer{background:#010B19;border-top:1px solid rgba(193,232,255,.16)}
+body.zenith-cinematic .site-footer>div{color:#C1D9EE}
+body.zenith-cinematic .whatsapp-float{
+  color:#021024!important;
+  background:#C1E8FF;
+  box-shadow:0 12px 38px rgba(0,0,0,.32),0 0 24px rgba(193,232,255,.12);
+}
+
+/* React Bits-inspired interaction language: restrained glow, reveal and lift. */
+body :is(.card,.work-card,.work-feature,.service-line,.package-list>a,.role-card,.article){
+  transition:transform .38s cubic-bezier(.2,.7,.1,1),border-color .3s ease,box-shadow .3s ease,background .3s ease;
+}
+body :is(.card,.work-card,.work-feature,.package-list>a,.role-card):hover{
+  transform:translateY(-5px);
+}
+body :is(.card,.work-card,.package-list>a,.role-card):focus-within{
+  outline:2px solid rgba(193,232,255,.65);
+  outline-offset:3px;
+}
+body :is(a,button):focus-visible{
+  outline:2px solid #C1E8FF;
+  outline-offset:4px;
+}
+@media(hover:hover) and (pointer:fine){
+  body.zenith-cinematic .hero-art{transition:transform .8s cubic-bezier(.2,.7,.1,1)}
+  body.zenith-cinematic .hero-art:hover{transform:translate3d(0,-5px,0)}
+  body.zenith-cinematic .service-line:hover{padding-left:12px;padding-right:12px}
+}
+@media(max-width:800px){
+  body.zenith-cinematic .cinematic-hero{padding-inline:22px}
+  body.zenith-cinematic .hero-topline span:last-child{display:none}
+  body.zenith-cinematic .hero-copy{padding:58px 0 42px}
+  body.zenith-cinematic .hero-bottom{display:block}
+  body.zenith-cinematic .hero-bottom>p{margin-bottom:24px}
+  body.zenith-cinematic .hero-art{opacity:.42;right:-14%;top:24%;width:70vw}
+  body.zenith-cinematic .section-pad{padding-inline:22px}
+  body.zenith-cinematic .story-layout,
+  body.zenith-cinematic .talent-layout{grid-template-columns:1fr;gap:28px;padding-block:52px}
+  body.zenith-cinematic .services-intro,
+  body.zenith-cinematic .work-intro,
+  body.zenith-cinematic .packages-heading{display:block;padding-block:48px 38px}
+  body.zenith-cinematic .services-intro>p,
+  body.zenith-cinematic .work-intro>p,
+  body.zenith-cinematic .packages-heading>p{margin-top:20px}
+  body.zenith-cinematic .service-line{grid-template-columns:32px 1fr 24px;gap:12px}
+  body.zenith-cinematic .service-desc{grid-column:2;grid-row:2}
+  body.zenith-cinematic .service-arrow{grid-column:3;grid-row:1}
+  body.zenith-cinematic .talent-values{grid-template-columns:1fr 1fr}
+  body.zenith-cinematic .talent-values>div+div{border-left:0;padding-left:0}
+  body.zenith-cinematic .student-section{grid-template-columns:1fr;gap:24px}
+  body.zenith-cinematic .student-index{writing-mode:initial;transform:none}
+  body.zenith-cinematic .student-number{text-align:left}
+  body.zenith-cinematic .cta-bottom{display:block}
+  body.zenith-cinematic .cta-bottom .pill-button{margin-top:24px}
+  body.zenith-cinematic .site-footer{grid-template-columns:1fr;gap:18px;padding-inline:22px}
+  body.zenith-cinematic .site-footer>div{justify-content:flex-start}
+}
+@media(max-width:520px){
+  body.zenith-cinematic .hero-copy h1{font-size:clamp(3.5rem,15vw,5.2rem)}
+  body.zenith-cinematic .hero-actions{align-items:stretch;flex-direction:column;gap:12px}
+  body.zenith-cinematic .hero-actions .pill-button{width:100%}
+  body.zenith-cinematic .hero-art{top:28%;right:-25%;opacity:.28}
+  body.zenith-cinematic .art-caption{font-size:.48rem}
+  body.zenith-cinematic .talent-values{grid-template-columns:1fr}
+  body.zenith-cinematic .talent-values>div{padding:18px 0;border-bottom:1px solid rgba(5,38,89,.18)}
+  body.zenith-cinematic .work-title{display:block}
+  body.zenith-cinematic .work-title p{margin-top:12px}
+  body.zenith-cinematic .whatsapp-float{right:12px;bottom:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  body :is(.card,.work-card,.work-feature,.service-line,.package-list>a,.role-card,.article){transition:none!important}
+  body :is(.card,.work-card,.work-feature,.package-list>a,.role-card):hover{transform:none}
+}
+
+body:not(.zenith-cinematic) .cta p{color:#164B7E}
