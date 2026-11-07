@@ -32,7 +32,26 @@ function HomePage() {
             <a className="button button-quiet" href="#capabilities">Explore capabilities <span>↓</span></a>
           </div>
         </div>
-        <GhostFibers />
+        <GhostFibers
+          glowColor="#8b5cf6"
+          layers={3}
+          twist={1.6}
+          threads={72}
+          fiberStyle="dots"
+          depthOfField={0.85}
+          hoverEffect="focus"
+          intro={true}
+          mouseInteraction={true}
+          lineColor="#ffffff"
+          secondaryColor="#2dd4bf"
+          gradient="across"
+          waves={0.5}
+          spread={2.0}
+          foldGlow={1.3}
+          brightness={2}
+          vignette={0}
+          mouseStrength={1.15}
+        />
         <div className="hero-foot" aria-hidden="true"><span>DESIGN WITH INTENTION</span><span>BUILD FOR WHAT'S NEXT ↓</span></div>
       </section>
 
