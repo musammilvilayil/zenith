@@ -41,9 +41,16 @@ function LegacyPage() {
 
     const headNodes = [];
     parsed.head.querySelectorAll('meta[name],meta[property],link[rel="canonical"],link[rel="icon"],script[type="application/ld+json"]').forEach((node) => {
-      const clone = node.cloneNode(true);
-      document.head.appendChild(clone);
-      headNodes.push(clone);
+      const key = node.getAttribute("name") ? `meta[name="${node.getAttribute("name")}"]`
+        : node.getAttribute("property") ? `meta[property="${node.getAttribute("property")}"]`
+        : node.rel === "canonical" ? 'link[rel="canonical"]'
+        : node.rel === "icon" ? 'link[rel="icon"]' : null;
+      const exists = key ? document.head.querySelector(key) : [...document.head.querySelectorAll('script[type="application/ld+json"]')].some((item) => item.textContent === node.textContent);
+      if (!exists) {
+        const clone = node.cloneNode(true);
+        document.head.appendChild(clone);
+        headNodes.push(clone);
+      }
     });
     const description = parsed.head.querySelector('meta[name="description"]')?.content;
     if (description) {
@@ -59,11 +66,15 @@ function LegacyPage() {
     document.title = parsed.title || "Zenith Softworks";
 
     parsed.head.querySelectorAll('link[rel="stylesheet"]').forEach((node) => {
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = node.getAttribute("href");
-      document.head.appendChild(link);
-      headNodes.push(link);
+      const href = node.getAttribute("href");
+      const exists = [...document.head.querySelectorAll('link[rel="stylesheet"]')].some((item) => item.getAttribute("href") === href || item.href === new URL(href, location.origin).href);
+      if (!exists) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = href;
+        document.head.appendChild(link);
+        headNodes.push(link);
+      }
     });
 
     const scriptNodes = [];
