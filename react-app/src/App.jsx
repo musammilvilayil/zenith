@@ -1,37 +1,99 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { useLocation } from "react-router-dom";
 import GhostFibers from "./components/GhostFibers/GhostFibers.jsx";
-import "./styles/home.css";
+import pages1 from "./pages/legacyPages-1.js";
+import pages2 from "./pages/legacyPages-2.js";
+import pages3 from "./pages/legacyPages-3.js";
+import pages4 from "./pages/legacyPages-4.js";
 
-function HomePage() {
+const legacyPages = { ...pages1, ...pages2, ...pages3, ...pages4 };
+
+function normalizePath(pathname) {
+  if (pathname === "/") return "/";
+  return pathname.endsWith("/") ? pathname : pathname + "/";
+}
+
+function LegacyPage() {
+  const location = useLocation();
+  const hostRef = useRef(null);
+  const [heroTarget, setHeroTarget] = useState(null);
+  const path = normalizePath(location.pathname);
+  const html = legacyPages[path];
+
+  useLayoutEffect(() => {
+    const host = hostRef.current;
+    if (!host) return undefined;
+    setHeroTarget(null);
+
+    if (!html) {
+      host.innerHTML = '<main class="legacy-not-found"><p>404 · PAGE NOT FOUND</p><h1>This page has moved beyond the horizon.</h1><a href="/">Return to Zenith</a></main>';
+      host.className = "legacy-page legacy-page-not-found";
+      document.title = "Page not found | Zenith Softworks";
+      document.body.className = "";
+      return undefined;
+    }
+
+    const parsed = new DOMParser().parseFromString(html, "text/html");
+    host.className = "legacy-page " + (parsed.body.className || "");
+    host.innerHTML = parsed.body.innerHTML;
+    document.body.className = parsed.body.className || "";
+
+    const headNodes = [];
+    parsed.head.querySelectorAll('meta[name],meta[property],link[rel="canonical"],link[rel="icon"],script[type="application/ld+json"]').forEach((node) => {
+      const clone = node.cloneNode(true);
+      document.head.appendChild(clone);
+      headNodes.push(clone);
+    });
+    const description = parsed.head.querySelector('meta[name="description"]')?.content;
+    if (description) {
+      let meta = document.querySelector('meta[name="description"]');
+      if (!meta) {
+        meta = document.createElement("meta");
+        meta.name = "description";
+        document.head.appendChild(meta);
+        headNodes.push(meta);
+      }
+      meta.content = description;
+    }
+    document.title = parsed.title || "Zenith Softworks";
+
+    parsed.head.querySelectorAll('link[rel="stylesheet"]').forEach((node) => {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = node.getAttribute("href");
+      document.head.appendChild(link);
+      headNodes.push(link);
+    });
+
+    const scriptNodes = [];
+    parsed.body.querySelectorAll("script[src]").forEach((node) => {
+      const script = document.createElement("script");
+      script.src = node.getAttribute("src");
+      script.defer = node.defer;
+      script.async = false;
+      document.body.appendChild(script);
+      scriptNodes.push(script);
+    });
+
+    const target = host.querySelector(".cinematic-hero");
+    if (target) setHeroTarget(target);
+
+    const hash = location.hash;
+    if (hash) requestAnimationFrame(() => document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView());
+    else window.scrollTo(0, 0);
+
+    return () => {
+      headNodes.forEach((node) => node.remove());
+      scriptNodes.forEach((node) => node.remove());
+      setHeroTarget(null);
+    };
+  }, [html, location.key, location.hash]);
+
   return (
-    <main className="home">
-      <header className="site-header">
-        <Link className="brand" to="/" aria-label="Zenith Softworks home">
-          <span className="brand-mark">Z<span>.</span></span>
-          <span>ZENITH<small>SOFTWORKS</small></span>
-        </Link>
-        <nav aria-label="Main navigation">
-          <a href="#studio">Studio</a>
-          <a href="#capabilities">Capabilities</a>
-          <a href="#work">Selected work</a>
-          <a href="/contact/">Contact <span aria-hidden="true">↗</span></a>
-        </nav>
-      </header>
-
-      <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-backdrop" aria-hidden="true" />
-        <div className="hero-copy">
-          <p className="eyebrow">INDEPENDENT DIGITAL STUDIO · KERALA, INDIA</p>
-          <h1 id="hero-title">Every big idea<br /><em>starts somewhere.</em></h1>
-          <p className="hero-description">
-            Thoughtful websites, useful applications and digital experiences
-            built around people and possibility.
-          </p>
-          <div className="hero-actions">
-            <a className="button button-primary" href="/contact/">Start a project <span>↗</span></a>
-            <a className="button button-quiet" href="#capabilities">Explore capabilities <span>↓</span></a>
-          </div>
-        </div>
+    <>
+      <div ref={hostRef} />
+      {heroTarget && createPortal(
         <GhostFibers
           glowColor="#8b5cf6"
           layers={3}
@@ -40,49 +102,24 @@ function HomePage() {
           fiberStyle="dots"
           depthOfField={0.85}
           hoverEffect="focus"
-          intro={true}
-          mouseInteraction={true}
+          intro
+          mouseInteraction
           lineColor="#ffffff"
           secondaryColor="#2dd4bf"
           gradient="across"
           waves={0.5}
-          spread={2.0}
+          spread={2}
           foldGlow={1.3}
           brightness={2}
           vignette={0}
           mouseStrength={1.15}
-        />
-        <div className="hero-foot" aria-hidden="true"><span>DESIGN WITH INTENTION</span><span>BUILD FOR WHAT'S NEXT ↓</span></div>
-      </section>
-
-      <section className="intro-section" id="studio">
-        <p className="eyebrow">A SMALL STUDIO FOR AMBITIOUS IDEAS</p>
-        <h2>Make technology feel<br /><em>more human.</em></h2>
-        <p>We connect strategy, design and engineering to turn meaningful ideas into useful digital products.</p>
-      </section>
-      <section className="capabilities-section" id="capabilities">
-        <p className="eyebrow">WHAT WE DO</p>
-        <h2>Built around your next step.</h2>
-        <div className="capability-grid">
-          {["Web platforms","Custom software","Applied AI","Mobile experiences"].map((item,index)=>(
-            <article className="capability-card" key={item}><span>0{index+1}</span><h3>{item}</h3><p>Clear thinking, considered design and dependable engineering.</p></article>
-          ))}
-        </div>
-      </section>
-      <footer className="site-footer"><span>© {new Date().getFullYear()} Zenith Softworks</span><a href="mailto:info@zenithsoftworks.in">info@zenithsoftworks.in ↗</a></footer>
-    </main>
+        />,
+        heroTarget,
+      )}
+    </>
   );
-}
-
-function RoutePlaceholder({ title }) {
-  return <main className="route-placeholder"><Link to="/">← Back to Zenith</Link><p className="eyebrow">ZENITH SOFTWORKS</p><h1>{title}</h1><p>This route is reserved for the page migration in the next React migration phase.</p></main>;
 }
 
 export default function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="*" element={<RoutePlaceholder title="Page migration in progress" />} />
-    </Routes>
-  );
+  return <LegacyPage />;
 }
