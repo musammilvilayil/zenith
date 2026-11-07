@@ -1,0 +1,37 @@
+.ghost-fibers-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  perspective: 1000px;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ghost-fibers-container {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  left: -50%;
+  bottom: -20%;
+  transform: rotateX(70deg) translateY(-10%);
+  transform-origin: bottom center;
+}
+
+.ghost-fibers-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-height: 600px) {
+  .ghost-fibers-wrapper { height: 56vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ghost-fibers-container { transform: rotateX(70deg) translateY(-10%); }
+}
