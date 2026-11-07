@@ -600,3 +600,15 @@ body.zenith-cinematic .hero-index span:last-child{color:#C1D9EE}
 @media(prefers-reduced-motion:reduce){
   body.zenith-cinematic .hero-art{animation:none}
 }
+
+
+/* Keep the hero sculpture as a supporting visual, never a competing headline layer. */
+@media(min-width:801px){
+  body.zenith-cinematic .hero-copy h1{max-width:780px;font-size:clamp(4.8rem,8.25vw,8.2rem)}
+  body.zenith-cinematic .hero-art{right:-3.5%;width:42vw;opacity:.7}
+  body.zenith-cinematic .hero-bottom{max-width:900px}
+}
+@media(min-width:801px) and (max-width:1100px){
+  body.zenith-cinematic .hero-copy h1{max-width:690px;font-size:clamp(4.5rem,8vw,6.8rem)}
+  body.zenith-cinematic .hero-art{right:-8%;width:48vw;opacity:.48}
+}
