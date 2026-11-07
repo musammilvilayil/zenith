@@ -59,8 +59,12 @@ The following are intentionally not rewritten:
 - Repository tree and page assets inspected on the base branch.
 - Shared stylesheet and README updated on the refresh branch.
 - No React dependencies or build tooling were introduced.
-- **Automated browser/device visual regression and live form submission have not been run from this repository-editing session.** Those still require a deployed preview and real browser/device checks.
-- Before production rollout, verify homepage, About, Services, Work, Contact, Talent, Student Projects and Academic Services at mobile and desktop widths; submit test enquiries on the preview and confirm Resend delivery plus WhatsApp fallback.
+- **Post-merge browser smoke test completed on production:** desktop and 390px mobile checks reported the midnight/ice-blue theme, responsive stacking, mobile navigation open/close, primary route links, no horizontal overflow and no visible console errors.
+- **Live route smoke test completed:** homepage, About, Services, Work, Contact, Talent, Student Projects, Academic Services, Web Platforms, Mobile Apps, AI Automation, IoT, Cloud & DevOps and Insights returned their expected page titles/content and canonical URLs.
+- Contact and Talent form DOMs were inspected; required fields and submit controls are present. No dummy enquiry was submitted, so email delivery and WhatsApp fallback were not end-to-end tested.
+- The merged production deployment reached Vercel `READY` on commit `d8cb7bb01fcc1fda807dcad0cea868e5cf095410`.
+- Vercel emitted a non-blocking pre-existing warning that the ESM `api/enquiry.js` function is compiled to CommonJS. This visual refresh did not change the function or its runtime contract.
+- The homepage's project showcase is further down the page and is expected to require scrolling; it is not an above-the-fold hero element.
 
 ## 7. Follow-up QA checklist
 
@@ -71,3 +75,12 @@ The following are intentionally not rewritten:
 - [ ] Submit Contact and Talent forms on preview.
 - [ ] Confirm email delivery and WhatsApp fallback.
 - [ ] Check 404 handling, canonical URLs and sitemap after deployment.
+
+
+## 8. Post-merge production verification
+
+- Production aliases `zenithsoftworks.in`, `www.zenithsoftworks.in` and `zenith-softworks.vercel.app` are attached to the READY deployment.
+- Production stylesheet delivery was checked and includes the merged future-system rules, including the inner-page CTA contrast correction.
+- Read-only responsive browser checks passed for desktop and 390px mobile; the mobile navigation opened and closed, primary links resolved, and no horizontal overflow or visible console errors were reported.
+- Contact and Talent form markup was verified in the live DOM. No real or dummy message was sent during QA.
+- The Vercel production build completed successfully. A non-blocking ESM-to-CommonJS warning for the existing serverless enquiry function remains outside the scope of this visual-only change.
