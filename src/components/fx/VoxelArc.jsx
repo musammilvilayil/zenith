@@ -11,8 +11,8 @@ export default function VoxelArc({
   crestColor = "#C1E8FF",
   midColor = "#5483B3",
   deepColor = "#052659",
-  rows = 12,
-  cols = 38,
+  rows = 9,
+  cols = 28,
   horizonY = 0.44,
   arcCurvature = 0.14,
   waveHeight = 16,
@@ -26,35 +26,55 @@ export default function VoxelArc({
     const canvas = canvasRef.current;
     if (!canvas) return undefined;
 
-    const rowCount = clamp(Math.round(rows), 4, 24);
-    const colCount = clamp(Math.round(cols), 12, 64);
+    const maxRows = clamp(Math.round(rows), 4, 18);
+    const maxCols = clamp(Math.round(cols), 12, 48);
+
+    // Pre-quantize voxel colors outside the frame loop to avoid per-cell hex parsing.
+    const paletteSteps = 16;
+    const palette = Array.from({ length: paletteSteps }, (_, i) => {
+      const t = i / (paletteSteps - 1);
+      return t < 0.55
+        ? mixColor(deepColor, midColor, t / 0.55)
+        : mixColor(midColor, crestColor, (t - 0.55) / 0.45);
+    });
+    const horizonStop0 = hexToRgba(midColor, 0.2 * opacity);
+    const horizonStop1 = hexToRgba(deepColor, 0.12 * opacity);
+    let cachedWidth = 0;
+    let cachedHeight = 0;
+    let cachedHorizonGlow = null;
 
     return mountAnimatedCanvas(canvas, {
       mouseInteraction,
+      targetFps: 60,
       onDraw: ({ context, width, height, elapsed, pointer }) => {
+        const mobile = window.innerWidth < 768;
+        const rowCount = mobile ? Math.min(maxRows, 7) : maxRows;
+        const colCount = mobile ? Math.min(maxCols, 18) : maxCols;
         const horizon = height * clamp(horizonY, 0.2, 0.8);
         const arcLift = height * arcCurvature;
         const pointerInfluenceX = pointer.x;
         const pointerInfluenceY = pointer.y;
 
-        // Soft atmospheric horizon glow
-        const horizonGlow = context.createRadialGradient(
-          width * 0.5,
-          horizon + arcLift * 0.25,
-          0,
-          width * 0.5,
-          horizon + arcLift * 0.25,
-          width * 0.62,
-        );
-        horizonGlow.addColorStop(0, hexToRgba(midColor, 0.2 * opacity));
-        horizonGlow.addColorStop(0.55, hexToRgba(deepColor, 0.12 * opacity));
-        horizonGlow.addColorStop(1, "rgba(2, 16, 36, 0)");
-        context.fillStyle = horizonGlow;
+        if (width !== cachedWidth || height !== cachedHeight) {
+          cachedWidth = width;
+          cachedHeight = height;
+          cachedHorizonGlow = context.createRadialGradient(
+            width * 0.5,
+            horizon + arcLift * 0.25,
+            0,
+            width * 0.5,
+            horizon + arcLift * 0.25,
+            width * 0.62,
+          );
+          cachedHorizonGlow.addColorStop(0, horizonStop0);
+          cachedHorizonGlow.addColorStop(0.55, horizonStop1);
+          cachedHorizonGlow.addColorStop(1, "rgba(2, 16, 36, 0)");
+        }
+        context.fillStyle = cachedHorizonGlow;
         context.fillRect(0, 0, width, height);
 
-        // Draw rows back-to-front so nearer voxels layer cleanly
         for (let r = 0; r < rowCount; r += 1) {
-          const depth = rowCount === 1 ? 1 : r / (rowCount - 1); // 0 = far horizon, 1 = foreground
+          const depth = rowCount === 1 ? 1 : r / (rowCount - 1);
           const perspective = 0.35 + depth * 0.95;
           const rowY = horizon + Math.pow(depth, 1.35) * (height - horizon * 0.85);
           const spanWidth = width * (0.78 + depth * 0.56);
@@ -63,22 +83,19 @@ export default function VoxelArc({
 
           for (let c = 0; c < colCount; c += 1) {
             const u = colCount === 1 ? 0.5 : c / (colCount - 1);
-            const centeredU = (u - 0.5) * 2; // -1 .. 1
+            const centeredU = (u - 0.5) * 2;
+            const arcOffset = centeredU * centeredU * arcLift * (1 - depth * 0.45);
 
-            // Parabolic horizon arc: raises center, curves downward toward edges
-            const arcOffset = (centeredU * centeredU) * arcLift * (1 - depth * 0.45);
-
-            // Calm dual-wave sea swell
             const swellA = Math.sin(u * Math.PI * 3.4 - elapsed * waveSpeed + depth * 2.2);
             const swellB = Math.cos(u * Math.PI * 5.2 + elapsed * waveSpeed * 0.72 - depth * 3.1);
-            const waveNorm = (swellA * 0.62 + swellB * 0.38 + 1) * 0.5; // 0 .. 1
+            const waveNorm = (swellA * 0.62 + swellB * 0.38 + 1) * 0.5;
 
             let mouseLift = 0;
             if (mouseInteraction) {
               const dx = u - pointerInfluenceX;
-              const dy = (rowY / height) - pointerInfluenceY;
-              const dist = Math.hypot(dx, dy);
-              mouseLift = Math.exp(-dist * dist * 16) * 0.45;
+              const dy = rowY / height - pointerInfluenceY;
+              const distSq = dx * dx + dy * dy;
+              if (distSq < 0.2) mouseLift = Math.exp(-distSq * 16) * 0.45;
             }
 
             const totalWave = clamp(waveNorm + mouseLift, 0, 1.25);
@@ -94,24 +111,25 @@ export default function VoxelArc({
 
             const size = baseSize * (0.82 + totalWave * 0.36);
             const half = size * 0.5;
-            const voxelColor = mixColor(
-              mixColor(deepColor, midColor, clamp(depth * 0.7 + totalWave * 0.3, 0, 1)),
-              crestColor,
-              clamp((totalWave - 0.35) * 1.15, 0, 1),
+            const colorIdx = Math.min(
+              paletteSteps - 1,
+              Math.max(0, Math.round(clamp(depth * 0.45 + totalWave * 0.55, 0, 1) * (paletteSteps - 1))),
             );
 
-            // Soft voxel body
-            context.fillStyle = hexToRgba(voxelColor, alpha);
+            context.globalAlpha = alpha;
+            context.fillStyle = palette[colorIdx];
             context.fillRect(x - half, y - half, size, size);
 
-            // Crisp ice-blue crest rim on high swells
-            if (totalWave > 0.52) {
-              context.strokeStyle = hexToRgba(crestColor, clamp((totalWave - 0.5) * 0.95 * edgeFade * opacity, 0, 0.75));
+            if (totalWave > 0.55) {
+              context.globalAlpha = clamp((totalWave - 0.5) * 0.85 * edgeFade * opacity, 0, 0.7);
+              context.strokeStyle = crestColor;
               context.lineWidth = 0.75;
               context.strokeRect(x - half, y - half, size, size);
             }
           }
         }
+
+        context.globalAlpha = 1;
       },
     });
   }, [
@@ -140,4 +158,3 @@ export default function VoxelArc({
     </div>
   );
 }
-

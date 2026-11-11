@@ -57,7 +57,7 @@ export default function SiteLayout({ children }) {
       >
         <nav
           aria-label="Main navigation"
-          className="mx-auto flex h-[76px] max-w-7xl items-center justify-between gap-6 px-5 sm:px-8"
+          className="mx-auto flex h-[70px] max-w-7xl items-center justify-between gap-6 px-5 sm:h-[76px] sm:px-8"
         >
           <Link
             to="/"
@@ -82,8 +82,10 @@ export default function SiteLayout({ children }) {
                 to={item.href}
                 className={({ isActive }) =>
                   cn(
-                    "text-xs font-medium tracking-wide transition-colors",
-                    isActive ? "text-ice" : "text-muted hover:text-ink",
+                    "relative py-1 text-xs font-medium tracking-wide transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-ice after:transition-transform after:duration-300",
+                    isActive
+                      ? "text-ice after:scale-x-100"
+                      : "text-muted hover:text-ink after:scale-x-0 hover:after:scale-x-100",
                   )
                 }
               >
@@ -95,7 +97,7 @@ export default function SiteLayout({ children }) {
           <div className="flex items-center gap-3">
             <Link
               to="/contact/"
-              className="hidden items-center gap-2 rounded-full border border-ice/35 bg-ice px-4 py-2 text-xs font-bold text-midnight transition hover:-translate-y-0.5 hover:bg-white sm:inline-flex"
+              className="hidden items-center gap-2 rounded-full border border-ice/35 bg-ice px-4 py-2 text-xs font-bold text-midnight transition duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:bg-white sm:inline-flex"
             >
               Start a project <span aria-hidden="true">↗</span>
             </Link>
@@ -143,7 +145,7 @@ export default function SiteLayout({ children }) {
         )}
       </header>
 
-      <main id="main-content" tabIndex={-1} className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1 overflow-x-clip">
         {children}
       </main>
 

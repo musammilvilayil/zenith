@@ -176,8 +176,8 @@ export default function TalentPage() {
       </section>
 
       <section id="apply" className="border-t border-ice/15 bg-deep/90 py-20">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <aside className="space-y-6">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:items-start">
+          <aside className="space-y-6 lg:col-span-5">
             <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
               Application
             </span>
@@ -207,7 +207,9 @@ export default function TalentPage() {
             </p>
           </aside>
 
-          <EnquiryForm mode="talent" />
+          <div className="lg:col-span-7">
+            <EnquiryForm mode="talent" />
+          </div>
         </div>
       </section>
     </>

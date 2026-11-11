@@ -75,14 +75,18 @@ export default function SolutionsPage() {
             {AUDIENCES.map((item) => (
               <article
                 key={item.num}
-                className="grid gap-4 py-8 md:grid-cols-[56px_1.1fr_1.4fr_auto] md:items-center"
+                className="grid gap-4 py-8 md:grid-cols-12 md:items-center md:gap-6"
               >
-                <span className="text-xs font-bold text-ice">{item.num}</span>
-                <h2 className="font-display text-2xl font-bold text-ink">{item.title}</h2>
-                <p className="text-sm leading-relaxed text-muted">{item.desc}</p>
+                <span className="font-mono text-xs font-bold text-ice md:col-span-1">
+                  {item.num}
+                </span>
+                <h2 className="font-display text-2xl font-bold text-ink md:col-span-4">
+                  {item.title}
+                </h2>
+                <p className="text-sm leading-relaxed text-muted md:col-span-5">{item.desc}</p>
                 <Link
                   to={item.to}
-                  className="text-xs font-bold text-ice transition hover:text-white"
+                  className="text-xs font-bold text-ice transition hover:text-white md:col-span-2 md:text-right"
                 >
                   {item.cta}
                 </Link>

@@ -54,10 +54,10 @@ export default function ServicesPage() {
               <article
                 key={pkg.title}
                 className={cn(
-                  "flex flex-col justify-between rounded-3xl border p-7 backdrop-blur transition hover:-translate-y-1",
+                  "zenith-card flex flex-col justify-between rounded-3xl border p-7",
                   pkg.featured
-                    ? "border-ice/55 bg-gradient-to-br from-navy/90 to-steel/20 shadow-xl shadow-steel/15"
-                    : "border-ice/20 bg-navy/45",
+                    ? "border-ice/55 bg-gradient-to-br from-navy/95 to-steel/20 shadow-xl shadow-steel/15"
+                    : "border-ice/20 bg-navy/45 hover:border-ice/40 hover:bg-navy/70",
                 )}
               >
                 <div>
@@ -112,14 +112,20 @@ export default function ServicesPage() {
             {PRODUCT_ENGINEERING_SERVICES.map((item) => (
               <article
                 key={item.slug}
-                className="grid gap-4 py-7 md:grid-cols-[56px_1.1fr_1.4fr_auto] md:items-center"
+                className="grid gap-4 py-7 md:grid-cols-12 md:items-center md:gap-6"
               >
-                <span className="text-xs font-bold text-ice">{item.num}</span>
-                <h3 className="font-display text-xl font-bold text-ink">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-muted">{item.description}</p>
+                <span className="font-mono text-xs font-bold text-ice md:col-span-1">
+                  {item.num}
+                </span>
+                <h3 className="font-display text-xl font-bold text-ink md:col-span-4">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted md:col-span-5">
+                  {item.description}
+                </p>
                 <Link
                   to={`/services/${item.slug}/`}
-                  className="text-xs font-bold text-ice transition hover:text-white"
+                  className="text-xs font-bold text-ice transition hover:text-white md:col-span-2 md:text-right"
                 >
                   {item.cta}
                 </Link>
