@@ -1,6 +1,6 @@
-# Zenith React migration workspace
+# Zenith React migration
 
-This isolated Vite + React application is the first migration slice. The existing production site remains untouched while routes are migrated and verified.
+The site now runs through a React 19 + Vite application with all 26 existing public routes mapped into the React runtime. A compatibility renderer preserves the original page markup, CSS, content, forms and metadata while routes move to reusable native React components in subsequent passes.
 
 ## Run locally
 
@@ -8,16 +8,25 @@ This isolated Vite + React application is the first migration slice. The existin
 cd react-app
 npm install
 npm run dev
+```
+
+## Validation and production build
+
+```bash
+npm run test:routes
 npm run build
 ```
 
-## Migration contract
+The build copies the existing `/assets`, `robots.txt`, `sitemap.xml` and `404.html` files into Vite's public output, then prerenders each existing route with its original title, description, canonical URL, Open Graph metadata, structured data and content. The React bundle mounts on every route and adds the GhostFibers canvas to the homepage hero.
 
-- Keep the existing public URLs and page content.
-- Preserve the current Vercel enquiry endpoint and its validation/security behavior.
-- Move shared navigation, footer, layout and repeated UI into reusable React components.
-- Migrate each existing HTML route before switching the production build.
-- Preserve page metadata, canonical URLs, structured data, sitemap and robots directives.
-- Keep the original static site available until route parity and production smoke tests pass.
+## Preserved integrations
 
-The homepage is the first React implementation slice. Remaining routes are intentionally not represented by placeholder content in production; they must be migrated before cutover.
+- Existing public URLs and page content (26 functional routes).
+- Existing `/api/enquiry` Vercel serverless function and its validation/security behavior.
+- Existing page CSS, imagery, JavaScript interactions and contact/talent forms.
+- Page metadata, canonical URLs, structured data, sitemap, robots and 404 page.
+- Existing security response headers.
+
+## Migration status
+
+This is a compatibility migration, not a claim that every legacy section has already been rewritten as native JSX. It puts every route under the React runtime without dropping working content or SEO. Shared navigation, footer, forms and page sections can now be extracted into reusable React components incrementally. The PR remains draft until the preview is visually and functionally reviewed; production is not switched by this branch.

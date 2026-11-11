@@ -156,13 +156,13 @@ export default function GhostFibers({
     resize();
     const observer = new ResizeObserver(resize);
     observer.observe(canvas);
-    canvas.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
     animationId = window.requestAnimationFrame(draw);
 
     return () => {
       window.cancelAnimationFrame(animationId);
       observer.disconnect();
-      canvas.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointermove", onPointerMove);
     };
   }, [brightness, depthOfField, fiberStyle, foldGlow, glowColor, gradient, hoverEffect, intro, layers, lineColor, mouseInteraction, mouseStrength, secondaryColor, spread, threads, twist, vignette, waves]);
 
