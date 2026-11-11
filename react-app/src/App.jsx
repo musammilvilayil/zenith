@@ -273,6 +273,6 @@ function Home() {
 }
 
 export default function App() {
-  const path = window.location.pathname.replace(/\\/?$/, "/");
+  const path = window.location.pathname.endsWith("/") ? window.location.pathname : window.location.pathname + "/";
   return path === "/" ? <Home/> : <InnerPage path={path}/>;
 }
