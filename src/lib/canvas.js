@@ -34,72 +34,146 @@ export function mixColor(startHex, endHex, amount, alpha = 1) {
 }
 
 /**
- * Attaches resize, reduced-motion, pointer tracking, and animation loop
- * lifecycle management to an HTML5 2D canvas.
+ * Attaches resize, IntersectionObserver viewport gating, visibility gating,
+ * reduced-motion, pointer tracking, and throttled animation loop lifecycle
+ * management to an HTML5 2D canvas.
  */
-export function mountAnimatedCanvas(canvas, { mouseInteraction = true, onDraw }) {
+export function mountAnimatedCanvas(
+  canvas,
+  { mouseInteraction = true, targetFps = 60, onDraw },
+) {
   const context = canvas?.getContext("2d", { alpha: true });
   if (!canvas || !context) return () => {};
 
   const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const pointer = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
-  const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
-  const start = performance.now();
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+  const minFrameInterval = targetFps > 0 ? 1000 / targetFps : 0;
+  const supportsIntersectionObserver = "IntersectionObserver" in window;
   let width = 1;
   let height = 1;
   let animationId = 0;
+  let isVisible = !supportsIntersectionObserver;
+  let isTabActive = !document.hidden;
+  let elapsed = 0;
+  let lastTick = performance.now();
+  let lastRender = 0;
 
   const resize = () => {
     const rect = canvas.getBoundingClientRect();
     width = Math.max(1, rect.width);
     height = Math.max(1, rect.height);
-    canvas.width = Math.round(width * dpr);
-    canvas.height = Math.round(height * dpr);
+    const nextW = Math.round(width * dpr);
+    const nextH = Math.round(height * dpr);
+    if (canvas.width !== nextW || canvas.height !== nextH) {
+      canvas.width = nextW;
+      canvas.height = nextH;
+    }
     context.setTransform(dpr, 0, 0, dpr, 0, 0);
   };
 
-  const renderFrame = (now) => {
+  const drawSingleFrame = (now) => {
     const reduced = motionQuery.matches;
-    const elapsed = reduced ? 0 : (now - start) / 1000;
+    if (!reduced) {
+      const delta = Math.min(0.1, Math.max(0, (now - lastTick) / 1000));
+      elapsed += delta;
+    } else {
+      elapsed = 0;
+    }
+    lastTick = now;
+
     pointer.x += (pointer.tx - pointer.x) * 0.08;
     pointer.y += (pointer.ty - pointer.y) * 0.08;
 
     context.clearRect(0, 0, width, height);
     onDraw({ context, width, height, elapsed, pointer, reduced });
+  };
 
-    if (!reduced) {
-      animationId = window.requestAnimationFrame(renderFrame);
+  const stopLoop = () => {
+    if (animationId) {
+      window.cancelAnimationFrame(animationId);
+      animationId = 0;
     }
   };
 
+  const scheduleLoop = () => {
+    if (animationId || motionQuery.matches || !isVisible || !isTabActive) return;
+    lastTick = performance.now();
+    animationId = window.requestAnimationFrame(loop);
+  };
+
+  const loop = (now) => {
+    animationId = 0;
+    if (!isVisible || !isTabActive || motionQuery.matches) return;
+
+    if (now - lastRender >= minFrameInterval) {
+      lastRender = now;
+      drawSingleFrame(now);
+    }
+    animationId = window.requestAnimationFrame(loop);
+  };
+
   const onPointerMove = (event) => {
-    if (!mouseInteraction) return;
+    if (!mouseInteraction || !isVisible || !isTabActive) return;
     const rect = canvas.getBoundingClientRect();
     if (!rect.width || !rect.height) return;
     pointer.tx = clamp((event.clientX - rect.left) / rect.width, 0, 1);
     pointer.ty = clamp((event.clientY - rect.top) / rect.height, 0, 1);
   };
 
+  const onVisibilityChange = () => {
+    isTabActive = !document.hidden;
+    if (isTabActive && isVisible) {
+      scheduleLoop();
+    } else {
+      stopLoop();
+    }
+  };
+
   const onMotionChange = () => {
-    window.cancelAnimationFrame(animationId);
-    animationId = window.requestAnimationFrame(renderFrame);
+    stopLoop();
+    if (isVisible && isTabActive) drawSingleFrame(performance.now());
+    scheduleLoop();
   };
 
   resize();
-  const observer = new ResizeObserver(() => {
+  if (isVisible) drawSingleFrame(performance.now());
+
+  const resizeObserver = new ResizeObserver(() => {
     resize();
-    if (motionQuery.matches) renderFrame(performance.now());
+    if (isVisible && isTabActive) drawSingleFrame(performance.now());
   });
-  observer.observe(canvas);
+  resizeObserver.observe(canvas);
+
+  let intersectionObserver = null;
+  if (supportsIntersectionObserver) {
+    intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        isVisible = Boolean(entry?.isIntersecting && entry.intersectionRatio >= 0.05);
+        if (isVisible) {
+          drawSingleFrame(performance.now());
+          scheduleLoop();
+        } else {
+          stopLoop();
+        }
+      },
+      { threshold: 0.05 },
+    );
+    intersectionObserver.observe(canvas.closest("section") || canvas);
+  }
+
   window.addEventListener("pointermove", onPointerMove, { passive: true });
+  document.addEventListener("visibilitychange", onVisibilityChange);
   motionQuery.addEventListener?.("change", onMotionChange);
-  animationId = window.requestAnimationFrame(renderFrame);
+  scheduleLoop();
 
   return () => {
-    window.cancelAnimationFrame(animationId);
-    observer.disconnect();
+    stopLoop();
+    resizeObserver.disconnect();
+    intersectionObserver?.disconnect();
     window.removeEventListener("pointermove", onPointerMove);
+    document.removeEventListener("visibilitychange", onVisibilityChange);
     motionQuery.removeEventListener?.("change", onMotionChange);
   };
 }
-

@@ -32,8 +32,8 @@ export default function ContactPage() {
       />
 
       <section className="py-20">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <aside className="space-y-8">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:items-start">
+          <aside className="space-y-8 lg:col-span-5">
             <div>
               <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
                 What happens next
@@ -79,7 +79,9 @@ export default function ContactPage() {
             </div>
           </aside>
 
-          <EnquiryForm mode="contact" />
+          <div className="lg:col-span-7">
+            <EnquiryForm mode="contact" />
+          </div>
         </div>
       </section>
     </>

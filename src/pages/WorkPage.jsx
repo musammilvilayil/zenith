@@ -17,20 +17,22 @@ export default function WorkPage() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-8 md:grid-cols-2">
-            {CASE_STUDIES.map((project) => (
+            {CASE_STUDIES.map((project, idx) => (
               <Link
                 key={project.slug}
                 to={`/work/${project.slug}/`}
-                className="group flex flex-col overflow-hidden rounded-3xl border border-ice/20 bg-navy/45 transition hover:-translate-y-1 hover:border-ice/45"
+                className={`zenith-card group flex flex-col overflow-hidden ${idx === 0 ? "md:col-span-2" : ""} rounded-3xl border border-ice/20 bg-navy/45 hover:border-ice/45 hover:bg-navy/70`}
               >
                 <div className="relative overflow-hidden border-b border-ice/15">
                   <img
                     src={project.image}
                     alt={project.imageAlt}
-                    className="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                    loading={idx === 0 ? undefined : "lazy"}
+                    decoding="async"
+                    className={`aspect-[4/3] w-full object-cover transition duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] ${idx === 0 ? "md:aspect-[21/9]" : "md:aspect-video"}`}
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-midnight/75 via-transparent to-transparent" />
-                  <span className="absolute bottom-3 left-5 text-[10px] font-bold uppercase tracking-[0.18em] text-ice">
+                  <span className="absolute bottom-3 left-5 z-mono-label text-ice">
                     {project.index} · {project.category}
                   </span>
                 </div>
