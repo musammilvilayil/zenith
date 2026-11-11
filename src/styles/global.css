@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --color-midnight: #021024;
+  --color-navy: #052659;
+  --color-deep: #03152c;
+  --color-steel: #5483B3;
+  --color-soft-blue: #7DA0CA;
+  --color-ice: #C1E8FF;
+  --color-ink: #EAF7FF;
+  --color-muted: #A9C6E2;
+  --color-light-surface: #EAF7FF;
+  --color-light-ink: #06182B;
+  --color-light-muted: #405B76;
+
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Manrope", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background-color: #021024;
+    color: #EAF7FF;
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(84, 131, 179, 0.22), transparent 46%),
+      linear-gradient(180deg, #052659 0%, #021024 46%, #03152c 100%);
+    color: #EAF7FF;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.045em;
+  }
+
+  ::selection {
+    background: #C1E8FF;
+    color: #021024;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #C1E8FF;
+    outline-offset: 4px;
+  }
+}
+
+.zenith-gradient-text {
+  background: linear-gradient(105deg, #C1E8FF 5%, #7DA0CA 55%, #EAF7FF 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.zenith-gradient-text-dark {
+  background: linear-gradient(105deg, #052659 10%, #5483B3 85%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes zenith-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.zenith-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: max-content;
+  white-space: nowrap;
+  animation: zenith-marquee 34s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .zenith-marquee-track {
+    animation: none;
+  }
+}

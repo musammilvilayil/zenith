@@ -1,29 +1,28 @@
 # Zenith Softworks
 
-Static marketing site with a protected serverless enquiry endpoint. Contact and Talent forms post to `/api/enquiry`; on a delivery failure, the browser offers a pre-filled WhatsApp fallback to **+91 94976 65504**.
+Native **React 19 + Vite 6 + Tailwind CSS v4** application for [zenithsoftworks.in](https://zenithsoftworks.in), with all 26 routes rendered natively in JSX, bundled image assets, and interactive canvas visual layers.
 
-## Before production
+## Stack & Features
 
-1. Buy `zenithsoftworks.in` only after choosing and approving a registrar and its final checkout price.
-2. Use **Cloudflare Pages + Workers** for this commercial site if a free tier is required. Vercel's Hobby terms allow only personal, non-commercial use. Cloudflare's free tier supports static assets and limited Worker/Pages Function requests; its email-sending product needs a paid Workers plan for arbitrary-recipient email. This repository's `api/enquiry.js` is a Vercel function, so do not switch hosting until the endpoint is ported to a Pages Function/Worker.
-3. For the current Vercel deployment, create the three environment variables listed in `.env.example` in Production, Preview and Development. Verify the sending domain in Resend before setting `FROM_EMAIL`.
-4. Set `SITE_URL` to the actual canonical production origin. During the Vercel preview phase it may be the `https://zenith-softworks.vercel.app` URL; after the domain works, change it to `https://zenithsoftworks.in` and redeploy.
-5. Add the domain in the hosting dashboard, then copy its exact DNS records to the registrar. Confirm both the root domain and `www` redirect before changing canonical URLs or submitting the sitemap to Search Console.
-6. Submit one real test from `/contact/` and `/talent/`, confirm the emails arrive and reply-to works, then check mobile navigation and WhatsApp on a real phone.
+- **Native React Router (`src/App.jsx`):** All 26 public routes (`/`, `/services/`, `/work/`, `/about/`, `/solutions/`, `/talent/`, `/student-projects/`, `/student-projects/sustainability/`, `/academic-services/`, `/insights/`, `/contact/`, `/privacy/`, `/terms/`, plus service, case-study, and insight detail pages).
+- **Canvas Visual Components (`src/components/fx/`):**
+  - `GhostFibers` (homepage hero)
+  - `LuminousFilaments` (homepage story & page heroes)
+  - `InterferenceRibbons` (homepage approach & CTA banners)
+  - `VoxelArc` (Student Lab section)
+- **Bundled Image Assets (`src/assets/images/`):** Original Zenith logos (`zenith-original-navbar.png`, `zenith-logo-footer.svg`, `zenith-mark.svg`) and custom generated section/case-study visuals (`hero-abstract.jpg`, `work-megham.jpg`, `work-carematrix.jpg`, `work-she-shield.jpg`, `work-projexify.jpg`, `student-lab.jpg`).
+- **Enquiry API (`api/enquiry.js`):** Preserved Vercel serverless endpoint with honeypot, validation, and WhatsApp fallback.
 
-## Local preview
+## Local Development
 
-`npx vercel dev` runs the static site and `/api/enquiry` locally. A plain static server cannot run the API route.
+```bash
+npm install
+npm run dev
+```
 
-## Protection included
+## Validation & Production Build
 
-Server-side required-field, email, phone and URL validation; field length limits; HTML escaping in emails; same-origin checks; JSON-only payloads; a hidden honeypot; completion-time heuristic; no-store responses; and per-instance rate limiting. For higher-volume traffic, move rate limits to Cloudflare WAF/Turnstile or a shared store—serverless in-memory limits are intentionally only a first line of defence.
-
-
-## Visual system update
-
-The site uses a static multi-page HTML/CSS/JavaScript architecture with a Vercel serverless enquiry endpoint. The visual refresh therefore adapts selected **free React Bits interaction patterns**—ambient aurora lighting, layered grid depth, restrained hover lift and scroll reveals—as lightweight CSS/vanilla-JS treatments rather than introducing an unnecessary React runtime.
-
-The shared `assets/immersive-blue-story.css` stylesheet now provides the midnight-blue / ice-blue palette across the existing pages, with dedicated overrides for the cinematic homepage, accessible focus states, responsive layouts and reduced-motion preferences. Existing page routes, enquiry handling and WhatsApp fallback remain in place.
-
-See [VISUAL_AUDIT.md](./VISUAL_AUDIT.md) for the repository audit, implementation notes and verification scope.
+```bash
+npm run test:routes
+npm run build
+```

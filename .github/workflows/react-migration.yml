@@ -1,23 +1,14 @@
-name: React migration validation
+name: React build validation
 
 on:
   pull_request:
     branches: [main]
-    paths:
-      - "react-app/**"
-      - ".github/workflows/react-migration.yml"
   push:
-    branches: ["migration/react-foundation-ghost-fibers"]
-    paths:
-      - "react-app/**"
-      - ".github/workflows/react-migration.yml"
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: react-app
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,7 +17,6 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: react-app/package.json
       - name: Install dependencies
         run: npm install
       - name: Verify route parity
