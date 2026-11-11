@@ -78,7 +78,9 @@ function LegacyPage() {
 
     parsed.head.querySelectorAll('link[rel="stylesheet"]').forEach((node) => {
       const href = node.getAttribute("href");
-      const exists = [...document.head.querySelectorAll('link[rel="stylesheet"]')].some((item) => item.getAttribute("href") === href || item.href === new URL(href, location.origin).href);
+      if (!href) return;
+      const resolvedHref = new URL(href, window.location.origin).href;
+      const exists = [...document.head.querySelectorAll('link[rel="stylesheet"]')].some((item) => item.getAttribute("href") === href || item.href === resolvedHref);
       if (!exists) {
         const link = document.createElement("link");
         link.rel = "stylesheet";
