@@ -25,7 +25,7 @@ const capabilities = ["Strategy & discovery", "Interface design", "Full-stack en
 
 function Brand({ light = false }) {
   return <a className={`brand ${light ? "brand-light" : ""}`} href="/" aria-label="Zenith Softworks home">
-    <img src="/assets/zenith-original-navbar.png" alt="" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+    
     <span>ZENITH<span className="brand-dot">.</span><small>SOFTWORKS</small></span>
   </a>;
 }
