@@ -1,14 +1,12 @@
 {
   "name": "zenith-react",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
+    "build": "node scripts/copy-public-assets.mjs && vite build",
     "preview": "vite preview",
-    "prebuild": "node scripts/copy-public-assets.mjs",
-    "postbuild": "node scripts/prerender-legacy.mjs",
     "test:routes": "node scripts/check-routes.mjs",
     "install:reactbits": "npx shadcn@latest add --yes @reactbits-starter/luminous-filaments-tw @reactbits-starter/interference-ribbons-tw @reactbits-starter/voxel-arc-tw"
   },
