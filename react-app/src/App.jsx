@@ -1,136 +1,122 @@
-import { useLayoutEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Menu, X, Sparkles, Code2, Layers3, Smartphone, Cpu, Workflow, ShieldCheck, Globe2, Mail, MapPin, Phone, Github, Instagram } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import GhostFibers from "./components/GhostFibers/GhostFibers.jsx";
-import pages1 from "./pages/legacyPages-1.js";
-import pages2 from "./pages/legacyPages-2.js";
-import pages3 from "./pages/legacyPages-3.js";
-import pages4 from "./pages/legacyPages-4.js";
 
-const legacyPages = { ...pages1, ...pages2, ...pages3, ...pages4 };
+const services = [
+  { n: "01", icon: Globe2, title: "Websites & digital experiences", text: "Distinctive, responsive websites that make your business easier to understand, trust and choose." },
+  { n: "02", icon: Layers3, title: "Web applications & platforms", text: "Customer portals, SaaS products, dashboards and internal tools shaped around real workflows." },
+  { n: "03", icon: Cpu, title: "AI & intelligent systems", text: "Useful AI integrations, assistants, data workflows and automation with practical human oversight." },
+  { n: "04", icon: Smartphone, title: "Mobile apps & connected products", text: "Mobile experiences, IoT prototypes, device integrations and connected digital services." },
+  { n: "05", icon: Workflow, title: "Product engineering & support", text: "From architecture and MVPs to deployment, maintenance, performance and continuous improvement." },
+];
 
-function normalizePath(pathname) {
-  if (pathname === "/") return "/";
-  return pathname.endsWith("/") ? pathname : pathname + "/";
+const projects = [
+  { name: "MEGHAM", type: "CLOUD STORAGE PLATFORM", text: "A secure cloud workspace concept for organising, sharing and managing access to files.", stack: "React · Node.js · MongoDB", tone: "cloud", status: "Independent product project" },
+  { name: "NeuroTwin", type: "BCI & EEG RESEARCH", text: "An EEG analysis and digital-twin research platform exploring seizure detection and clinician-facing visualisation.", stack: "Python · TensorFlow · FastAPI · React", tone: "neuro", status: "Research prototype" },
+  { name: "SheShield", type: "MOBILE + IOT SAFETY", text: "A connected safety concept combining an Android app, ESP32 wearable communication and emergency workflows.", stack: "Android · Java · ESP32 · BLE", tone: "shield", status: "Prototype" },
+  { name: "PredX", type: "PREDICTIVE ANALYTICS", text: "An experimental prediction product focused on turning structured data into understandable insights.", stack: "Python · Machine Learning", tone: "pred", status: "Independent project" },
+  { name: "Healthiet", type: "HEALTH & WELLNESS", text: "A health-focused web application concept with user workflows and data-driven recommendations.", stack: "MERN · MongoDB", tone: "health", status: "Independent project" },
+  { name: "Cookit", type: "FOOD & DISCOVERY", text: "A recipe discovery experience designed around simple exploration and practical cooking workflows.", stack: "React · JavaScript · API integration", tone: "cook", status: "Independent project" },
+  { name: "Aegis DRM", type: "DOCUMENT SECURITY", text: "A digital-rights and protected-content concept exploring controlled access to digital documents.", stack: "Web technologies · Security workflows", tone: "aegis", status: "Concept / prototype" },
+  { name: "VehicleSound AI", type: "AUDIO INTELLIGENCE", text: "An AI exploration focused on recognising and classifying vehicle sounds from audio signals.", stack: "Python · Audio ML", tone: "sound", status: "Research prototype" },
+];
+
+const capabilities = ["Strategy & discovery", "Interface design", "Full-stack engineering", "Integrations & automation", "Testing & launch", "Ongoing improvement"];
+
+function Brand({ light = false }) {
+  return <a className={`brand ${light ? "brand-light" : ""}`} href="/" aria-label="Zenith Softworks home">
+    <img src="/assets/zenith-original-navbar.png" alt="" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+    <span>ZENITH<span className="brand-dot">.</span><small>SOFTWORKS</small></span>
+  </a>;
 }
 
-function LegacyPage() {
+function Header() {
+  const [open, setOpen] = useState(false);
   const location = useLocation();
-  const hostRef = useRef(null);
-  const [heroTarget, setHeroTarget] = useState(null);
-  const path = normalizePath(location.pathname);
-  const html = legacyPages[path];
-
-  useLayoutEffect(() => {
-    const host = hostRef.current;
-    if (!host) return undefined;
-    setHeroTarget(null);
-
-    if (!html) {
-      host.innerHTML = '<main class="legacy-not-found"><p>404 · PAGE NOT FOUND</p><h1>This page has moved beyond the horizon.</h1><a href="/">Return to Zenith</a></main>';
-      host.className = "legacy-page legacy-page-not-found";
-      document.title = "Page not found | Zenith Softworks";
-      document.body.className = "";
-      return undefined;
-    }
-
-    const parsed = new DOMParser().parseFromString(html, "text/html");
-    host.className = "legacy-page " + (parsed.body.className || "");
-    host.innerHTML = parsed.body.innerHTML;
-    document.body.className = parsed.body.className || "";
-
-    const headNodes = [];
-    parsed.head.querySelectorAll('meta[name],meta[property],link[rel="canonical"],link[rel="icon"],script[type="application/ld+json"]').forEach((node) => {
-      const key = node.getAttribute("name") ? `meta[name="${node.getAttribute("name")}"]`
-        : node.getAttribute("property") ? `meta[property="${node.getAttribute("property")}"]`
-        : node.rel === "canonical" ? 'link[rel="canonical"]'
-        : node.rel === "icon" ? 'link[rel="icon"]' : null;
-      const exists = key ? document.head.querySelector(key) : [...document.head.querySelectorAll('script[type="application/ld+json"]')].some((item) => item.textContent === node.textContent);
-      if (!exists) {
-        const clone = node.cloneNode(true);
-        document.head.appendChild(clone);
-        headNodes.push(clone);
-      }
-    });
-    const description = parsed.head.querySelector('meta[name="description"]')?.content;
-    if (description) {
-      let meta = document.querySelector('meta[name="description"]');
-      if (!meta) {
-        meta = document.createElement("meta");
-        meta.name = "description";
-        document.head.appendChild(meta);
-        headNodes.push(meta);
-      }
-      meta.content = description;
-    }
-    document.title = parsed.title || "Zenith Softworks";
-
-    parsed.head.querySelectorAll('link[rel="stylesheet"]').forEach((node) => {
-      const href = node.getAttribute("href");
-      const exists = [...document.head.querySelectorAll('link[rel="stylesheet"]')].some((item) => item.getAttribute("href") === href || item.href === new URL(href, location.origin).href);
-      if (!exists) {
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = href;
-        document.head.appendChild(link);
-        headNodes.push(link);
-      }
-    });
-
-    const scriptNodes = [];
-    parsed.body.querySelectorAll("script[src]").forEach((node) => {
-      const script = document.createElement("script");
-      script.src = node.getAttribute("src");
-      script.defer = node.defer;
-      script.async = false;
-      document.body.appendChild(script);
-      scriptNodes.push(script);
-    });
-
-    const target = host.querySelector(".cinematic-hero");
-    if (target) setHeroTarget(target);
-
-    const hash = location.hash;
-    if (hash) requestAnimationFrame(() => document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView());
-    else window.scrollTo(0, 0);
-
-    return () => {
-      headNodes.forEach((node) => node.remove());
-      scriptNodes.forEach((node) => node.remove());
-      setHeroTarget(null);
-    };
-  }, [html, location.key, location.hash]);
-
-  return (
-    <>
-      <div ref={hostRef} />
-      {heroTarget && createPortal(
-        <GhostFibers
-          glowColor="#8b5cf6"
-          layers={3}
-          twist={1.6}
-          threads={72}
-          fiberStyle="dots"
-          depthOfField={0.85}
-          hoverEffect="focus"
-          intro
-          mouseInteraction
-          lineColor="#ffffff"
-          secondaryColor="#2dd4bf"
-          gradient="across"
-          waves={0.5}
-          spread={2}
-          foldGlow={1.3}
-          brightness={2}
-          vignette={0}
-          mouseStrength={1.15}
-        />,
-        heroTarget,
-      )}
-    </>
-  );
+  useEffect(() => setOpen(false), [location.pathname, location.hash]);
+  const nav = [["Studio", "/#studio"], ["Services", "/#services"], ["Work", "/#work"], ["Approach", "/#approach"]];
+  return <header className="site-header">
+    <div className="nav-shell"><Brand />
+      <nav className={open ? "nav-links nav-open" : "nav-links"} aria-label="Main navigation">
+        {nav.map(([label, href]) => <a key={label} href={href}>{label}</a>)}
+        <Link className="nav-contact" to="/contact/">Start a project <ArrowUpRight size={15}/></Link>
+      </nav>
+      <button className="menu-toggle" onClick={() => setOpen(!open)} aria-label={open ? "Close menu" : "Open menu"}>{open ? <X/> : <Menu/>}</button>
+    </div>
+  </header>;
 }
+
+function Footer() {
+  return <footer className="footer">
+    <div className="footer-cta"><p className="eyebrow">HAVE SOMETHING IN MIND?</p><h2>Let's make your next<br/><em>big idea real.</em></h2><Link className="button button-light" to="/contact/">Start a conversation <ArrowUpRight size={17}/></Link></div>
+    <div className="footer-grid"><div><Brand light/><p>Thoughtful digital products, engineered with clarity and built for what comes next.</p><div className="socials"><a href="https://www.instagram.com/zenith.softworks/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram/></a><a href="https://github.com/musammilvilayil" target="_blank" rel="noreferrer" aria-label="GitHub"><Github/></a></div></div>
+      <div><b>EXPLORE</b><a href="/#studio">Studio</a><a href="/#services">Services</a><a href="/#work">Selected work</a><Link to="/contact/">Contact</Link></div>
+      <div><b>GET IN TOUCH</b><a href="mailto:hello@zenithsoftworks.in">hello@zenithsoftworks.in</a><a href="tel:+919497665504">+91 94976 65504</a><span><MapPin size={14}/> Kollam, Kerala, India</span></div>
+    </div>
+    <div className="footer-bottom"><span>© {new Date().getFullYear()} Zenith Softworks. All rights reserved.</span><span>DESIGNED & DEVELOPED BY ZENITH SOFTWORKS</span><a href="https://zenithsoftworks.in">ZENITHSOFTWORKS.IN ↗</a></div>
+  </footer>;
+}
+
+function SectionLabel({ number, children }) { return <div className="section-label"><span>{number} / {children}</span><i/></div>; }
+
+function ProjectCard({ project, index }) {
+  return <article className={`project-card project-${project.tone}`}>
+    <div className="project-art" aria-hidden="true"><div className="project-art-grid"/><div className="project-orb"/><span className="project-art-name">{project.name}</span><span className="project-art-index">0{index + 1}</span><div className="project-art-lines"/></div>
+    <div className="project-info"><div className="project-meta"><span>{project.type}</span><span>{project.status}</span></div><h3>{project.name}<ArrowUpRight size={19}/></h3><p>{project.text}</p><div className="project-stack">{project.stack}</div></div>
+  </article>;
+}
+
+function Home() {
+  return <>
+    <section className="hero">
+      <div className="hero-backdrop"><div className="hero-glow"/><div className="hero-grid"/></div>
+      <div className="hero-top"><span><i/> INDEPENDENT DIGITAL STUDIO</span><span>KOLLAM, KERALA · INDIA</span></div>
+      <div className="hero-content"><p className="eyebrow"><Sparkles size={14}/> IDEAS, ENGINEERED INTO REALITY</p><h1>Build beyond<br/>the <em>ordinary.</em></h1><div className="hero-bottom"><p>We design and build digital experiences, intelligent products and software that move ideas forward.</p><div className="hero-actions"><Link className="button button-primary" to="/contact/">Let's build something <ArrowUpRight size={17}/></Link><a className="text-link" href="#work">Explore our work <ArrowDown size={15}/></a></div></div></div>
+      <div className="hero-effect"><GhostFibers glowColor="#2563eb" layers={4} twist={1.2} threads={68} fiberStyle="lines" depthOfField={0.8} hoverEffect="focus" intro mouseInteraction lineColor="#6ea7ff" secondaryColor="#c7dcff" gradient="across" waves={0.35} spread={1.65} foldGlow={1.5} brightness={1.65} vignette={0.2} mouseStrength={0.85}/></div>
+      <div className="hero-bottomline"><span>01 — 05</span><span>FROM FIRST THOUGHT TO DIGITAL IMPACT</span><a href="#studio">SCROLL TO EXPLORE ↓</a></div>
+    </section>
+    <div className="ticker"><div className="ticker-track">{Array.from({length:2},(_,i)=><span key={i}>DIGITAL EXPERIENCES <b>✳</b> WEB APPLICATIONS <b>✳</b> AI & AUTOMATION <b>✳</b> PRODUCT ENGINEERING <b>✳</b> CONNECTED TECHNOLOGY <b>✳</b></span>)}</div></div>
+    <section className="section studio-section" id="studio"><div className="section-inner"><SectionLabel number="02">THE STUDIO</SectionLabel><div className="studio-layout"><h2>Technology should make life <em>work better.</em></h2><div className="studio-copy"><p className="lead">We are an independent digital studio based in Kerala, partnering with people and businesses to turn complex ideas into useful digital products.</p><p>From a first website to a custom platform, we bring strategy, design and engineering together. We care about the details people notice — and the solid foundations they don't.</p><Link className="under-link" to="/about/">A little more about us <ArrowUpRight size={16}/></Link></div></div><div className="studio-principles"><span>01 / CLEAR THINKING</span><span>02 / PURPOSEFUL DESIGN</span><span>03 / SOLID ENGINEERING</span><span>04 / HONEST COLLABORATION</span></div></div></section>
+    <section className="section services-section" id="services"><div className="section-inner"><SectionLabel number="03">WHAT WE DO</SectionLabel><div className="section-heading"><h2>One partner.<br/><em>Many possibilities.</em></h2><p>We choose the right technology for the challenge — never the other way around.</p></div><div className="service-list">{services.map(({n,icon:Icon,title,text})=><article className="service-row" key={n}><span className="service-number">{n}</span><span className="service-icon"><Icon size={21}/></span><h3>{title}</h3><p>{text}</p><ArrowUpRight className="service-arrow" size={20}/></article>)}</div></div></section>
+    <section className="section work-section" id="work"><div className="section-inner"><SectionLabel number="04">SELECTED WORK & EXPERIMENTS</SectionLabel><div className="section-heading"><h2>Curiosity in.<br/><em>Creation out.</em></h2><p>A selection of independent builds, prototypes and research explorations. Each one is an opportunity to solve a different kind of problem.</p></div><div className="project-grid">{projects.map((project,i)=><ProjectCard key={project.name} project={project} index={i}/>)}</div><p className="work-note">Portfolio includes independent projects, concepts and research prototypes — not represented as paid client engagements.</p></div></section>
+    <section className="section approach-section" id="approach"><div className="section-inner"><SectionLabel number="05">HOW WE WORK</SectionLabel><div className="approach-layout"><h2>Good work is a <em>process.</em></h2><p>Clear communication, visible progress and thoughtful decisions — from the first conversation to the final handover.</p></div><div className="approach-steps">{["Listen & understand","Shape the experience","Build with care","Test, launch & support"].map((s,i)=><div key={s}><span>0{i+1}</span><h3>{s}</h3><ArrowUpRight size={17}/></div>)}</div><div className="capability-cloud">{capabilities.map(c=><span key={c}>{c}</span>)}</div></div></section>
+    <section className="closing-section"><div className="closing-glow"/><p className="eyebrow">THE NEXT CHAPTER STARTS HERE</p><h2>Have an idea?<br/><em>Let's give it shape.</em></h2><Link className="button button-primary" to="/contact/">Tell us about it <ArrowUpRight size={17}/></Link></section>
+  </>;
+}
+
+function Contact() {
+  const [form,setForm] = useState({name:"",email:"",service:"Website / web application",message:""});
+  const update = (e) => setForm({...form,[e.target.name]:e.target.value});
+  const submit = (e) => { e.preventDefault(); const body = `Name: ${form.name}\nEmail: ${form.email}\nService: ${form.service}\n\nProject details:\n${form.message}`; window.location.href = `mailto:hello@zenithsoftworks.in?subject=${encodeURIComponent("Project enquiry — Zenith Softworks")}&body=${encodeURIComponent(body)}`; };
+  return <main className="inner-page"><div className="inner-hero"><p className="eyebrow">LET'S TALK</p><h1>Tell us what<br/><em>you're imagining.</em></h1><p>Share a little about your idea. We'll take it from there.</p></div><div className="contact-layout"><form className="contact-form" onSubmit={submit}><label>Your name<input required name="name" value={form.name} onChange={update} placeholder="How should we call you?"/></label><label>Email address<input required type="email" name="email" value={form.email} onChange={update} placeholder="you@example.com"/></label><label>What do you need?<select name="service" value={form.service} onChange={update}><option>Website / web application</option><option>Mobile application</option><option>AI / automation</option><option>IoT / connected product</option><option>UI/UX or product design</option><option>Something else</option></select></label><label>Tell us about the project<textarea required rows="5" name="message" value={form.message} onChange={update} placeholder="A few details about the idea, goals and timeline..."/></label><button className="button button-primary" type="submit">Prepare enquiry <ArrowUpRight size={17}/></button><small>Your email app will open with the enquiry ready to send.</small></form><aside className="contact-aside"><p className="eyebrow">DIRECT CONTACT</p><a href="mailto:hello@zenithsoftworks.in"><Mail/> hello@zenithsoftworks.in</a><a href="tel:+919497665504"><Phone/> +91 94976 65504</a><span><MapPin/> Kollam, Kerala, India</span><div className="contact-aside-note">Small studio. Big ideas. Thoughtful execution.</div></aside></div></main>;
+}
+
+function About() {
+  return <main className="inner-page"><div className="inner-hero"><p className="eyebrow">THE STUDIO</p><h1>Small by design.<br/><em>Ambitious by nature.</em></h1><p>Zenith Softworks is an independent digital studio in Kollam, Kerala, focused on thoughtful software, web experiences and emerging technology.</p></div><div className="about-panels"><article><Code2/><h2>Engineering with purpose</h2><p>We build around real needs, practical constraints and long-term maintainability.</p></article><article><ShieldCheck/><h2>Honest by default</h2><p>Clear scope, realistic expectations and transparent communication are part of the work.</p></article><article><Layers3/><h2>Curious by nature</h2><p>We explore new tools and ideas through independent projects and research prototypes.</p></article></div></main>;
+}
+
+function ServicesPage() {
+  return <main className="inner-page"><div className="inner-hero"><p className="eyebrow">CAPABILITIES</p><h1>From an idea<br/>to <em>something useful.</em></h1><p>Flexible engineering support for websites, applications and connected digital products.</p></div><div className="inner-services">{services.map(({n,icon:Icon,title,text})=><article key={n}><Icon/><span>{n}</span><h2>{title}</h2><p>{text}</p></article>)}</div></main>;
+}
+
+function WorkPage() {
+  return <main className="inner-page"><div className="inner-hero"><p className="eyebrow">SELECTED WORK</p><h1>Ideas made<br/><em>tangible.</em></h1><p>Independent builds, concepts and research prototypes developed to explore useful technology.</p></div><div className="project-grid inner-project-grid">{projects.map((project,i)=><ProjectCard key={project.name} project={project} index={i}/>)}</div></main>;
+}
+
+function NotFound() { return <main className="inner-page"><div className="inner-hero"><p className="eyebrow">404 / NOT FOUND</p><h1>This page took<br/><em>a wrong turn.</em></h1><Link className="button button-primary" to="/">Back to home <ArrowRight size={17}/></Link></div></main>; }
 
 export default function App() {
-  return <LegacyPage />;
+  const location = useLocation();
+  useEffect(() => { if (location.hash) { const id = decodeURIComponent(location.hash.slice(1)); requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({behavior:"smooth"})); } else window.scrollTo(0,0); }, [location.pathname,location.hash]);
+  return <><Header/><RoutesContent path={location.pathname}/><Footer/></>;
+}
+
+function RoutesContent({path}) {
+  if (path === "/") return <Home/>;
+  if (path === "/contact" || path === "/contact/") return <Contact/>;
+  if (path === "/about" || path === "/about/") return <About/>;
+  if (path === "/services" || path === "/services/") return <ServicesPage/>;
+  if (path === "/work" || path === "/work/") return <WorkPage/>;
+  return <NotFound/>;
 }
