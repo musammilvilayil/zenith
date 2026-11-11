@@ -88,20 +88,42 @@ function Home() {
 }
 
 function EnquiryForm({ compact = false }) {
-  const [form,setForm] = useState({name:"",email:"",service:"Custom software development",message:""});
+  const [form,setForm] = useState({name:"",email:"",phone:"",service:"Web application",message:""});
+  const [status,setStatus] = useState("");
+  const [sending,setSending] = useState(false);
   const update = (e) => setForm({...form,[e.target.name]:e.target.value});
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    const body = `Name: ${form.name}\nEmail: ${form.email}\nService: ${form.service}\n\nProject details:\n${form.message}`;
-    window.location.href = `mailto:hello@zenithsoftworks.in?subject=${encodeURIComponent("Project enquiry — Zenith Softworks")}&body=${encodeURIComponent(body)}`;
+    setSending(true);
+    setStatus("");
+    const payload = {...form, page:window.location.href, form_started_at:Date.now()-5000};
+    try {
+      const response = await fetch("/api/enquiry", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+      const result = await response.json().catch(() => ({}));
+      if (response.ok && result.ok) {
+        setStatus("Thanks — your enquiry has been sent. We'll be in touch soon.");
+        setForm({name:"",email:"",phone:"",service:"Web application",message:""});
+      } else if (response.status === 503 || result.code === "EMAIL_NOT_CONFIGURED") {
+        const body = `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nService: ${form.service}\n\nProject details:\n${form.message}`;
+        setStatus("Email delivery isn't configured on the website yet. Opening your email app as a fallback.");
+        window.location.href = `mailto:hello@zenithsoftworks.in?subject=${encodeURIComponent("Project enquiry — Zenith Softworks")}&body=${encodeURIComponent(body)}`;
+      } else {
+        setStatus(result.error || "We couldn't submit your enquiry. Please email hello@zenithsoftworks.in.");
+      }
+    } catch {
+      const body = `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nService: ${form.service}\n\nProject details:\n${form.message}`;
+      setStatus("The online form is unavailable. Opening your email app as a fallback.");
+      window.location.href = `mailto:hello@zenithsoftworks.in?subject=${encodeURIComponent("Project enquiry — Zenith Softworks")}&body=${encodeURIComponent(body)}`;
+    } finally { setSending(false); }
   };
   return <form className={compact ? "contact-form contact-form-compact" : "contact-form"} onSubmit={submit}>
     <label>Your name<input required name="name" autoComplete="name" value={form.name} onChange={update} placeholder="How should we call you?"/></label>
     <label>Email address<input required type="email" name="email" autoComplete="email" value={form.email} onChange={update} placeholder="you@example.com"/></label>
-    <label>What do you need?<select name="service" value={form.service} onChange={update}><option>Custom software development</option><option>Web / mobile application</option><option>Cloud solutions & integrations</option><option>AI / automation</option><option>UI/UX or product design</option><option>Something else</option></select></label>
-    <label>Tell us about the project<textarea required rows={compact ? 4 : 5} name="message" value={form.message} onChange={update} placeholder="A few details about the idea, goals and timeline..."/></label>
-    <button className="button button-primary" type="submit">Prepare enquiry <ArrowUpRight size={17}/></button>
-    <small>Your email app will open with the enquiry ready to send. Nothing is submitted or stored on this website.</small>
+    <label>Phone number<input required type="tel" name="phone" autoComplete="tel" value={form.phone} onChange={update} placeholder="+91 98765 43210"/></label>
+    <label>What do you need?<select name="service" value={form.service} onChange={update}><option>Business website</option><option>Website redesign</option><option>Growth website</option><option>E-commerce website</option><option>Web application</option><option>Mobile application</option><option>Startup MVP</option><option>Branding and UI/UX</option><option>AI and automation</option><option>IoT system</option><option>Website maintenance</option><option>Other</option></select></label>
+    <label className="form-message">Tell us about the project<textarea required rows={compact ? 4 : 5} name="message" value={form.message} onChange={update} placeholder="A few details about the idea, goals and timeline..."/></label>
+    <button className="button button-primary" type="submit" disabled={sending}>{sending ? "Sending enquiry..." : "Send enquiry"} <ArrowUpRight size={17}/></button>
+    <small role="status" aria-live="polite">{status || "Your details are used only to respond to this enquiry. If email delivery is unavailable, your email app opens with a prepared message."}</small>
   </form>;
 }
 
