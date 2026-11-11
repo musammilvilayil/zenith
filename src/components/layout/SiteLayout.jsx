@@ -53,11 +53,12 @@ export default function SiteLayout({ children }) {
 
       <header
         ref={navRef}
-        className="sticky top-0 z-40 border-b border-ice/15 bg-midnight/80 backdrop-blur-xl"
+        className="sticky top-3 z-40 mx-3 mt-3 sm:mx-6 xl:mx-auto xl:max-w-[1280px]"
       >
+        <div className="z-glass overflow-hidden rounded-[1.75rem] shadow-[0_18px_50px_-24px_rgba(0,0,0,0.8)]">
         <nav
           aria-label="Main navigation"
-          className="mx-auto flex h-[70px] max-w-7xl items-center justify-between gap-6 px-5 sm:h-[76px] sm:px-8"
+          className="flex h-[70px] items-center justify-between gap-6 px-4 min-[1400px]:h-[76px] sm:px-6"
         >
           <Link
             to="/"
@@ -82,10 +83,10 @@ export default function SiteLayout({ children }) {
                 to={item.href}
                 className={({ isActive }) =>
                   cn(
-                    "relative py-1 text-xs font-medium tracking-wide transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-ice after:transition-transform after:duration-300",
+                    "relative py-1 text-[13px] font-medium tracking-wide transition-colors duration-300 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-ice after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:after:transition-none",
                     isActive
                       ? "text-ice after:scale-x-100"
-                      : "text-muted hover:text-ink after:scale-x-0 hover:after:scale-x-100",
+                      : "text-subtle hover:text-ink after:scale-x-0 hover:after:scale-x-100",
                   )
                 }
               >
@@ -117,7 +118,7 @@ export default function SiteLayout({ children }) {
         {menuOpen && (
           <div
             id="mobile-primary-nav"
-            className="border-t border-ice/15 bg-midnight/95 px-5 py-4 backdrop-blur-xl lg:hidden"
+            className="border-t border-ice/15 px-5 py-4 lg:hidden"
           >
             <div className="flex flex-col divide-y divide-ice/10">
               {NAV_LINKS.map((item) => (
@@ -126,8 +127,8 @@ export default function SiteLayout({ children }) {
                   to={item.href}
                   className={({ isActive }) =>
                     cn(
-                      "py-3 text-sm font-medium transition-colors",
-                      isActive ? "text-ice" : "text-muted hover:text-ink",
+                      "py-3.5 text-base font-medium transition-colors",
+                      isActive ? "text-ice" : "text-subtle hover:text-ink",
                     )
                   }
                 >
@@ -143,6 +144,7 @@ export default function SiteLayout({ children }) {
             </div>
           </div>
         )}
+        </div>
       </header>
 
       <main id="main-content" tabIndex={-1} className="flex-1 overflow-x-clip">

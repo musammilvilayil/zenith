@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Button from "@/components/ui/Button";
 import InterferenceRibbons from "@/components/fx/InterferenceRibbons";
 
 export default function CtaBanner({
@@ -9,7 +9,7 @@ export default function CtaBanner({
   secondaryHref,
 }) {
   return (
-    <section className="relative isolate overflow-hidden border-t border-ice/15 bg-gradient-to-br from-navy/90 via-midnight to-deep py-20">
+    <section className="z-grain relative isolate overflow-hidden border-t border-ice/15 bg-gradient-to-br from-navy/90 via-midnight to-deep py-20">
       <InterferenceRibbons
         primaryColor="#c1e8ff"
         secondaryColor="#80b2ff"
@@ -23,19 +23,13 @@ export default function CtaBanner({
           {title}
         </h2>
         <div className="flex flex-wrap gap-3">
-          <Link
-            to={primaryHref}
-            className="inline-flex items-center gap-2 rounded-full bg-ice px-6 py-3.5 text-sm font-bold text-midnight transition hover:-translate-y-0.5 hover:bg-white"
-          >
-            {primaryLabel} <span aria-hidden="true">↗</span>
-          </Link>
+          <Button to={primaryHref} arrow="↗">
+            {primaryLabel}
+          </Button>
           {secondaryLabel && secondaryHref && (
-            <Link
-              to={secondaryHref}
-              className="inline-flex items-center gap-2 rounded-full border border-ice/40 px-6 py-3.5 text-sm font-semibold text-ink transition hover:border-ice hover:bg-steel/20"
-            >
+            <Button to={secondaryHref} variant="secondary">
               {secondaryLabel}
-            </Link>
+            </Button>
           )}
         </div>
       </div>

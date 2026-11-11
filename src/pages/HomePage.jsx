@@ -3,7 +3,10 @@ import GhostFibers from "@/components/fx/GhostFibers";
 import InterferenceRibbons from "@/components/fx/InterferenceRibbons";
 import LuminousFilaments from "@/components/fx/LuminousFilaments";
 import VoxelArc from "@/components/fx/VoxelArc";
+import HeroMonolith from "@/components/fx/HeroMonolith";
 import PageHead from "@/components/layout/PageHead";
+import Button from "@/components/ui/Button";
+import ProcessTimeline from "@/components/ui/ProcessTimeline";
 import { BRAND_IMAGES, SITE } from "@/data/site";
 import { CASE_STUDIES } from "@/data/work";
 
@@ -48,30 +51,12 @@ const HOME_SERVICES = [
 ];
 
 const APPROACH_STEPS = [
-  {
-    num: "01",
-    title: "Listen & discover",
-    desc: "Goals, audience, constraints and the real problem to solve.",
-    arrow: "↘",
-  },
-  {
-    num: "02",
-    title: "Shape the direction",
-    desc: "Scope, content, user journeys and a shared design direction.",
-    arrow: "↘",
-  },
-  {
-    num: "03",
-    title: "Design & build",
-    desc: "Thoughtful interfaces and maintainable engineering in clear milestones.",
-    arrow: "↘",
-  },
-  {
-    num: "04",
-    title: "Test & launch",
-    desc: "Responsive checks, functional review, deployment and handover.",
-    arrow: "↗",
-  },
+  { title: "Discovery", desc: "Goals, audience, constraints and the real problem to solve." },
+  { title: "Planning", desc: "Scope, content, user journeys and a clear delivery plan." },
+  { title: "Design", desc: "A coherent visual language and interfaces that feel natural to use." },
+  { title: "Development", desc: "Maintainable engineering delivered in visible milestones." },
+  { title: "Testing", desc: "Responsive, functional and accessibility review before anything ships." },
+  { title: "Launch & Support", desc: "Deployment, handover and continued care after launch." },
 ];
 
 const PACKAGES = [
@@ -128,99 +113,85 @@ export default function HomePage() {
       <PageHead />
 
       {/* 01 / HERO */}
-      <section className="relative isolate flex min-h-[calc(100svh-76px)] flex-col justify-between overflow-hidden bg-gradient-to-br from-midnight via-navy/85 to-deep px-5 py-5 sm:px-8 sm:py-7">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 opacity-20"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(193,232,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(193,232,255,.12) 1px,transparent 1px)",
-            backgroundSize: "64px 64px",
-            maskImage: "linear-gradient(90deg,transparent 0%,black 35%,black 85%,transparent 100%)",
-          }}
-        />
-
-        <GhostFibers
-          glowColor="#2563eb"
-          layers={3}
-          twist={1.6}
-          threads={38}
-          fiberStyle="dots"
-          depthOfField={0.85}
-          hoverEffect="focus"
-          intro
-          mouseInteraction
-          lineColor="#edf3ff"
-          secondaryColor="#80b2ff"
-          gradient="across"
-          waves={0.5}
-          spread={2}
-          foldGlow={1.3}
-          brightness={1.6}
-          vignette={0}
-          mouseStrength={1.15}
-        />
-
-        <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 border-b border-ice/15 pb-3.5 text-[10px] font-semibold tracking-[0.18em] text-muted sm:text-[11px]">
-          <span>INDEPENDENT DIGITAL STUDIO</span>
-          <span className="text-right">KERALA, INDIA · AVAILABLE FOR SELECT PROJECTS</span>
+      <section className="z-grain relative isolate flex min-h-[calc(100svh-106px)] flex-col justify-between overflow-hidden bg-gradient-to-br from-midnight via-navy/85 to-deep px-5 py-5 sm:px-8 sm:py-7">
+        <div aria-hidden="true" className="z-grid-mask pointer-events-none absolute inset-0 -z-10 opacity-60" />
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-50">
+          <GhostFibers
+            glowColor="#2563eb"
+            layers={3}
+            twist={1.6}
+            threads={38}
+            fiberStyle="dots"
+            depthOfField={0.85}
+            hoverEffect="focus"
+            intro
+            mouseInteraction
+            lineColor="#edf3ff"
+            secondaryColor="#80b2ff"
+            gradient="across"
+            waves={0.5}
+            spread={2}
+            foldGlow={1.3}
+            brightness={1.4}
+            vignette={0}
+            mouseStrength={1.15}
+          />
         </div>
 
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-8 py-6 sm:py-8 lg:grid-cols-12 lg:gap-10 lg:py-10">
+        <div className="z-mono-label relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 border-b border-ice/15 pb-3.5 text-subtle">
+          <span>Independent digital studio</span>
+          <span className="text-right">Kerala, India</span>
+        </div>
+
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 py-8 lg:grid-cols-12 lg:gap-8 lg:py-10">
           <div className="lg:col-span-7">
-            <p className="inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.17em] text-ice/90">
-              <span className="inline-block h-2 w-2 rounded-full bg-ice shadow-[0_0_18px_rgba(193,232,255,0.85)]" />
-              A little ambition changes everything
+            <p className="z-rise z-mono-label inline-flex items-center gap-2.5 text-ice" style={{ "--d": "60ms" }}>
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-ice shadow-[0_0_14px_rgba(193,232,255,0.8)]" />
+              Zenith Softworks
             </p>
-            <h1 className="mt-4 font-display text-4xl font-bold leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
+            <h1
+              className="z-rise mt-5 font-display text-[2.6rem] font-extrabold leading-[1.03] tracking-[-0.04em] text-ink sm:text-6xl lg:text-[4.25rem] xl:text-[5rem]"
+              style={{ "--d": "140ms" }}
+            >
               Every big idea
               <br />
               starts <em className="zenith-gradient-text not-italic">somewhere.</em>
             </h1>
-            <div className="mt-6 flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end lg:mt-8">
-              <p className="max-w-md text-sm leading-relaxed text-muted sm:text-base">
-                We turn ambitious ideas into digital experiences people can feel, understand and
-                use. Thoughtful strategy. Distinctive design. Technology built for what comes next.
-              </p>
-              <div className="flex flex-wrap items-center gap-4">
-                <Link
-                  to="/contact/"
-                  className="inline-flex items-center gap-3.5 rounded-full bg-ice py-2.5 pr-3 pl-5 text-xs font-bold text-midnight transition hover:-translate-y-0.5 hover:bg-white"
-                >
-                  Let&apos;s make it real
-                  <span className="grid h-7 w-7 place-items-center rounded-full bg-navy text-sm text-white">
-                    ↗
-                  </span>
-                </Link>
-                <a
-                  href="#work"
-                  className="inline-flex items-center gap-2 text-xs font-semibold text-ink/90 transition hover:text-ice"
-                >
-                  Explore our work <span className="text-ice">↓</span>
-                </a>
-              </div>
+            <p
+              className="z-rise mt-6 max-w-xl text-base leading-[1.7] text-subtle sm:text-lg"
+              style={{ "--d": "240ms" }}
+            >
+              We turn ambitious ideas into websites, applications and digital experiences people
+              can understand and use — with thoughtful strategy, distinctive design and
+              engineering built to last.
+            </p>
+            <div className="z-rise mt-8 flex flex-wrap items-center gap-3" style={{ "--d": "340ms" }}>
+              <Button to="/contact/" arrow="↗">
+                Start a Project
+              </Button>
+              <Button href="#work" variant="secondary" arrow="↓">
+                Explore Our Work
+              </Button>
             </div>
+            <p className="z-rise z-mono-label mt-8 text-faint" style={{ "--d": "440ms" }}>
+              Websites · Applications · Brand &amp; UI/UX
+            </p>
           </div>
 
-          <div className="relative mx-auto w-full max-w-md lg:col-span-5 lg:max-w-none">
-            <div className="zenith-card relative overflow-hidden rounded-3xl border border-ice/25 bg-navy/85 p-2 shadow-[0_0_90px_-20px_rgba(37,99,235,0.45)]">
-              <img
-                src={BRAND_IMAGES.heroAbstractImg}
-                alt="Zenith Softworks architectural light prism and orbital rings"
-                className="aspect-[16/10] max-h-[34vh] w-full rounded-2xl object-cover lg:max-h-[44vh]"
-              />
-              <div className="flex items-center justify-between px-3 pt-2.5 pb-1 text-[10px] font-semibold tracking-[0.16em] text-soft-blue">
-                <span>01 / THE START</span>
-                <span>IMAGINE WHAT&apos;S NEXT</span>
-              </div>
-            </div>
+          <div className="z-rise lg:col-span-5" style={{ "--d": "260ms" }}>
+            <HeroMonolith />
           </div>
         </div>
 
-        <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 border-t border-ice/15 pt-3.5 text-[10px] font-semibold tracking-[0.16em] text-muted sm:text-[11px]">
-          <span>01</span>
-          <span className="hidden text-ice sm:inline">IDEA → IMPACT</span>
-          <span>SCROLL TO EXPLORE ↓</span>
+        <div className="z-mono-label relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 border-t border-ice/15 pt-3.5 text-subtle">
+          <span>01 / The start</span>
+          <span className="hidden text-ice sm:inline">Idea → Impact</span>
+          <span className="z-scroll-cue inline-flex items-center gap-3">
+            Scroll
+            <span aria-hidden="true" className="relative inline-block h-6 w-px overflow-hidden bg-ice/20">
+              <span className="absolute inset-0 bg-ice" />
+            </span>
+          </span>
         </div>
       </section>
 
@@ -384,6 +355,8 @@ export default function HomePage() {
               <img
                 src={megham.image}
                 alt={megham.imageAlt}
+                loading="lazy"
+                decoding="async"
                 className="aspect-[4/3] max-h-[380px] w-full object-cover transition duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02] md:aspect-video"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-midnight/85 via-midnight/15 to-transparent" />
@@ -426,6 +399,8 @@ export default function HomePage() {
                   <img
                     src={project.image}
                     alt={project.imageAlt}
+                    loading="lazy"
+                    decoding="async"
                     className="aspect-[4/3] w-full object-cover transition duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] md:aspect-[16/10]"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-midnight/75 via-transparent to-transparent" />
@@ -494,27 +469,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="border-t border-ice/15">
-            {APPROACH_STEPS.map((step) => (
-              <div
-                key={step.num}
-                className="flex items-center justify-between gap-5 border-b border-ice/15 py-5 sm:gap-8 sm:py-6"
-              >
-                <div className="flex items-baseline gap-5 sm:gap-10">
-                  <span className="w-8 shrink-0 font-mono text-xs font-bold text-ice">
-                    {step.num}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-lg font-bold text-ink sm:text-2xl">
-                      {step.title}
-                    </h3>
-                    <p className="mt-1 text-sm text-muted">{step.desc}</p>
-                  </div>
-                </div>
-                <span className="shrink-0 text-right text-lg text-soft-blue">{step.arrow}</span>
-              </div>
-            ))}
-          </div>
+          <ProcessTimeline steps={APPROACH_STEPS} />
         </div>
       </section>
 
@@ -654,6 +609,8 @@ export default function HomePage() {
             <img
               src={BRAND_IMAGES.studentLabImg}
               alt="Zenith Student Project Lab engineering blueprint and voxel nodes"
+              loading="lazy"
+              decoding="async"
               className="aspect-[16/10] w-full rounded-2xl object-cover"
             />
           </div>
@@ -699,15 +656,9 @@ export default function HomePage() {
               Tell us what you&apos;re trying to make, fix or improve. We&apos;ll start with a
               conversation—not a sales script.
             </p>
-            <Link
-              to="/contact/"
-              className="inline-flex items-center gap-4 rounded-full bg-navy py-3.5 pr-4 pl-6 text-xs font-bold text-white transition hover:-translate-y-0.5 hover:bg-midnight"
-            >
+            <Button to="/contact/" variant="dark" arrow="↗">
               Tell us about your idea
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-ice text-sm text-midnight">
-                ↗
-              </span>
-            </Link>
+            </Button>
           </div>
 
           <div className="mt-12 flex flex-wrap items-center gap-6 border-t border-navy/20 pt-6 text-xs font-bold text-[#1e40af] sm:mt-14">
