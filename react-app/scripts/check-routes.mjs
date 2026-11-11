@@ -19,7 +19,7 @@ for (const token of ["--bg:", "--surface:", "--blue:", "--cyan:"]) {
   assert.ok((await readFile(new URL("../src/styles/global.css", import.meta.url), "utf8")).includes(token), `Missing design token: ${token}`);
 }
 assert.ok(css.includes("@media(max-width:760px)"), "Missing mobile layout");
-for (const route of ["/about/","/services/","/solutions/","/work/","/insights/","/contact/","/talent/","/student-projects/","/academic-services/","/web-platforms/","/mobile-apps/","/services/software-development/","/services/ai-automation/","/services/iot-solutions/","/services/cloud-devops/","/privacy/","/terms/"]) {
+for (const route of ["/about/","/services/","/solutions/","/work/","/insights/","/contact/","/talent/","/student-projects/","/academic-services/","/web-platforms/","/mobile-apps/","/services/software-development/","/services/ai-automation/","/services/iot-solutions/","/services/cloud-devops/","/privacy/","/terms/","/services/web-platforms/","/services/mobile-apps/","/work/carematrix/","/work/megham/","/work/projexify/","/work/she-shield/","/student-projects/sustainability/","/insights/1/","/insights/2/","/insights/3/"]) {
   assert.ok(pages.includes(`"${route}"`), `Missing page route: ${route}`);
 }
 assert.ok(app.includes("InnerPage path={path}"), "Missing inner-page route integration");
