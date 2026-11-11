@@ -1,20 +1,49 @@
 @import "tailwindcss";
 
+/* ──────────────────────────────────────────────────────────────
+   Zenith design tokens
+   Token names are kept from the previous system so every page keeps
+   working; values are aligned with the studio palette.
+   ────────────────────────────────────────────────────────────── */
 @theme {
-  --color-midnight: #060a13;
-  --color-navy: #0b1424;
-  --color-deep: #05080f;
-  --color-steel: #2563eb;
-  --color-soft-blue: #80b2ff;
-  --color-ice: #c1e8ff;
-  --color-ink: #edf3ff;
-  --color-muted: #9aaac2;
-  --color-light-surface: #edf3ff;
-  --color-light-ink: #edf3ff;
-  --color-light-muted: #9aaac2;
+  --color-midnight: #060a13; /* primary background */
+  --color-navy: #0b1424; /* secondary background */
+  --color-surface: #101c2f; /* elevated surface */
+  --color-deep: #04070d;
+  --color-steel: #5483b3; /* steel blue */
+  --color-soft-blue: #80b2ff; /* electric indigo */
+  --color-ice: #c1e8ff; /* ice blue */
+  --color-ink: #edf3ff; /* primary text */
+  --color-muted: #a8bedb; /* secondary text */
+  --color-faint: #7890aa; /* muted text – labels only */
+  --color-line: rgba(193, 232, 255, 0.14);
+
+  /* Light editorial surfaces (dark text on light background) */
+  --color-light-surface: #eaf3fc;
+  --color-light-ink: #0b1424;
+  --color-light-muted: #3c5572;
+  --color-light-accent: #24507e;
 
   --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: "Manrope", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --z-nav-h: 70px;
+  --z-nav-gap: 12px;
+  --z-border: rgba(193, 232, 255, 0.14);
+  --z-border-strong: rgba(193, 232, 255, 0.3);
+  --z-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --z-noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --z-nav-h: 76px;
+  }
 }
 
 @layer base {
@@ -23,19 +52,32 @@
     color: #edf3ff;
     font-family: var(--font-sans);
     scroll-behavior: smooth;
-    scroll-padding-top: 90px;
+    scroll-padding-top: calc(var(--z-nav-h) + 28px);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     margin: 0;
     min-width: 320px;
-    overflow-x: hidden;
-    background:
-      radial-gradient(ellipse at 50% -10%, rgba(37, 99, 235, 0.20), transparent 46%),
-      linear-gradient(180deg, #0b1424 0%, #060a13 46%, #05080f 100%);
+    overflow-x: clip;
+    background: #060a13;
     color: #edf3ff;
+    line-height: 1.7;
+  }
+
+  /* Fine film grain across the whole site – a single fixed layer. */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    background-image: var(--z-noise);
+    opacity: 0.035;
+    mix-blend-mode: overlay;
   }
 
   h1,
@@ -43,7 +85,23 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.045em;
+    letter-spacing: -0.04em;
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+
+  h3,
+  h4 {
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img {
+    max-width: 100%;
   }
 
   ::selection {
@@ -51,30 +109,366 @@
     color: #060a13;
   }
 
-  a:focus-visible,
-  button:focus-visible,
-  input:focus-visible,
-  select:focus-visible,
-  textarea:focus-visible {
+  :focus-visible {
     outline: 2px solid #c1e8ff;
-    outline-offset: 4px;
+    outline-offset: 3px;
+    border-radius: 6px;
   }
 }
 
-.zenith-gradient-text {
-  background: linear-gradient(105deg, #c1e8ff 5%, #80b2ff 55%, #edf3ff 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* ──────────────────────────────────────────────────────────────
+   Components
+   ────────────────────────────────────────────────────────────── */
+@layer components {
+  .z-container {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  .z-container-wide {
+    width: 100%;
+    max-width: 96rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  .z-section {
+    padding-block: clamp(4.5rem, 10vw, 8.5rem);
+  }
+
+  /* Micro typography – technical metadata labels */
+  .z-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #a8bedb;
+  }
+
+  @media (min-width: 640px) {
+    .z-label {
+      font-size: 11px;
+    }
+  }
+
+  .z-label-accent {
+    color: #c1e8ff;
+  }
+
+  .z-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .z-eyebrow::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: #c1e8ff;
+    box-shadow: 0 0 14px rgba(193, 232, 255, 0.7);
+  }
+
+  /* Editorial display sizes */
+  .z-display-xl {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.6rem, 5.6vw, 6.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+  }
+
+  .z-display-lg {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.35rem, 5.4vw, 4.75rem);
+    line-height: 1.04;
+    letter-spacing: -0.042em;
+  }
+
+  .z-display-md {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.9rem, 3.8vw, 3.25rem);
+    line-height: 1.06;
+    letter-spacing: -0.038em;
+  }
+
+  .z-lede {
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
+    line-height: 1.72;
+    color: #a8bedb;
+    max-width: 38rem;
+  }
+
+  .z-accent-text {
+    color: #c1e8ff;
+  }
+
+  /* Glass surfaces */
+  .z-glass {
+    position: relative;
+    background:
+      linear-gradient(180deg, rgba(193, 232, 255, 0.055), rgba(193, 232, 255, 0.015)),
+      rgba(11, 20, 36, 0.62);
+    border: 1px solid var(--z-border);
+    box-shadow:
+      inset 0 1px 0 rgba(237, 243, 255, 0.07),
+      0 24px 60px -32px rgba(0, 0, 0, 0.7);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    backdrop-filter: blur(14px) saturate(130%);
+  }
+
+  .z-card {
+    position: relative;
+    border-radius: 1.25rem;
+    border: 1px solid var(--z-border);
+    background:
+      linear-gradient(180deg, rgba(193, 232, 255, 0.045), rgba(193, 232, 255, 0) 60%),
+      #0b1424;
+    box-shadow: inset 0 1px 0 rgba(237, 243, 255, 0.06);
+    transition:
+      transform 0.5s var(--z-ease),
+      border-color 0.4s var(--z-ease),
+      background-color 0.4s var(--z-ease),
+      box-shadow 0.5s var(--z-ease);
+  }
+
+  .z-card-interactive:hover,
+  .z-card-interactive:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--z-border-strong);
+    background-color: #101c2f;
+    box-shadow:
+      inset 0 1px 0 rgba(237, 243, 255, 0.1),
+      0 28px 60px -34px rgba(84, 131, 179, 0.55);
+  }
+
+  .z-card-pad {
+    padding: clamp(1.5rem, 2.4vw, 2rem);
+  }
+
+  .z-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: #c1e8ff;
+  }
+
+  /* Hairline section rule with metadata */
+  .z-rule {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--z-border);
+  }
+
+  /* Buttons */
+  .z-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 46px;
+    padding: 0.7rem 1.35rem;
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    transition:
+      transform 0.45s var(--z-ease),
+      background-color 0.35s var(--z-ease),
+      border-color 0.35s var(--z-ease),
+      color 0.35s var(--z-ease),
+      box-shadow 0.45s var(--z-ease);
+  }
+
+  .z-btn:active {
+    transform: translateY(0) scale(0.985);
+  }
+
+  .z-btn[aria-disabled="true"],
+  .z-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none;
+  }
+
+  .z-btn-arrow {
+    display: inline-grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-right: -0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    transition: transform 0.45s var(--z-ease);
+  }
+
+  .z-btn:hover .z-btn-arrow {
+    transform: translate(2px, -2px);
+  }
+
+  .z-btn-arrow-down:hover .z-btn-arrow,
+  .z-btn:hover .z-btn-arrow-down {
+    transform: translateY(2px);
+  }
+
+  .z-btn-primary {
+    background: #c1e8ff;
+    color: #060a13;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      0 10px 30px -12px rgba(193, 232, 255, 0.45);
+  }
+
+  .z-btn-primary .z-btn-arrow {
+    background: #060a13;
+    color: #c1e8ff;
+  }
+
+  .z-btn-primary:hover {
+    background: #e2f4ff;
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.7),
+      0 16px 36px -14px rgba(193, 232, 255, 0.6);
+  }
+
+  .z-btn-secondary {
+    background: rgba(193, 232, 255, 0.04);
+    color: #edf3ff;
+    border-color: var(--z-border-strong);
+  }
+
+  .z-btn-secondary .z-btn-arrow {
+    background: rgba(193, 232, 255, 0.1);
+    color: #c1e8ff;
+  }
+
+  .z-btn-secondary:hover {
+    border-color: rgba(193, 232, 255, 0.6);
+    background: rgba(193, 232, 255, 0.09);
+    transform: translateY(-1px);
+  }
+
+  .z-btn-dark {
+    background: #0b1424;
+    color: #edf3ff;
+  }
+
+  .z-btn-dark .z-btn-arrow {
+    background: #c1e8ff;
+    color: #060a13;
+  }
+
+  .z-btn-dark:hover {
+    background: #060a13;
+    transform: translateY(-1px);
+  }
+
+  .z-btn-sm {
+    min-height: 40px;
+    padding: 0.5rem 1.05rem;
+    font-size: 0.8125rem;
+  }
+
+  .z-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-block: 0.35rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #edf3ff;
+    border-bottom: 1px solid rgba(193, 232, 255, 0.35);
+    transition:
+      color 0.3s var(--z-ease),
+      border-color 0.3s var(--z-ease);
+  }
+
+  .z-link:hover {
+    color: #c1e8ff;
+    border-color: #c1e8ff;
+  }
+
+  /* Form fields */
+  .z-field {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 0.85rem;
+    border: 1px solid var(--z-border);
+    background: rgba(6, 10, 19, 0.7);
+    padding: 0.75rem 1rem;
+    color: #edf3ff;
+    font-size: 0.9375rem;
+    transition:
+      border-color 0.3s var(--z-ease),
+      box-shadow 0.3s var(--z-ease);
+  }
+
+  .z-field::placeholder {
+    color: #7890aa;
+  }
+
+  .z-field:focus {
+    outline: none;
+    border-color: rgba(193, 232, 255, 0.6);
+    box-shadow: 0 0 0 3px rgba(193, 232, 255, 0.14);
+  }
+
+  /* Background textures */
+  .z-grid-bg {
+    background-image:
+      linear-gradient(rgba(193, 232, 255, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(193, 232, 255, 0.07) 1px, transparent 1px);
+    background-size: 72px 72px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%);
+  }
+
+  .z-ambient {
+    background:
+      radial-gradient(60% 50% at 78% 18%, rgba(84, 131, 179, 0.2), transparent 70%),
+      radial-gradient(40% 40% at 10% 90%, rgba(128, 178, 255, 0.08), transparent 70%);
+  }
+
+  /* Light editorial section */
+  .z-light {
+    background:
+      radial-gradient(70% 60% at 85% 0%, rgba(84, 131, 179, 0.18), transparent 70%),
+      linear-gradient(180deg, #eef6fd 0%, #dfecf8 100%);
+    color: #0b1424;
+  }
+
+  .z-light .z-label {
+    color: #3c5572;
+  }
+
+  .z-light .z-num {
+    color: #24507e;
+  }
+
+  .z-light .z-rule {
+    border-color: rgba(11, 20, 36, 0.14);
+  }
 }
 
-.zenith-gradient-text-dark {
-  background: linear-gradient(105deg, #0b1424 10%, #2563eb 85%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
+/* ──────────────────────────────────────────────────────────────
+   Motion
+   ────────────────────────────────────────────────────────────── */
 @keyframes zenith-marquee {
   to {
     transform: translateX(-50%);
@@ -84,10 +478,86 @@
 .zenith-marquee-track {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 2.5rem;
   width: max-content;
   white-space: nowrap;
-  animation: zenith-marquee 34s linear infinite;
+  animation: zenith-marquee 48s linear infinite;
+}
+
+@keyframes z-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes z-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.z-rise {
+  animation: z-rise 0.8s var(--z-ease) both;
+}
+
+.z-fade {
+  animation: z-fade 1.4s var(--z-ease) both;
+}
+
+.z-delay-1 {
+  animation-delay: 0.08s;
+}
+.z-delay-2 {
+  animation-delay: 0.16s;
+}
+.z-delay-3 {
+  animation-delay: 0.26s;
+}
+.z-delay-4 {
+  animation-delay: 0.38s;
+}
+
+@keyframes z-scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(220%);
+  }
+}
+
+.z-scroll-cue {
+  position: relative;
+  width: 1px;
+  height: 36px;
+  overflow: hidden;
+  background: rgba(193, 232, 255, 0.16);
+}
+
+.z-scroll-cue::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 40%;
+  background: #c1e8ff;
+  animation: z-scroll-cue 2.2s var(--z-ease) infinite;
+}
+
+/* Kept for backwards compatibility with any remaining usages */
+.zenith-gradient-text {
+  color: #c1e8ff;
+}
+
+.zenith-gradient-text-dark {
+  color: #24507e;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -95,7 +565,16 @@
     scroll-behavior: auto;
   }
 
-  .zenith-marquee-track {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .zenith-marquee-track,
+  .z-scroll-cue::after {
+    animation: none !important;
   }
 }
