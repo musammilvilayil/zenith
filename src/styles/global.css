@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-midnight: #021024;
-  --color-navy: #052659;
-  --color-deep: #03152c;
-  --color-steel: #5483B3;
-  --color-soft-blue: #7DA0CA;
-  --color-ice: #C1E8FF;
-  --color-ink: #EAF7FF;
-  --color-muted: #A9C6E2;
-  --color-light-surface: #EAF7FF;
-  --color-light-ink: #06182B;
-  --color-light-muted: #405B76;
+  --color-midnight: #060a13;
+  --color-navy: #0b1424;
+  --color-deep: #05080f;
+  --color-steel: #2563eb;
+  --color-soft-blue: #80b2ff;
+  --color-ice: #c1e8ff;
+  --color-ink: #edf3ff;
+  --color-muted: #9aaac2;
+  --color-light-surface: #edf3ff;
+  --color-light-ink: #edf3ff;
+  --color-light-muted: #9aaac2;
 
   --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: "Manrope", "DM Sans", ui-sans-serif, system-ui, sans-serif;
@@ -19,8 +19,8 @@
 
 @layer base {
   html {
-    background-color: #021024;
-    color: #EAF7FF;
+    background-color: #060a13;
+    color: #edf3ff;
     font-family: var(--font-sans);
     scroll-behavior: smooth;
     scroll-padding-top: 90px;
@@ -33,9 +33,9 @@
     min-width: 320px;
     overflow-x: hidden;
     background:
-      radial-gradient(ellipse at 50% -10%, rgba(84, 131, 179, 0.22), transparent 46%),
-      linear-gradient(180deg, #052659 0%, #021024 46%, #03152c 100%);
-    color: #EAF7FF;
+      radial-gradient(ellipse at 50% -10%, rgba(37, 99, 235, 0.20), transparent 46%),
+      linear-gradient(180deg, #0b1424 0%, #060a13 46%, #05080f 100%);
+    color: #edf3ff;
   }
 
   h1,
@@ -47,8 +47,8 @@
   }
 
   ::selection {
-    background: #C1E8FF;
-    color: #021024;
+    background: #c1e8ff;
+    color: #060a13;
   }
 
   a:focus-visible,
@@ -56,20 +56,20 @@
   input:focus-visible,
   select:focus-visible,
   textarea:focus-visible {
-    outline: 2px solid #C1E8FF;
+    outline: 2px solid #c1e8ff;
     outline-offset: 4px;
   }
 }
 
 .zenith-gradient-text {
-  background: linear-gradient(105deg, #C1E8FF 5%, #7DA0CA 55%, #EAF7FF 100%);
+  background: linear-gradient(105deg, #c1e8ff 5%, #80b2ff 55%, #edf3ff 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .zenith-gradient-text-dark {
-  background: linear-gradient(105deg, #052659 10%, #5483B3 85%);
+  background: linear-gradient(105deg, #0b1424 10%, #2563eb 85%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
