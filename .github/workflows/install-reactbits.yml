@@ -1,0 +1,47 @@
+name: Install React Bits Pro components
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: react-app
+    steps:
+      - name: Checkout selected branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: react-app/package.json
+      - name: Install application dependencies
+        run: npm install
+      - name: Install authenticated React Bits Pro components
+        run: npm run install:reactbits
+        env:
+          REACTBITS_LICENSE_KEY: ${{ secrets.REACTBITS_LICENSE_KEY }}
+      - name: Verify route parity and production build
+        run: |
+          npm run test:routes
+          npm run build
+      - name: Commit generated component files
+        working-directory: .
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add react-app
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+          else
+            git commit -m "feat: install React Bits Pro background components"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
