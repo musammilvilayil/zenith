@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
-  ArrowDownRight, ArrowRight, ArrowUpRight, BrainCircuit, Braces, Check,
-  ChevronDown, Cloud, Code2, Cpu, Github, Instagram, Layers3, Mail,
+  ArrowDownRight, ArrowUpRight, BrainCircuit, Braces,
+  ChevronDown, Cloud, Code2, Layers3, Mail,
   Menu, MessageCircle, MousePointer2, Phone, ShieldCheck, Smartphone,
   Sparkles, Workflow, X, Zap
 } from "lucide-react";
@@ -13,7 +13,7 @@ const services = [
   { number: "04", icon: BrainCircuit, title: "AI & automation", detail: "Useful AI capabilities and thoughtful automations that remove repetitive work and unlock better workflows.", tags: ["AI integrations", "Workflow automation", "Data intelligence"] },
 ];
 
-const technologies = ["React", "Next.js", "Node.js", "Python", "TypeScript", "MongoDB", "MySQL", "AWS", "Firebase", "Flutter", "Docker", "Git"];
+const technologies = ["React", "Node.js", "Python", "TypeScript", "MongoDB", "MySQL", "AWS", "Firebase", "Flutter", "Docker", "Git"];
 
 const projects = [
   { name: "NeuroTwin", category: "AI · RESEARCH PROTOTYPE", description: "An EEG analysis and digital-twin research platform exploring seizure-event detection and signal visualisation.", stack: ["Python", "TensorFlow", "FastAPI", "React"], status: "Research prototype", visual: "neuro" },
