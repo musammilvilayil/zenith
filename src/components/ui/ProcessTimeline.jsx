@@ -37,3 +37,4 @@ export default function ProcessTimeline({ steps, tone = "dark", className }) {
     </ol>
   );
 }
+
