@@ -2,7 +2,7 @@
 // Rate limiting is best-effort: serverless instances do not share memory.
 const buckets = new Map();
 const MAX_BODY = 16_000;
-const SERVICES = new Set(['Business website','Website redesign','Growth website','E-commerce website','Web application','Mobile application','Startup MVP','Branding and UI/UX','AI and automation','IoT system','Website maintenance','Academic project guidance','Other','Join Zenith Talent']);
+const SERVICES = new Set(['Custom software development','Cloud solutions & integrations','AI integrations & automation','Business website','Website redesign','Growth website','E-commerce website','Web application','Mobile application','Startup MVP','Branding and UI/UX','AI and automation','IoT system','Website maintenance','Academic project guidance','Other','Join Zenith Talent']);
 const clean = (value, length = 500) => String(value ?? '').trim().replace(/[\u0000-\u001f\u007f]/g, '').slice(0, length);
 const escapeHtml = value => clean(value, 4_000).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const validEmail = value => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(value) && value.length <= 254;

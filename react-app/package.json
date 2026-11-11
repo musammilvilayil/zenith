@@ -1,7 +1,7 @@
 {
-  "name": "zenith-react",
+  "name": "zenith-softworks",
   "private": true,
-  "version": "2.0.0",
+  "version": "3.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -10,18 +10,12 @@
     "test:routes": "node scripts/check-routes.mjs"
   },
   "dependencies": {
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "react-router-dom": "7.1.5",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",
-    "tailwind-merge": "^2.6.0"
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "4.3.4",
-    "vite": "6.1.0",
-    "@tailwindcss/vite": "^4.1.11",
-    "tailwindcss": "^4.1.11"
+    "vite": "6.1.0"
   }
 }
