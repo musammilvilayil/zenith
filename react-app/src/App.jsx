@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { InnerPage } from "./pages.jsx";
 import {
   ArrowDownRight, ArrowUpRight, BrainCircuit, Braces,
   ChevronDown, Cloud, Code2, Layers3, Mail,
@@ -271,4 +272,7 @@ function Home() {
   </>;
 }
 
-export default function App() { return <Home/>; }
+export default function App() {
+  const path = window.location.pathname.replace(/\\/?$/, "/");
+  return path === "/" ? <Home/> : <InnerPage path={path}/>;
+}
