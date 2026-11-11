@@ -25,6 +25,10 @@ jobs:
           cache-dependency-path: react-app/package.json
       - name: Install application dependencies
         run: npm install
+      - name: Verify React Bits license secret is configured
+        run: test -n "$REACTBITS_LICENSE_KEY" || { echo "::error::Add REACTBITS_LICENSE_KEY in repository Actions secrets before running this workflow."; exit 1; }
+        env:
+          REACTBITS_LICENSE_KEY: ${{ secrets.REACTBITS_LICENSE_KEY }}
       - name: Install authenticated React Bits Pro components
         run: npm run install:reactbits
         env:

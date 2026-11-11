@@ -30,19 +30,3 @@ The build copies the existing `/assets`, `robots.txt`, `sitemap.xml` and `404.ht
 ## Migration status
 
 This is a compatibility migration, not a claim that every legacy section has already been rewritten as native JSX. It puts every route under the React runtime without dropping working content or SEO. Shared navigation, footer, forms and page sections can now be extracted into reusable React components incrementally. The PR remains draft until the preview is visually and functionally reviewed; production is not switched by this branch.
-
-
-## React Bits Pro components
-
-This Vite app is configured for the authenticated React Bits Pro Starter and Pro registries. Tailwind v4 utilities are enabled without importing Tailwind Preflight, so the existing legacy pages retain their original base styles.
-
-1. Copy `.env.example` to `.env.local` in this folder and set your real `REACTBITS_LICENSE_KEY`. Keep `.env.local` out of Git.
-2. Install dependencies with `npm install`.
-3. Install the three requested licensed components with `npm run install:reactbits`.
-4. Run `npm run test:routes` and `npm run build`.
-
-The install command fetches the official Tailwind variants of Luminous Filaments, Interference Ribbons and Voxel Arc. The generated component files must be reviewed and then integrated into the homepage and supporting sections; they are not bundled into this setup commit because registry access requires the developer's private license key.
-
-### GitHub Actions installation (optional)
-
-After merging the setup PR, add a repository Actions secret named `REACTBITS_LICENSE_KEY`. Then open **Actions → Install React Bits Pro components → Run workflow**, select this feature branch, and run it. The workflow installs the official registry files, verifies the routes and production build, and commits the generated files back to the selected branch. Do not paste the license key into chat or commit it to the repository.
