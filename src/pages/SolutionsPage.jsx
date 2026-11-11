@@ -69,15 +69,15 @@ export default function SolutionsPage() {
         description="The engagement changes with the audience and stage. The standards for scope, review, testing and handover remain the same."
       />
 
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="divide-y divide-ice/15 border-t border-ice/15">
+      <section className="z-section">
+        <div className="z-container">
+          <div className="divide-y divide-line border-t border-line">
             {AUDIENCES.map((item) => (
               <article
                 key={item.num}
                 className="grid gap-4 py-8 md:grid-cols-[56px_1.1fr_1.4fr_auto] md:items-center"
               >
-                <span className="text-xs font-bold text-ice">{item.num}</span>
+                <span className="z-num">{item.num}</span>
                 <h2 className="font-display text-2xl font-bold text-ink">{item.title}</h2>
                 <p className="text-sm leading-relaxed text-muted">{item.desc}</p>
                 <Link
@@ -92,21 +92,21 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      <section className="border-y border-ice/15 bg-deep/90 py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+      <section className="z-section border-y border-line bg-navy/40">
+        <div className="z-container">
+          <span className="z-label z-label-accent z-eyebrow">
             Common starting points
           </span>
-          <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+          <h2 className="z-display-md mt-5 text-ink">
             Bring the problem—even when the final feature list is unclear.
           </h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {STARTING_POINTS.map((item) => (
               <article
                 key={item.code}
-                className="rounded-3xl border border-ice/20 bg-navy/45 p-7 backdrop-blur"
+                className="z-card z-card-pad"
               >
-                <span className="text-xs font-bold text-ice">{item.code}</span>
+                <span className="z-num">{item.code}</span>
                 <h3 className="mt-3 font-display text-xl font-bold text-ink">{item.quote}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{item.answer}</p>
               </article>

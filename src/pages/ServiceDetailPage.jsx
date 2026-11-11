@@ -22,13 +22,13 @@ export default function ServiceDetailPage() {
           <>
             <Link
               to={`/contact/?service=${encodeURIComponent(slug)}`}
-              className="rounded-full bg-ice px-6 py-3 text-xs font-bold text-midnight transition hover:bg-white"
+              className="z-btn z-btn-primary"
             >
               Discuss this service
             </Link>
             <Link
               to="/work/"
-              className="rounded-full border border-ice/35 px-6 py-3 text-xs font-semibold text-ink transition hover:border-ice hover:bg-navy/50"
+              className="z-btn z-btn-secondary"
             >
               See relevant work
             </Link>
@@ -36,13 +36,13 @@ export default function ServiceDetailPage() {
         }
       />
 
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <section className="z-section">
+        <div className="z-container">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+            <span className="z-label z-label-accent z-eyebrow">
               What we deliver
             </span>
-            <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+            <h2 className="z-display-md mt-5 text-ink">
               A complete path from requirement to reliable operation.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
@@ -55,9 +55,9 @@ export default function ServiceDetailPage() {
             {DELIVERY_STEPS.map((step) => (
               <div
                 key={step.num}
-                className="rounded-3xl border border-ice/20 bg-navy/45 p-7 backdrop-blur"
+                className="z-card z-card-pad"
               >
-                <span className="text-xs font-bold text-ice">{step.num}</span>
+                <span className="z-num">{step.num}</span>
                 <h3 className="mt-3 font-display text-xl font-bold text-ink">{step.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{step.description}</p>
               </div>

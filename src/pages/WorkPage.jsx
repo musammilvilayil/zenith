@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom";
 import PageHead from "@/components/layout/PageHead";
 import CtaBanner from "@/components/ui/CtaBanner";
 import PageHero from "@/components/ui/PageHero";
+import PortfolioCard from "@/components/ui/PortfolioCard";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { CASE_STUDIES } from "@/data/work";
+
+// Asymmetric 12-column rhythm: wide/narrow, then narrow/wide.
+const LAYOUT = ["lg:col-span-7", "lg:col-span-5", "lg:col-span-5", "lg:col-span-7"];
 
 export default function WorkPage() {
   return (
@@ -12,38 +16,28 @@ export default function WorkPage() {
         eyebrow="Selected work"
         title="Systems built around real constraints."
         description="Each project starts with a specific operational problem and becomes a product that people can understand, use and maintain."
+        meta={`${CASE_STUDIES.length} projects`}
       />
 
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-8 md:grid-cols-2">
-            {CASE_STUDIES.map((project) => (
-              <Link
+      <section className="z-section">
+        <div className="z-container">
+          <SectionHeading
+            index="Index"
+            meta="Product engineering · Platforms · Mobile + IoT"
+            title="Projects in focus"
+            size="md"
+            description="Cloud workspaces, healthcare intelligence, safety technology and collaboration systems—each shaped around the people who use it."
+          />
+
+          <div className="mt-14 grid gap-5 lg:grid-cols-12">
+            {CASE_STUDIES.map((project, idx) => (
+              <PortfolioCard
                 key={project.slug}
-                to={`/work/${project.slug}/`}
-                className="group flex flex-col overflow-hidden rounded-3xl border border-ice/20 bg-navy/45 transition hover:-translate-y-1 hover:border-ice/45"
-              >
-                <div className="relative overflow-hidden border-b border-ice/15">
-                  <img
-                    src={project.image}
-                    alt={project.imageAlt}
-                    className="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-midnight/75 via-transparent to-transparent" />
-                  <span className="absolute bottom-3 left-5 text-[10px] font-bold uppercase tracking-[0.18em] text-ice">
-                    {project.index} · {project.category}
-                  </span>
-                </div>
-                <div className="p-7">
-                  <h2 className="font-display text-2xl font-bold text-ink transition-colors group-hover:text-ice">
-                    {project.title}
-                  </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">{project.summary}</p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-xs font-bold text-ice">
-                    View case study <span aria-hidden="true">↗</span>
-                  </span>
-                </div>
-              </Link>
+                project={project}
+                headingLevel="h2"
+                feature={LAYOUT[idx % LAYOUT.length] === "lg:col-span-7"}
+                className={LAYOUT[idx % LAYOUT.length]}
+              />
             ))}
           </div>
         </div>

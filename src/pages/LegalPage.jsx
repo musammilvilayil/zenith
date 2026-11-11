@@ -23,14 +23,14 @@ export default function LegalPage({ type = "privacy" }) {
       <PageHead />
       <PageHero eyebrow="Legal" title={doc.title} description={doc.updated} />
 
-      <section className="py-20">
+      <section className="z-section">
         <div className="mx-auto max-w-3xl space-y-8 px-5 sm:px-8">
           <p className="text-lg leading-relaxed text-ink/95">{doc.body}</p>
-          <div className="border-t border-ice/15 pt-6">
+          <div className="border-t border-line pt-6">
             <h2 className="font-display text-2xl font-bold text-ink">Contact</h2>
             <p className="mt-2 text-sm text-muted">
               Questions may be sent to{" "}
-              <a href={`mailto:${SITE.helloEmail}`} className="text-ice hover:underline">
+              <a href={`mailto:${SITE.helloEmail}`} className="text-ice underline-offset-4 hover:underline">
                 {SITE.helloEmail}
               </a>
               .

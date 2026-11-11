@@ -34,13 +34,13 @@ export default function ServicesPage() {
         description="Choose a clear starting point, then shape the final scope around your audience, operations, content, integrations and timeline."
       />
 
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <section className="z-section">
+        <div className="z-container">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+            <span className="z-label z-label-accent z-eyebrow">
               Website packages
             </span>
-            <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+            <h2 className="z-display-md mt-5 text-ink">
               Built to make the business look credible and easier to choose.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
@@ -54,19 +54,19 @@ export default function ServicesPage() {
               <article
                 key={pkg.title}
                 className={cn(
-                  "flex flex-col justify-between rounded-3xl border p-7 backdrop-blur transition hover:-translate-y-1",
+                  "z-card z-card-interactive z-card-pad flex flex-col justify-between",
                   pkg.featured
-                    ? "border-ice/55 bg-gradient-to-br from-navy/90 to-steel/20 shadow-xl shadow-steel/15"
-                    : "border-ice/20 bg-navy/45",
+                    ? "!border-ice/45 !bg-surface"
+                    : "",
                 )}
               >
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-ice">
+                  <span className="z-label z-label-accent">
                     {pkg.tier}
                   </span>
                   <h3 className="mt-2 font-display text-2xl font-bold text-ink">{pkg.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted">{pkg.summary}</p>
-                  <ul className="mt-6 space-y-2.5 border-t border-ice/15 pt-5 text-sm text-ink/90">
+                  <ul className="mt-6 space-y-2.5 border-t border-line pt-5 text-sm text-ink/90">
                     {pkg.features.map((feat) => (
                       <li key={feat} className="flex items-start gap-2.5">
                         <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-ice" />
@@ -79,10 +79,10 @@ export default function ServicesPage() {
                 <Link
                   to={pkg.ctaHref}
                   className={cn(
-                    "mt-8 inline-flex items-center justify-center rounded-full px-5 py-3 text-xs font-bold transition",
+                    "z-btn mt-8 w-full",
                     pkg.featured
-                      ? "bg-ice text-midnight hover:bg-white"
-                      : "border border-ice/35 text-ink hover:border-ice hover:bg-navy/70",
+                      ? "z-btn-primary"
+                      : "z-btn-secondary",
                   )}
                 >
                   {pkg.ctaLabel}
@@ -93,13 +93,13 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="border-y border-ice/15 bg-deep/90 py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <section className="z-section border-y border-line bg-navy/40">
+        <div className="z-container">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+            <span className="z-label z-label-accent z-eyebrow">
               Product engineering
             </span>
-            <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+            <h2 className="z-display-md mt-5 text-ink">
               When the requirement goes beyond a website.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
@@ -108,13 +108,13 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <div className="mt-10 divide-y divide-ice/15 border-t border-ice/15">
+          <div className="mt-10 divide-y divide-line border-t border-line">
             {PRODUCT_ENGINEERING_SERVICES.map((item) => (
               <article
                 key={item.slug}
                 className="grid gap-4 py-7 md:grid-cols-[56px_1.1fr_1.4fr_auto] md:items-center"
               >
-                <span className="text-xs font-bold text-ice">{item.num}</span>
+                <span className="z-num">{item.num}</span>
                 <h3 className="font-display text-xl font-bold text-ink">{item.title}</h3>
                 <p className="text-sm leading-relaxed text-muted">{item.description}</p>
                 <Link
@@ -129,19 +129,19 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+      <section className="z-section">
+        <div className="z-container">
+          <span className="z-label z-label-accent z-eyebrow">
             Included discipline
           </span>
-          <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+          <h2 className="z-display-md mt-5 text-ink">
             Every engagement is more than design and code.
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {DISCIPLINES.map((item) => (
               <div
                 key={item.title}
-                className="rounded-2xl border border-ice/15 bg-navy/40 p-6 backdrop-blur"
+                className="z-card p-6"
               >
                 <strong className="block font-display text-lg text-ink">{item.title}</strong>
                 <span className="mt-2 block text-sm leading-relaxed text-muted">{item.desc}</span>

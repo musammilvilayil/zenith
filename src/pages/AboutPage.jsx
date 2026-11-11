@@ -47,7 +47,7 @@ export default function AboutPage() {
         title="A digital agency designed to grow businesses and people."
         description="Zenith Softworks combines product thinking, premium design, practical engineering and supervised emerging talent to deliver work that clients can trust and contributors can learn from."
         aside={
-          <div className="overflow-hidden rounded-3xl border border-ice/25 bg-midnight/60 p-2 shadow-2xl">
+          <div className="z-glass overflow-hidden rounded-[1.5rem] p-2">
             <img
               src={BRAND_IMAGES.heroAbstractImg}
               alt="Zenith Softworks visual identity"
@@ -57,7 +57,7 @@ export default function AboutPage() {
         }
       />
 
-      <section className="py-20">
+      <section className="z-section">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:items-center">
           <p className="font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">
             Professional delivery should create value on both sides of the project.
@@ -71,13 +71,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-ice/15 bg-deep/90 py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <section className="z-section border-y border-line bg-navy/40">
+        <div className="z-container">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+            <span className="z-label z-label-accent z-eyebrow">
               The model
             </span>
-            <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+            <h2 className="z-display-md mt-5 text-ink">
               Agency discipline. Talent-studio energy.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
@@ -90,9 +90,9 @@ export default function AboutPage() {
             {MODEL_CARDS.map((card) => (
               <article
                 key={card.num}
-                className="rounded-3xl border border-ice/20 bg-navy/45 p-7 backdrop-blur"
+                className="z-card z-card-pad"
               >
-                <span className="text-xs font-bold text-ice">{card.num}</span>
+                <span className="z-num">{card.num}</span>
                 <h3 className="mt-3 font-display text-xl font-bold text-ink">{card.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{card.desc}</p>
               </article>
@@ -101,13 +101,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <section className="z-section">
+        <div className="z-container">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+            <span className="z-label z-label-accent z-eyebrow">
               How quality is protected
             </span>
-            <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+            <h2 className="z-display-md mt-5 text-ink">
               Talent may be emerging. Standards are not.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
@@ -120,9 +120,9 @@ export default function AboutPage() {
             {QA_STEPS.map((step) => (
               <div
                 key={step.num}
-                className="rounded-2xl border border-ice/15 bg-navy/35 p-6 backdrop-blur"
+                className="rounded-2xl border border-line bg-navy/35 p-6 backdrop-blur"
               >
-                <span className="text-xs font-bold text-ice">{step.num}</span>
+                <span className="z-num">{step.num}</span>
                 <h3 className="mt-2 font-display text-lg font-bold text-ink">{step.title}</h3>
                 <p className="mt-1.5 text-sm text-muted">{step.desc}</p>
               </div>
@@ -131,19 +131,19 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-ice/15 bg-deep/90 py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+      <section className="z-section border-y border-line bg-navy/40">
+        <div className="z-container">
+          <span className="z-label z-label-accent z-eyebrow">
             What we value
           </span>
-          <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+          <h2 className="z-display-md mt-5 text-ink">
             The principles behind the work.
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {VALUES.map((val) => (
               <div
                 key={val.title}
-                className="rounded-2xl border border-ice/15 bg-navy/40 p-6 backdrop-blur"
+                className="z-card p-6"
               >
                 <strong className="block font-display text-lg text-ink">{val.title}</strong>
                 <span className="mt-2 block text-sm leading-relaxed text-muted">{val.desc}</span>
@@ -153,13 +153,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="z-section">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:items-center">
           <div>
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+            <span className="z-label z-label-accent z-eyebrow">
               For emerging talent
             </span>
-            <p className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+            <p className="z-display-md mt-5 text-ink">
               Build work that can survive a real client review.
             </p>
           </div>
@@ -171,7 +171,7 @@ export default function AboutPage() {
             </p>
             <Link
               to="/talent/"
-              className="inline-flex items-center gap-2 rounded-full bg-ice px-6 py-3 text-xs font-bold text-midnight transition hover:bg-white"
+              className="z-btn z-btn-primary"
             >
               Join Zenith Talent
             </Link>

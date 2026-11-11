@@ -16,7 +16,7 @@ export default function NotFoundPage() {
         actions={
           <Link
             to="/"
-            className="rounded-full bg-ice px-6 py-3 text-xs font-bold text-midnight transition hover:bg-white"
+            className="z-btn z-btn-primary"
           >
             Return home
           </Link>

@@ -31,11 +31,11 @@ export default function ContactPage() {
         description="A useful brief does not need perfect technical language. Share the audience, current problem, desired outcome and any important deadline."
       />
 
-      <section className="py-20">
+      <section className="z-section">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <aside className="space-y-8">
             <div>
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+              <span className="z-label z-label-accent z-eyebrow">
                 What happens next
               </span>
               <h2 className="mt-3 font-display text-3xl font-bold text-ink">
@@ -47,16 +47,16 @@ export default function ContactPage() {
               {STEPS.map((step) => (
                 <div
                   key={step.num}
-                  className="rounded-2xl border border-ice/15 bg-navy/40 p-5 backdrop-blur"
+                  className="z-card p-5"
                 >
-                  <span className="text-xs font-bold text-ice">{step.num}</span>
+                  <span className="z-num">{step.num}</span>
                   <h3 className="mt-1.5 font-display text-lg font-bold text-ink">{step.title}</h3>
                   <p className="mt-1 text-sm text-muted">{step.desc}</p>
                 </div>
               ))}
             </div>
 
-            <div className="rounded-2xl border border-ice/20 bg-deep p-6 text-sm leading-relaxed text-muted">
+            <div className="rounded-2xl border border-line bg-deep p-6 text-sm leading-relaxed text-muted">
               <strong className="block font-display text-base text-ink">Direct contact</strong>
               <p className="mt-2">
                 WhatsApp:{" "}
@@ -64,14 +64,14 @@ export default function ContactPage() {
                   href={SITE.whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-ice hover:underline"
+                  className="text-ice underline-offset-4 hover:underline"
                 >
                   {SITE.whatsappDisplay}
                 </a>
               </p>
               <p>
                 Email:{" "}
-                <a href={`mailto:${SITE.email}`} className="text-ice hover:underline">
+                <a href={`mailto:${SITE.email}`} className="text-ice underline-offset-4 hover:underline">
                   {SITE.email}
                 </a>
               </p>

@@ -148,12 +148,12 @@ export default function EnquiryForm({ mode = "contact" }) {
   };
 
   const inputClass =
-    "mt-1.5 w-full rounded-xl border border-ice/25 bg-midnight/80 px-4 py-3 text-sm text-ink placeholder:text-soft-blue/70 focus:border-ice focus:outline-none";
+    "z-field";
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid gap-5 rounded-3xl border border-ice/20 bg-navy/45 p-6 backdrop-blur-md sm:grid-cols-2 sm:p-8"
+      className="z-card grid gap-5 p-6 sm:grid-cols-2 sm:p-8"
     >
       <input
         type="text"
@@ -166,7 +166,7 @@ export default function EnquiryForm({ mode = "contact" }) {
         className="hidden"
       />
 
-      <label className="text-xs font-semibold uppercase tracking-wider text-soft-blue">
+      <label className="flex flex-col gap-2 text-sm font-medium text-muted">
         {isTalent ? "Full name" : "Name"}
         <input
           name="name"
@@ -178,7 +178,7 @@ export default function EnquiryForm({ mode = "contact" }) {
         />
       </label>
 
-      <label className="text-xs font-semibold uppercase tracking-wider text-soft-blue">
+      <label className="flex flex-col gap-2 text-sm font-medium text-muted">
         Email
         <input
           name="email"
@@ -191,7 +191,7 @@ export default function EnquiryForm({ mode = "contact" }) {
         />
       </label>
 
-      <label className="text-xs font-semibold uppercase tracking-wider text-soft-blue">
+      <label className="flex flex-col gap-2 text-sm font-medium text-muted">
         WhatsApp / phone
         <input
           name="phone"
@@ -203,7 +203,7 @@ export default function EnquiryForm({ mode = "contact" }) {
         />
       </label>
 
-      <label className="text-xs font-semibold uppercase tracking-wider text-soft-blue">
+      <label className="flex flex-col gap-2 text-sm font-medium text-muted">
         {isTalent ? "Current course / role" : "Business / organisation"}
         <input
           name="company"
@@ -218,7 +218,7 @@ export default function EnquiryForm({ mode = "contact" }) {
 
       {isTalent ? (
         <>
-          <label className="text-xs font-semibold uppercase tracking-wider text-soft-blue">
+          <label className="flex flex-col gap-2 text-sm font-medium text-muted">
             Primary role
             <select
               name="role"
@@ -236,7 +236,7 @@ export default function EnquiryForm({ mode = "contact" }) {
             </select>
           </label>
 
-          <label className="text-xs font-semibold uppercase tracking-wider text-soft-blue">
+          <label className="flex flex-col gap-2 text-sm font-medium text-muted">
             Weekly availability
             <select
               name="budget"
@@ -252,7 +252,7 @@ export default function EnquiryForm({ mode = "contact" }) {
             </select>
           </label>
 
-          <label className="text-xs font-semibold uppercase tracking-wider text-soft-blue">
+          <label className="flex flex-col gap-2 text-sm font-medium text-muted">
             Experience level
             <select
               name="timeline"
@@ -268,7 +268,7 @@ export default function EnquiryForm({ mode = "contact" }) {
             </select>
           </label>
 
-          <label className="text-xs font-semibold uppercase tracking-wider text-soft-blue">
+          <label className="flex flex-col gap-2 text-sm font-medium text-muted">
             Portfolio / GitHub link
             <input
               name="portfolio"
@@ -282,7 +282,7 @@ export default function EnquiryForm({ mode = "contact" }) {
         </>
       ) : (
         <>
-          <label className="text-xs font-semibold uppercase tracking-wider text-soft-blue">
+          <label className="flex flex-col gap-2 text-sm font-medium text-muted">
             What do you need?
             <select
               name="service"
@@ -300,7 +300,7 @@ export default function EnquiryForm({ mode = "contact" }) {
             </select>
           </label>
 
-          <label className="text-xs font-semibold uppercase tracking-wider text-soft-blue">
+          <label className="flex flex-col gap-2 text-sm font-medium text-muted">
             Estimated budget (USD or local equivalent)
             <select
               name="budget"
@@ -317,7 +317,7 @@ export default function EnquiryForm({ mode = "contact" }) {
             </select>
           </label>
 
-          <label className="text-xs font-semibold uppercase tracking-wider text-soft-blue">
+          <label className="flex flex-col gap-2 text-sm font-medium text-muted">
             Preferred timeline
             <select
               name="timeline"
@@ -333,7 +333,7 @@ export default function EnquiryForm({ mode = "contact" }) {
             </select>
           </label>
 
-          <label className="text-xs font-semibold uppercase tracking-wider text-soft-blue">
+          <label className="flex flex-col gap-2 text-sm font-medium text-muted">
             How did you find Zenith?
             <select
               name="source"
@@ -352,7 +352,7 @@ export default function EnquiryForm({ mode = "contact" }) {
         </>
       )}
 
-      <label className="text-xs font-semibold uppercase tracking-wider text-soft-blue sm:col-span-2">
+      <label className="flex flex-col gap-2 text-sm font-medium text-muted sm:col-span-2">
         {isTalent
           ? "Tell us about your skills, strongest project and the kind of work you want to contribute to"
           : "Project goals and current problem"}
@@ -375,7 +375,7 @@ export default function EnquiryForm({ mode = "contact" }) {
         <button
           type="submit"
           disabled={submitting}
-          className="inline-flex items-center gap-2 rounded-full bg-ice px-7 py-3.5 text-sm font-bold text-midnight transition hover:-translate-y-0.5 hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
+          className="z-btn z-btn-primary disabled:cursor-not-allowed disabled:opacity-60"
         >
           {submitting
             ? "Sending…"
@@ -388,7 +388,7 @@ export default function EnquiryForm({ mode = "contact" }) {
           id="formStatus"
           role="status"
           aria-live="polite"
-          className="rounded-xl border border-ice/15 bg-midnight/60 px-4 py-3 text-sm text-muted"
+          className="rounded-xl border border-line bg-midnight/60 px-4 py-3 text-sm text-muted"
         >
           {statusMessage}{" "}
           {whatsappFallbackUrl && (

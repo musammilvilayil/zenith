@@ -90,7 +90,7 @@ export default function AcademicServicesPage() {
   };
 
   const inputClass =
-    "mt-1.5 w-full rounded-xl border border-ice/25 bg-midnight/85 px-4 py-3 text-sm text-ink placeholder:text-soft-blue/70 focus:border-ice focus:outline-none";
+    "z-field";
 
   return (
     <>
@@ -103,19 +103,19 @@ export default function AcademicServicesPage() {
           <>
             <a
               href="#enquiry"
-              className="rounded-full bg-ice px-6 py-3 text-xs font-bold text-midnight transition hover:bg-white"
+              className="z-btn z-btn-primary"
             >
               Book a consultation
             </a>
             <a
               href="#process"
-              className="rounded-full border border-ice/35 px-6 py-3 text-xs font-semibold text-ink transition hover:border-ice hover:bg-navy/50"
+              className="z-btn z-btn-secondary"
             >
               See how it works
             </a>
             <Link
               to="/student-projects/"
-              className="rounded-full border border-ice/35 px-6 py-3 text-xs font-semibold text-ice transition hover:border-ice hover:bg-navy/50"
+              className="z-btn z-btn-secondary"
             >
               Explore project ideas
             </Link>
@@ -123,12 +123,12 @@ export default function AcademicServicesPage() {
         }
       />
 
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+      <section className="z-section">
+        <div className="z-container">
+          <span className="z-label z-label-accent z-eyebrow">
             Clear starting prices
           </span>
-          <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+          <h2 className="z-display-md mt-5 text-ink">
             Choose your project track
           </h2>
 
@@ -136,10 +136,10 @@ export default function AcademicServicesPage() {
             {TRACKS.map((track) => (
               <article
                 key={track.title}
-                className="flex flex-col justify-between rounded-3xl border border-ice/20 bg-navy/45 p-8 backdrop-blur"
+                className="flex flex-col justify-between z-card p-8 backdrop-blur"
               >
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-ice">
+                  <span className="z-label z-label-accent">
                     {track.tag}
                   </span>
                   <h3 className="mt-2 font-display text-2xl font-bold text-ink">{track.title}</h3>
@@ -148,7 +148,7 @@ export default function AcademicServicesPage() {
                 </div>
                 <a
                   href="#enquiry"
-                  className="mt-7 inline-flex w-fit rounded-full border border-ice/35 px-5 py-2.5 text-xs font-bold text-ink transition hover:border-ice hover:bg-navy"
+                  className="z-btn z-btn-secondary z-btn-sm mt-7 w-fit"
                 >
                   {track.cta}
                 </a>
@@ -162,12 +162,12 @@ export default function AcademicServicesPage() {
         </div>
       </section>
 
-      <section id="process" className="border-y border-ice/15 bg-deep/90 py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+      <section id="process" className="z-section border-y border-line bg-navy/40">
+        <div className="z-container">
+          <span className="z-label z-label-accent z-eyebrow">
             A structured process
           </span>
-          <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+          <h2 className="z-display-md mt-5 text-ink">
             From consultation to confident handover
           </h2>
 
@@ -175,9 +175,9 @@ export default function AcademicServicesPage() {
             {TIMELINE.map((step) => (
               <article
                 key={step.days}
-                className="rounded-2xl border border-ice/15 bg-navy/40 p-5 backdrop-blur"
+                className="z-card p-5"
               >
-                <strong className="text-xs font-bold text-ice">{step.days}</strong>
+                <strong className="z-num">{step.days}</strong>
                 <h3 className="mt-2 font-display text-lg font-bold text-ink">{step.title}</h3>
                 <p className="mt-1.5 text-sm text-muted">{step.desc}</p>
               </article>
@@ -193,23 +193,23 @@ export default function AcademicServicesPage() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+      <section className="z-section">
+        <div className="z-container">
+          <span className="z-label z-label-accent z-eyebrow">
             Bring your own idea or discover one
           </span>
-          <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+          <h2 className="z-display-md mt-5 text-ink">
             Support that fits your team
           </h2>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
-            <article className="rounded-3xl border border-ice/20 bg-navy/45 p-8">
+            <article className="z-card p-8">
               <h3 className="font-display text-2xl font-bold text-ink">Already have an idea?</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 We&apos;ll review feasibility, propose a practical scope, discuss technical choices
                 and plan guided implementation.
               </p>
             </article>
-            <article className="rounded-3xl border border-ice/20 bg-navy/45 p-8">
+            <article className="z-card p-8">
               <h3 className="font-display text-2xl font-bold text-ink">Need a project idea?</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 Explore our idea library and book a consultation to select a suitable, achievable
@@ -231,13 +231,13 @@ export default function AcademicServicesPage() {
         </div>
       </section>
 
-      <section id="referrals" className="border-y border-ice/15 bg-deep/90 py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="rounded-3xl border border-ice/30 bg-gradient-to-br from-navy to-midnight p-8 sm:p-12">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-ice">
+      <section id="referrals" className="z-section border-y border-line bg-navy/40">
+        <div className="z-container">
+          <div className="z-glass rounded-[1.75rem] p-8 sm:p-12">
+            <span className="z-label z-label-accent">
               Referral rewards
             </span>
-            <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+            <h2 className="z-display-md mt-5 text-ink">
               Refer 3 confirmed projects. Choose your reward.
             </h2>
             <div className="mt-8 grid gap-8 md:grid-cols-2">
@@ -264,7 +264,7 @@ export default function AcademicServicesPage() {
             </p>
             <a
               href="#enquiry"
-              className="mt-6 inline-flex rounded-full bg-ice px-6 py-3 text-xs font-bold text-midnight hover:bg-white"
+              className="z-btn z-btn-primary mt-6"
             >
               Register a referral
             </a>
@@ -272,12 +272,12 @@ export default function AcademicServicesPage() {
         </div>
       </section>
 
-      <section id="enquiry" className="py-20">
+      <section id="enquiry" className="z-section">
         <div className="mx-auto max-w-4xl px-5 sm:px-8">
-          <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+          <span className="z-label z-label-accent z-eyebrow">
             Start here
           </span>
-          <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+          <h2 className="z-display-md mt-5 text-ink">
             Tell us about your project
           </h2>
           <p className="mt-2 text-sm text-muted">
@@ -287,9 +287,9 @@ export default function AcademicServicesPage() {
 
           <form
             onSubmit={handleSubmit}
-            className="mt-8 grid gap-5 rounded-3xl border border-ice/20 bg-navy/45 p-6 sm:grid-cols-2 sm:p-8"
+            className="mt-8 grid gap-5 z-card p-6 sm:grid-cols-2 sm:p-8"
           >
-            <label className="text-xs font-semibold text-soft-blue">
+            <label className="flex flex-col gap-2 text-sm font-medium text-muted">
               Your name
               <input
                 name="name"
@@ -301,7 +301,7 @@ export default function AcademicServicesPage() {
                 className={inputClass}
               />
             </label>
-            <label className="text-xs font-semibold text-soft-blue">
+            <label className="flex flex-col gap-2 text-sm font-medium text-muted">
               Email
               <input
                 name="email"
@@ -313,7 +313,7 @@ export default function AcademicServicesPage() {
                 className={inputClass}
               />
             </label>
-            <label className="text-xs font-semibold text-soft-blue">
+            <label className="flex flex-col gap-2 text-sm font-medium text-muted">
               College / organization
               <input
                 name="college"
@@ -324,7 +324,7 @@ export default function AcademicServicesPage() {
                 className={inputClass}
               />
             </label>
-            <label className="text-xs font-semibold text-soft-blue">
+            <label className="flex flex-col gap-2 text-sm font-medium text-muted">
               Team size
               <select
                 name="team"
@@ -339,7 +339,7 @@ export default function AcademicServicesPage() {
                 <option>5+</option>
               </select>
             </label>
-            <label className="text-xs font-semibold text-soft-blue">
+            <label className="flex flex-col gap-2 text-sm font-medium text-muted">
               Project category
               <select
                 name="category"
@@ -353,7 +353,7 @@ export default function AcademicServicesPage() {
                 <option>Referral Enquiry</option>
               </select>
             </label>
-            <label className="text-xs font-semibold text-soft-blue">
+            <label className="flex flex-col gap-2 text-sm font-medium text-muted">
               Idea status
               <select
                 name="idea"
@@ -365,7 +365,7 @@ export default function AcademicServicesPage() {
                 <option>We need idea guidance</option>
               </select>
             </label>
-            <label className="text-xs font-semibold text-soft-blue">
+            <label className="flex flex-col gap-2 text-sm font-medium text-muted">
               Expected deadline
               <input
                 type="date"
@@ -375,7 +375,7 @@ export default function AcademicServicesPage() {
                 className={inputClass}
               />
             </label>
-            <label className="text-xs font-semibold text-soft-blue">
+            <label className="flex flex-col gap-2 text-sm font-medium text-muted">
               Referral code (optional)
               <input
                 name="referral"
@@ -400,7 +400,7 @@ export default function AcademicServicesPage() {
             <div className="sm:col-span-2">
               <button
                 type="submit"
-                className="rounded-full bg-ice px-7 py-3.5 text-sm font-bold text-midnight transition hover:bg-white"
+                className="z-btn z-btn-primary"
               >
                 Continue to WhatsApp
               </button>
