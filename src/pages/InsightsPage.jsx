@@ -13,16 +13,16 @@ export default function InsightsPage() {
         description="Practical writing on software, AI, product architecture and responsible delivery."
       />
 
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <section className="z-section">
+        <div className="z-container">
           <div className="grid gap-6 md:grid-cols-3">
             {INSIGHTS.map((article) => (
               <article
                 key={article.id}
-                className="flex flex-col justify-between rounded-3xl border border-ice/20 bg-navy/45 p-7 backdrop-blur transition hover:-translate-y-1 hover:border-ice/45"
+                className="flex flex-col justify-between z-card p-7 backdrop-blur transition hover:-translate-y-1 hover:border-ice/45"
               >
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-ice">
+                  <span className="z-label z-label-accent">
                     Insight
                   </span>
                   <h2 className="mt-3 font-display text-2xl font-bold text-ink">{article.title}</h2>

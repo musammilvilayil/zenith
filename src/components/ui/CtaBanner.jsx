@@ -1,42 +1,44 @@
-import { Link } from "react-router-dom";
 import InterferenceRibbons from "@/components/fx/InterferenceRibbons";
+import Button from "@/components/ui/Button";
 
 export default function CtaBanner({
   title,
+  label = "Next step",
+  description = "Share the goal, the audience and any deadline. We reply with clear questions, not a sales script.",
   primaryLabel = "Send a project brief",
   primaryHref = "/contact/",
   secondaryLabel,
   secondaryHref,
 }) {
   return (
-    <section className="relative isolate overflow-hidden border-t border-ice/15 bg-gradient-to-br from-navy/90 via-midnight to-deep py-20">
+    <section className="z-section relative isolate overflow-hidden border-t border-line">
+      <div aria-hidden="true" className="z-ambient absolute inset-0 -z-20" />
       <InterferenceRibbons
+        className="-z-10"
         primaryColor="#c1e8ff"
         secondaryColor="#80b2ff"
-        accentColor="#2563eb"
+        accentColor="#5483b3"
         ribbonCount={2}
         wiresPerRibbon={10}
-        opacity={0.38}
+        opacity={0.32}
       />
-      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-5 sm:px-8 lg:flex-row lg:items-center">
-        <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">
-          {title}
-        </h2>
-        <div className="flex flex-wrap gap-3">
-          <Link
-            to={primaryHref}
-            className="inline-flex items-center gap-2 rounded-full bg-ice px-6 py-3.5 text-sm font-bold text-midnight transition hover:-translate-y-0.5 hover:bg-white"
-          >
-            {primaryLabel} <span aria-hidden="true">↗</span>
-          </Link>
-          {secondaryLabel && secondaryHref && (
-            <Link
-              to={secondaryHref}
-              className="inline-flex items-center gap-2 rounded-full border border-ice/40 px-6 py-3.5 text-sm font-semibold text-ink transition hover:border-ice hover:bg-steel/20"
-            >
-              {secondaryLabel}
-            </Link>
-          )}
+      <div className="z-container">
+        <div className="z-glass rounded-[1.75rem] p-8 sm:p-12 lg:p-16">
+          <div className="grid gap-10 lg:grid-cols-[1.4fr_0.6fr] lg:items-end">
+            <div>
+              <p className="z-label z-label-accent z-eyebrow">{label}</p>
+              <h2 className="z-display-md mt-5 max-w-3xl text-ink">{title}</h2>
+              {description && <p className="mt-5 max-w-xl text-muted">{description}</p>}
+            </div>
+            <div className="flex flex-wrap gap-3 lg:justify-end">
+              <Button to={primaryHref}>{primaryLabel}</Button>
+              {secondaryLabel && secondaryHref && (
+                <Button to={secondaryHref} variant="secondary" arrow={null}>
+                  {secondaryLabel}
+                </Button>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </section>

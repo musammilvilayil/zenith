@@ -28,7 +28,10 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
     `<meta property="og:title" content="${escapeAttr(meta.ogTitle || meta.title)}" />` +
     `<meta property="og:description" content="${escapeAttr(meta.ogDescription || meta.description)}" />` +
     `<meta property="og:type" content="website" />` +
-    `<meta property="og:url" content="${escapeAttr(meta.canonical)}" />`;
+    `<meta property="og:url" content="${escapeAttr(meta.canonical)}" />` +
+    `<meta property="og:site_name" content="Zenith Softworks" />` +
+    `<meta name="twitter:title" content="${escapeAttr(meta.ogTitle || meta.title)}" />` +
+    `<meta name="twitter:description" content="${escapeAttr(meta.ogDescription || meta.description)}" />`;
 
   html = html.replace("</head>", `${headInject}</head>`);
 

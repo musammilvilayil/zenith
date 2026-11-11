@@ -1,13 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, MessageCircle, X } from "lucide-react";
+import Button from "@/components/ui/Button";
 import { BRAND_IMAGES, FOOTER_COLUMNS, NAV_LINKS, SITE } from "@/data/site";
 import { cn } from "@/lib/utils";
 
+// "Contact" is reachable through the dedicated CTA, so the desktop bar stays lighter.
+const DESKTOP_LINKS = NAV_LINKS.filter((item) => item.href !== "/contact/");
+
 export default function SiteLayout({ children }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { pathname, hash } = useLocation();
   const navRef = useRef(null);
+  const menuButtonRef = useRef(null);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -25,9 +31,28 @@ export default function SiteLayout({ children }) {
   }, [pathname, hash]);
 
   useEffect(() => {
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      setScrolled(window.scrollY > 24);
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
     if (!menuOpen) return undefined;
     const onKeyDown = (event) => {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
     };
     const onPointerDown = (event) => {
       if (navRef.current && !navRef.current.contains(event.target)) {
@@ -43,69 +68,85 @@ export default function SiteLayout({ children }) {
   }, [menuOpen]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-midnight text-ink">
+    <div className="flex min-h-screen flex-col bg-midnight text-ink">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-ice focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-midnight"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-lg focus:bg-ice focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-midnight"
       >
         Skip to main content
       </a>
 
       <header
         ref={navRef}
-        className="sticky top-0 z-40 border-b border-ice/15 bg-midnight/80 backdrop-blur-xl"
+        className="sticky top-0 z-50 px-[var(--z-nav-gap)] pt-[var(--z-nav-gap)] pb-[var(--z-nav-gap)]"
       >
         <nav
           aria-label="Main navigation"
-          className="mx-auto flex h-[76px] max-w-7xl items-center justify-between gap-6 px-5 sm:px-8"
+          className={cn(
+            "z-glass mx-auto flex h-[var(--z-nav-h)] max-w-[84rem] items-center justify-between gap-4 rounded-full pr-2.5 pl-5 transition-[background-color,border-color,box-shadow] duration-500 sm:pl-6",
+            scrolled && "!bg-midnight/85 border-[rgba(193,232,255,0.2)]",
+          )}
         >
           <Link
             to="/"
             aria-label="Zenith Softworks home"
-            className="flex shrink-0 items-center gap-2.5"
+            className="flex shrink-0 items-center rounded-md"
           >
             <img
               src={BRAND_IMAGES.navbarLogo}
               alt="Zenith Softworks"
+              width="140"
+              height="40"
               onError={(e) => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = BRAND_IMAGES.footerLogo;
               }}
-              className="h-9 w-auto max-w-[175px] object-contain sm:h-10"
+              className="h-8 w-auto max-w-[150px] object-contain sm:h-9"
             />
           </Link>
 
-          <div className="hidden items-center gap-6 lg:flex">
-            {NAV_LINKS.map((item) => (
-              <NavLink
-                key={item.href}
-                to={item.href}
-                className={({ isActive }) =>
-                  cn(
-                    "text-xs font-medium tracking-wide transition-colors",
-                    isActive ? "text-ice" : "text-muted hover:text-ink",
-                  )
-                }
-              >
-                {item.label}
-              </NavLink>
+          <ul className="hidden items-center gap-1 lg:flex">
+            {DESKTOP_LINKS.map((item) => (
+              <li key={item.href}>
+                <NavLink
+                  to={item.href}
+                  className={({ isActive }) =>
+                    cn(
+                      "relative inline-flex h-10 items-center rounded-full px-3.5 text-[0.8125rem] font-medium transition-colors duration-300 xl:px-4",
+                      isActive
+                        ? "bg-ice/10 text-ice"
+                        : "text-muted hover:bg-ice/5 hover:text-ink",
+                    )
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      {item.label}
+                      {isActive && (
+                        <span
+                          aria-hidden="true"
+                          className="absolute bottom-1.5 left-1/2 h-[3px] w-[3px] -translate-x-1/2 rounded-full bg-ice"
+                        />
+                      )}
+                    </>
+                  )}
+                </NavLink>
+              </li>
             ))}
-          </div>
+          </ul>
 
-          <div className="flex items-center gap-3">
-            <Link
-              to="/contact/"
-              className="hidden items-center gap-2 rounded-full border border-ice/35 bg-ice px-4 py-2 text-xs font-bold text-midnight transition hover:-translate-y-0.5 hover:bg-white sm:inline-flex"
-            >
-              Start a project <span aria-hidden="true">↗</span>
-            </Link>
+          <div className="flex items-center gap-2">
+            <Button to="/contact/" size="sm" className="hidden sm:inline-flex">
+              Start a project
+            </Button>
             <button
+              ref={menuButtonRef}
               type="button"
               aria-label={menuOpen ? "Close navigation" : "Open navigation"}
               aria-expanded={menuOpen}
               aria-controls="mobile-primary-nav"
               onClick={() => setMenuOpen((prev) => !prev)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-ice/20 bg-navy/40 text-ink lg:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-ice/5 text-ink transition-colors hover:bg-ice/10 lg:hidden"
             >
               {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -115,50 +156,73 @@ export default function SiteLayout({ children }) {
         {menuOpen && (
           <div
             id="mobile-primary-nav"
-            className="border-t border-ice/15 bg-midnight/95 px-5 py-4 backdrop-blur-xl lg:hidden"
+            className="z-glass mx-auto mt-2 max-w-[84rem] rounded-[1.75rem] !bg-midnight/95 p-3 lg:hidden"
           >
-            <div className="flex flex-col divide-y divide-ice/10">
-              {NAV_LINKS.map((item) => (
-                <NavLink
-                  key={item.href}
-                  to={item.href}
-                  className={({ isActive }) =>
-                    cn(
-                      "py-3 text-sm font-medium transition-colors",
-                      isActive ? "text-ice" : "text-muted hover:text-ink",
-                    )
-                  }
-                >
-                  {item.label}
-                </NavLink>
+            <ul className="flex flex-col">
+              {NAV_LINKS.map((item, idx) => (
+                <li key={item.href}>
+                  <NavLink
+                    to={item.href}
+                    className={({ isActive }) =>
+                      cn(
+                        "flex min-h-[52px] items-center justify-between rounded-2xl px-4 font-display text-lg font-semibold tracking-tight transition-colors",
+                        isActive ? "bg-ice/10 text-ice" : "text-ink hover:bg-ice/5",
+                      )
+                    }
+                  >
+                    {item.label}
+                    <span aria-hidden="true" className="z-label text-faint">{String(idx + 1).padStart(2, "0")}</span>
+                  </NavLink>
+                </li>
               ))}
-              <Link
-                to="/contact/"
-                className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-ice px-5 py-3 text-sm font-bold text-midnight"
-              >
-                Start a project <span aria-hidden="true">↗</span>
-              </Link>
+            </ul>
+            <div className="mt-3 grid gap-2 border-t border-line pt-3 sm:grid-cols-2">
+              <Button to="/contact/" className="w-full">
+                Start a project
+              </Button>
+              <Button href={SITE.whatsappHref} variant="secondary" className="w-full">
+                WhatsApp us
+              </Button>
             </div>
           </div>
         )}
       </header>
 
-      <main id="main-content" tabIndex={-1} className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
         {children}
       </main>
 
-      <footer className="border-t border-ice/15 bg-[#010b19] text-ink">
-        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
-          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <footer className="relative isolate overflow-hidden border-t border-line bg-deep text-ink">
+        <div aria-hidden="true" className="z-ambient absolute inset-0 -z-10 opacity-70" />
+        <div className="z-container pt-20 pb-10">
+          <div className="grid gap-12 border-b border-line pb-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div>
-              <Link to="/" className="inline-flex items-center">
+              <p className="z-label z-eyebrow">Have something in mind?</p>
+              <p className="z-display-lg mt-6 max-w-3xl">
+                Let&apos;s build it <span className="z-accent-text">properly.</span>
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3 lg:justify-end">
+              <Button to="/contact/">Start a project</Button>
+              <Button href={`mailto:${SITE.email}`} variant="secondary" external={false}>
+                {SITE.email}
+              </Button>
+            </div>
+          </div>
+
+          <div className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
+            <div>
+              <Link to="/" aria-label="Zenith Softworks home" className="inline-flex rounded-md">
                 <img
                   src={BRAND_IMAGES.footerLogo}
                   alt="Zenith Softworks"
+                  width="160"
+                  height="40"
+                  loading="lazy"
                   className="h-10 w-auto object-contain"
                 />
               </Link>
-              <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
+              <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted">
                 Thoughtful digital work for growing businesses. Real opportunities for ambitious
                 talent.
               </p>
@@ -166,16 +230,11 @@ export default function SiteLayout({ children }) {
 
             {FOOTER_COLUMNS.map((col) => (
               <div key={col.title}>
-                <h4 className="font-display text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
-                  {col.title}
-                </h4>
-                <ul className="mt-4 space-y-2.5 text-sm">
+                <h2 className="z-label z-label-accent">{col.title}</h2>
+                <ul className="mt-5 space-y-3 text-sm">
                   {col.links.map((item) => (
                     <li key={item.href}>
-                      <Link
-                        to={item.href}
-                        className="text-muted transition-colors hover:text-ice"
-                      >
+                      <Link to={item.href} className="text-muted transition-colors hover:text-ice">
                         {item.label}
                       </Link>
                     </li>
@@ -185,17 +244,18 @@ export default function SiteLayout({ children }) {
             ))}
 
             <div>
-              <h4 className="font-display text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
-                Contact
-              </h4>
-              <ul className="mt-4 space-y-2.5 text-sm text-muted">
+              <h2 className="z-label z-label-accent">Contact</h2>
+              <ul className="mt-5 space-y-3 text-sm text-muted">
                 <li>
-                  <a href={`mailto:${SITE.email}`} className="transition-colors hover:text-ice">
+                  <a href={`mailto:${SITE.email}`} className="break-all transition-colors hover:text-ice">
                     {SITE.email}
                   </a>
                 </li>
                 <li>
-                  <a href={`mailto:${SITE.helloEmail}`} className="transition-colors hover:text-ice">
+                  <a
+                    href={`mailto:${SITE.helloEmail}`}
+                    className="break-all transition-colors hover:text-ice"
+                  >
                     {SITE.helloEmail}
                   </a>
                 </li>
@@ -214,14 +274,15 @@ export default function SiteLayout({ children }) {
             </div>
           </div>
 
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-ice/15 pt-6 text-xs text-soft-blue">
-            <span>© {new Date().getFullYear()} Zenith Softworks. Built with intention.</span>
-            <div className="flex items-center gap-4">
-              <Link to="/privacy/" className="transition-colors hover:text-ice">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
+            <span className="z-label">
+              © {new Date().getFullYear()} Zenith Softworks · Built with intention
+            </span>
+            <div className="flex items-center gap-5">
+              <Link to="/privacy/" className="z-label transition-colors hover:text-ice">
                 Privacy
               </Link>
-              <span>·</span>
-              <Link to="/terms/" className="transition-colors hover:text-ice">
+              <Link to="/terms/" className="z-label transition-colors hover:text-ice">
                 Terms
               </Link>
             </div>
@@ -234,9 +295,9 @@ export default function SiteLayout({ children }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Zenith Softworks on WhatsApp"
-        className="fixed right-5 bottom-5 z-40 inline-flex items-center gap-2 rounded-full bg-ice px-4 py-3 text-xs font-bold text-midnight shadow-2xl shadow-steel/25 transition hover:-translate-y-0.5 hover:bg-white"
+        className="z-glass fixed right-4 bottom-4 z-40 inline-flex h-12 items-center gap-2 rounded-full px-4 text-sm font-semibold text-ink transition-[transform,border-color] duration-500 ease-[var(--z-ease)] hover:-translate-y-0.5 hover:border-ice/50 sm:right-6 sm:bottom-6"
       >
-        <MessageCircle className="h-4 w-4" />
+        <MessageCircle aria-hidden="true" className="h-4 w-4 text-ice" />
         <span className="hidden sm:inline">Let&apos;s talk</span>
       </a>
     </div>

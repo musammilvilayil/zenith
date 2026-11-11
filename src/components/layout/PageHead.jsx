@@ -33,6 +33,12 @@ export default function PageHead({ title, description, canonical, ogTitle, ogDes
     upsertMeta('meta[property="og:title"]', { property: "og:title" }, finalOgTitle);
     upsertMeta('meta[property="og:description"]', { property: "og:description" }, finalOgDescription);
     upsertMeta('meta[property="og:url"]', { property: "og:url" }, finalCanonical);
+    upsertMeta('meta[name="twitter:title"]', { name: "twitter:title" }, finalOgTitle);
+    upsertMeta(
+      'meta[name="twitter:description"]',
+      { name: "twitter:description" },
+      finalOgDescription,
+    );
 
     let link = document.head.querySelector('link[rel="canonical"]');
     if (!link) {

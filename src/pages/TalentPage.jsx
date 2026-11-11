@@ -77,13 +77,13 @@ export default function TalentPage() {
           <>
             <a
               href="#apply"
-              className="rounded-full bg-ice px-6 py-3 text-xs font-bold text-midnight transition hover:bg-white"
+              className="z-btn z-btn-primary"
             >
               Apply to join
             </a>
             <Link
               to="/work/"
-              className="rounded-full border border-ice/35 px-6 py-3 text-xs font-semibold text-ink transition hover:border-ice hover:bg-navy/50"
+              className="z-btn z-btn-secondary"
             >
               See the standard of work
             </Link>
@@ -91,13 +91,13 @@ export default function TalentPage() {
         }
       />
 
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <section className="z-section">
+        <div className="z-container">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+            <span className="z-label z-label-accent z-eyebrow">
               Who this is for
             </span>
-            <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+            <h2 className="z-display-md mt-5 text-ink">
               People who want responsibility—not only a certificate.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
@@ -110,9 +110,9 @@ export default function TalentPage() {
             {ROLES.map((role) => (
               <article
                 key={role.title}
-                className="rounded-3xl border border-ice/20 bg-navy/45 p-7 backdrop-blur"
+                className="z-card z-card-pad"
               >
-                <span className="text-xs font-bold uppercase tracking-[0.16em] text-ice">
+                <span className="z-label z-label-accent">
                   {role.area}
                 </span>
                 <h3 className="mt-2 font-display text-xl font-bold text-ink">{role.title}</h3>
@@ -123,13 +123,13 @@ export default function TalentPage() {
         </div>
       </section>
 
-      <section className="border-y border-ice/15 bg-deep/90 py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <section className="z-section border-y border-line bg-navy/40">
+        <div className="z-container">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+            <span className="z-label z-label-accent z-eyebrow">
               How participation works
             </span>
-            <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+            <h2 className="z-display-md mt-5 text-ink">
               Contribution grows with demonstrated reliability.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
@@ -142,9 +142,9 @@ export default function TalentPage() {
             {PROCESS_STEPS.map((step) => (
               <div
                 key={step.num}
-                className="rounded-2xl border border-ice/15 bg-navy/40 p-6 backdrop-blur"
+                className="z-card p-6"
               >
-                <span className="text-xs font-bold text-ice">{step.num}</span>
+                <span className="z-num">{step.num}</span>
                 <h3 className="mt-2 font-display text-lg font-bold text-ink">{step.title}</h3>
                 <p className="mt-1.5 text-sm text-muted">{step.desc}</p>
               </div>
@@ -153,19 +153,19 @@ export default function TalentPage() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+      <section className="z-section">
+        <div className="z-container">
+          <span className="z-label z-label-accent z-eyebrow">
             What you gain
           </span>
-          <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+          <h2 className="z-display-md mt-5 text-ink">
             Evidence of capability that is stronger than a generic internship line.
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {GAINS.map((gain) => (
               <div
                 key={gain.title}
-                className="rounded-2xl border border-ice/15 bg-navy/40 p-6 backdrop-blur"
+                className="z-card p-6"
               >
                 <strong className="block font-display text-lg text-ink">{gain.title}</strong>
                 <span className="mt-2 block text-sm leading-relaxed text-muted">{gain.desc}</span>
@@ -175,10 +175,10 @@ export default function TalentPage() {
         </div>
       </section>
 
-      <section id="apply" className="border-t border-ice/15 bg-deep/90 py-20">
+      <section id="apply" className="border-t border-line bg-deep/90 py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <aside className="space-y-6">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+            <span className="z-label z-label-accent z-eyebrow">
               Application
             </span>
             <h2 className="font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">
@@ -188,7 +188,7 @@ export default function TalentPage() {
               Be honest. A small project you understand is more valuable than a long list of tools
               you cannot explain.
             </p>
-            <div className="rounded-2xl border border-ice/20 bg-midnight/70 p-6 text-sm leading-relaxed text-muted">
+            <div className="rounded-2xl border border-line bg-midnight/70 p-6 text-sm leading-relaxed text-muted">
               <strong className="block font-display text-base text-ink">Before applying</strong>
               Prepare one portfolio, GitHub, design, writing or project link when available.
               Explain your actual contribution clearly.
@@ -199,7 +199,7 @@ export default function TalentPage() {
                 href={SITE.whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-ice hover:underline"
+                className="text-ice underline-offset-4 hover:underline"
               >
                 {SITE.whatsappDisplay}
               </a>

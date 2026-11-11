@@ -21,14 +21,14 @@ export default function InsightDetailPage() {
         actions={
           <Link
             to="/insights/"
-            className="rounded-full border border-ice/35 px-5 py-2.5 text-xs font-semibold text-ink hover:border-ice"
+            className="z-btn z-btn-secondary z-btn-sm"
           >
             ← All insights
           </Link>
         }
       />
 
-      <article className="py-20">
+      <article className="z-section">
         <div className="mx-auto max-w-3xl space-y-10 px-5 sm:px-8">
           {article.sections.map((section) => (
             <section key={section.heading} className="space-y-3">

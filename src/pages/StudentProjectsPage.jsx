@@ -136,7 +136,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
   };
 
   const selectClass =
-    "mt-1 w-full rounded-xl border border-ice/25 bg-midnight/85 px-3 py-2.5 text-sm text-ink focus:border-ice focus:outline-none";
+    "z-field mt-1 min-h-[44px] px-3 py-2.5 text-sm";
 
   return (
     <>
@@ -159,7 +159,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
           <>
             <a
               href="#idea-library"
-              className="rounded-full bg-ice px-6 py-3 text-xs font-bold text-midnight transition hover:bg-white"
+              className="z-btn z-btn-primary"
             >
               {sustainabilityMode ? "Browse 70 ideas" : "Browse project ideas"}
             </a>
@@ -169,14 +169,14 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
                   ? "/contact/?service=Academic%20project"
                   : "/academic-services/#enquiry"
               }
-              className="rounded-full border border-ice/35 px-6 py-3 text-xs font-semibold text-ink transition hover:border-ice hover:bg-navy/50"
+              className="z-btn z-btn-secondary"
             >
               {sustainabilityMode ? "Request a full abstract" : "Discuss your project"}
             </Link>
             {!sustainabilityMode && (
               <Link
                 to="/student-projects/sustainability/"
-                className="rounded-full border border-ice/35 px-6 py-3 text-xs font-semibold text-ice transition hover:border-ice hover:bg-navy/50"
+                className="z-btn z-btn-secondary"
               >
                 70 Sustainability ideas ↗
               </Link>
@@ -185,7 +185,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
         }
         aside={
           <div className="space-y-4">
-            <div className="overflow-hidden rounded-3xl border border-ice/25 bg-midnight/60 p-2 shadow-2xl">
+            <div className="z-glass overflow-hidden rounded-[1.5rem] p-2">
               <img
                 src={BRAND_IMAGES.studentLabImg}
                 alt="Zenith Student Project Lab engineering blueprint visual"
@@ -193,7 +193,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
               />
             </div>
             <div className="grid grid-cols-2 gap-3 text-center">
-              <div className="rounded-2xl border border-ice/20 bg-navy/50 p-4">
+              <div className="rounded-2xl border border-line bg-navy/50 p-4">
                 <strong className="block font-display text-2xl text-ice">
                   {sustainabilityMode ? "70" : "500+"}
                 </strong>
@@ -201,7 +201,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
                   {sustainabilityMode ? "Green-tech ideas" : "Project directions"}
                 </span>
               </div>
-              <div className="rounded-2xl border border-ice/20 bg-navy/50 p-4">
+              <div className="rounded-2xl border border-line bg-navy/50 p-4">
                 <strong className="block font-display text-2xl text-ice">
                   {sustainabilityMode ? "7" : "70"}
                 </strong>
@@ -215,7 +215,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
       />
 
       {!sustainabilityMode && (
-        <section className="relative isolate overflow-hidden border-b border-ice/15 bg-deep py-16">
+        <section className="relative isolate overflow-hidden border-b border-line bg-deep py-16">
           <VoxelArc
             crestColor="#C1E8FF"
             midColor="#5483B3"
@@ -223,8 +223,8 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
             horizonY={0.5}
             opacity={0.45}
           />
-          <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+          <div className="relative z-10 z-container">
+            <span className="z-label z-label-accent z-eyebrow">
               Featured ideas
             </span>
             <h2 className="mt-2 font-display text-3xl font-bold text-ink">
@@ -234,10 +234,10 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
               {featuredIdeas.map((idea) => (
                 <article
                   key={idea.id}
-                  className="flex flex-col justify-between rounded-3xl border border-ice/20 bg-midnight/80 p-6 backdrop-blur"
+                  className="flex flex-col justify-between z-card p-6"
                 >
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-ice">
+                    <span className="z-label z-label-accent">
                       {idea.id} · {idea.category}
                     </span>
                     <h3 className="mt-2 font-display text-xl font-bold text-ink">{idea.name}</h3>
@@ -259,13 +259,13 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
         </section>
       )}
 
-      <section id="idea-library" className="py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <section id="idea-library" className="z-section">
+        <div className="z-container">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-soft-blue">
+            <span className="z-label z-label-accent z-eyebrow">
               {sustainabilityMode ? "Sustainability catalogue" : "Idea library"}
             </span>
-            <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
+            <h2 className="z-display-md mt-5 text-ink">
               {sustainabilityMode
                 ? "Search an exact title or explore by green-tech theme."
                 : "Search, sort and filter project ideas."}
@@ -276,8 +276,8 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
             </p>
           </div>
 
-          <div className="mt-8 grid gap-4 rounded-3xl border border-ice/20 bg-navy/40 p-6 sm:grid-cols-2 lg:grid-cols-4">
-            <label className="text-xs font-semibold text-soft-blue sm:col-span-2">
+          <div className="mt-8 grid gap-4 z-card p-6 sm:grid-cols-2 lg:grid-cols-4">
+            <label className="flex flex-col gap-2 text-sm font-medium text-muted sm:col-span-2">
               Search ideas
               <input
                 type="search"
@@ -291,7 +291,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
               />
             </label>
 
-            <label className="text-xs font-semibold text-soft-blue">
+            <label className="flex flex-col gap-2 text-sm font-medium text-muted">
               Technology track
               <select
                 value={category}
@@ -307,7 +307,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
               </select>
             </label>
 
-            <label className="text-xs font-semibold text-soft-blue">
+            <label className="flex flex-col gap-2 text-sm font-medium text-muted">
               Difficulty
               <select
                 value={difficulty}
@@ -325,7 +325,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
 
             {!sustainabilityMode && (
               <>
-                <label className="text-xs font-semibold text-soft-blue">
+                <label className="flex flex-col gap-2 text-sm font-medium text-muted">
                   Course focus
                   <select
                     value={course}
@@ -341,7 +341,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
                   </select>
                 </label>
 
-                <label className="text-xs font-semibold text-soft-blue">
+                <label className="flex flex-col gap-2 text-sm font-medium text-muted">
                   Primary technology
                   <select
                     value={technology}
@@ -357,7 +357,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
                   </select>
                 </label>
 
-                <label className="text-xs font-semibold text-soft-blue">
+                <label className="flex flex-col gap-2 text-sm font-medium text-muted">
                   Duration
                   <select
                     value={duration}
@@ -375,7 +375,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
               </>
             )}
 
-            <label className="text-xs font-semibold text-soft-blue">
+            <label className="flex flex-col gap-2 text-sm font-medium text-muted">
               Sort by
               <select
                 value={sortBy}
@@ -397,7 +397,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
               <button
                 type="button"
                 onClick={resetAll}
-                className="rounded-full border border-ice/35 px-4 py-2 text-xs font-semibold text-ink transition hover:border-ice hover:bg-navy"
+                className="z-btn z-btn-secondary z-btn-sm"
               >
                 {sustainabilityMode ? "Show all sustainability ideas" : "Clear filters"}
               </button>
@@ -408,7 +408,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
                     setQuery("sustainability");
                     setLimit(70);
                   }}
-                  className="rounded-full border border-ice/35 bg-ice/10 px-4 py-2 text-xs font-semibold text-ice transition hover:bg-ice/20"
+                  className="z-btn z-btn-sm border-ice/40 bg-ice/10 text-ice hover:bg-ice/20"
                 >
                   Sustainability & Green Tech
                 </button>
@@ -426,7 +426,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
           </div>
 
           {visibleIdeas.length === 0 ? (
-            <div className="mt-8 rounded-3xl border border-ice/20 bg-navy/35 p-10 text-center text-muted">
+            <div className="z-card mt-8 p-10 text-center text-muted">
               No matching ideas. Clear a filter or use a broader search.
             </div>
           ) : (
@@ -434,7 +434,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
               {visibleIdeas.map((idea) => (
                 <article
                   key={idea.id}
-                  className="flex flex-col justify-between rounded-3xl border border-ice/20 bg-navy/45 p-6 transition hover:-translate-y-0.5 hover:border-ice/45"
+                  className="flex flex-col justify-between z-card p-6 transition hover:-translate-y-0.5 hover:border-ice/45"
                 >
                   <div>
                     <div className="flex items-center justify-between text-xs font-bold">
@@ -443,7 +443,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
                         {idea.difficulty}
                       </span>
                     </div>
-                    <p className="mt-3 text-[11px] font-semibold uppercase tracking-wider text-soft-blue">
+                    <p className="z-label mt-3">
                       {idea.isSustainability
                         ? `Sustainability & Green Tech · ${idea.domain}`
                         : `${idea.category} · ${idea.domain}`}
@@ -453,7 +453,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
                     <p className="mt-2 text-sm leading-relaxed text-muted">{idea.summary}</p>
                   </div>
 
-                  <div className="mt-5 border-t border-ice/15 pt-4">
+                  <div className="mt-5 border-t border-line pt-4">
                     <div className="flex flex-wrap gap-2 text-[11px] text-soft-blue">
                       <span>{idea.duration}</span>
                       <span>·</span>
@@ -479,7 +479,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
               <button
                 type="button"
                 onClick={() => setLimit((prev) => prev + 24)}
-                className="rounded-full border border-ice/40 px-6 py-3 text-xs font-bold text-ink transition hover:border-ice hover:bg-navy/60"
+                className="z-btn z-btn-secondary"
               >
                 Load 24 more ideas
               </button>
@@ -493,22 +493,22 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
           role="dialog"
           aria-modal="true"
           aria-labelledby="idea-dialog-title"
-          className="fixed inset-0 z-50 grid place-items-center bg-midnight/80 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-[65] grid place-items-center bg-midnight/80 p-4 backdrop-blur-sm"
           onClick={() => setSelectedIdea(null)}
         >
           <div
-            className="relative max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-ice/30 bg-deep p-7 shadow-2xl"
+            className="relative max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-[1.5rem] border border-line bg-navy p-7 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               type="button"
               aria-label="Close project details"
               onClick={() => setSelectedIdea(null)}
-              className="absolute top-5 right-5 grid h-9 w-9 place-items-center rounded-full border border-ice/25 text-lg text-ink hover:bg-navy"
+              className="absolute top-5 right-5 grid h-11 w-11 place-items-center rounded-full border border-line text-lg text-ink hover:bg-surface"
             >
               ×
             </button>
-            <span className="text-xs font-bold uppercase tracking-wider text-ice">
+            <span className="z-label z-label-accent">
               Project {selectedIdea.id} · {selectedIdea.category}
             </span>
             <h2 id="idea-dialog-title" className="mt-2 font-display text-3xl font-bold text-ink">
@@ -552,14 +552,14 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 to={`/contact/?service=Academic%20project&project=${encodeURIComponent(selectedIdea.name)}`}
-                className="rounded-full bg-ice px-6 py-3 text-xs font-bold text-midnight hover:bg-white"
+                className="z-btn z-btn-primary"
               >
                 Request full abstract
               </Link>
               <button
                 type="button"
                 onClick={() => setSelectedIdea(null)}
-                className="rounded-full border border-ice/35 px-6 py-3 text-xs font-semibold text-ink hover:bg-navy"
+                className="z-btn z-btn-secondary"
               >
                 Close
               </button>

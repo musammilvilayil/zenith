@@ -1,10 +1,21 @@
 import { useEffect, useRef } from "react";
-import { clamp, hexToRgba, mixColor, mountAnimatedCanvas } from "@/lib/canvas";
+import {
+  clamp,
+  getRenderQuality,
+  hexToRgba,
+  mixRgb,
+  mountAnimatedCanvas,
+  parseHex,
+  rgbaCached,
+} from "@/lib/canvas";
 import { cn } from "@/lib/utils";
 
+const WAVE_STEPS = 26; // wave values 0 … 1.25 quantised into a lookup table
+
 /**
- * A curved horizon of square voxels rolling like a calm sea, styled with
- * Zenith's deep navy, steel, and ice-blue tokens.
+ * A curved horizon of square voxels rolling like a calm sea. Per-row colour
+ * lookup tables and per-column edge fades are computed once, so the frame
+ * loop never parses or mixes colours.
  */
 export default function VoxelArc({
   className,
@@ -26,88 +37,107 @@ export default function VoxelArc({
     const canvas = canvasRef.current;
     if (!canvas) return undefined;
 
-    const rowCount = clamp(Math.round(rows), 4, 24);
-    const colCount = clamp(Math.round(cols), 12, 64);
+    const { scale } = getRenderQuality();
+    const rowCount = clamp(Math.round(rows * Math.max(0.6, scale)), 4, 24);
+    const colCount = clamp(Math.round(cols * Math.max(0.55, scale)), 12, 64);
+    const crest = parseHex(crestColor);
+    const mid = parseHex(midColor);
+    const deep = parseHex(deepColor);
+
+    const colData = Array.from({ length: colCount }, (_, c) => {
+      const u = colCount === 1 ? 0.5 : c / (colCount - 1);
+      const centeredU = (u - 0.5) * 2;
+      return {
+        u,
+        arc: centeredU * centeredU,
+        edgeFade: clamp(1 - Math.pow(Math.abs(centeredU), 2.4), 0, 1),
+        phaseA: u * Math.PI * 3.4,
+        phaseB: u * Math.PI * 5.2,
+      };
+    });
+
+    const rowData = Array.from({ length: rowCount }, (_, r) => {
+      const depth = rowCount === 1 ? 1 : r / (rowCount - 1);
+      const lut = Array.from({ length: WAVE_STEPS }, (_, idx) => {
+        const wave = (idx / (WAVE_STEPS - 1)) * 1.25;
+        return mixRgb(
+          mixRgb(deep, mid, clamp(depth * 0.7 + wave * 0.3, 0, 1)),
+          crest,
+          clamp((wave - 0.35) * 1.15, 0, 1),
+        );
+      });
+      return {
+        depth,
+        perspective: 0.35 + depth * 0.95,
+        depthCurve: Math.pow(depth, 1.35),
+        lut,
+      };
+    });
+
+    const glowStops = [
+      [0, hexToRgba(midColor, 0.2 * opacity)],
+      [0.55, hexToRgba(deepColor, 0.12 * opacity)],
+      [1, "rgba(2, 16, 36, 0)"],
+    ];
 
     return mountAnimatedCanvas(canvas, {
       mouseInteraction,
       onDraw: ({ context, width, height, elapsed, pointer }) => {
         const horizon = height * clamp(horizonY, 0.2, 0.8);
         const arcLift = height * arcCurvature;
-        const pointerInfluenceX = pointer.x;
-        const pointerInfluenceY = pointer.y;
+        const t1 = elapsed * waveSpeed;
+        const t2 = elapsed * waveSpeed * 0.72;
 
-        // Soft atmospheric horizon glow
-        const horizonGlow = context.createRadialGradient(
-          width * 0.5,
-          horizon + arcLift * 0.25,
-          0,
-          width * 0.5,
-          horizon + arcLift * 0.25,
-          width * 0.62,
-        );
-        horizonGlow.addColorStop(0, hexToRgba(midColor, 0.2 * opacity));
-        horizonGlow.addColorStop(0.55, hexToRgba(deepColor, 0.12 * opacity));
-        horizonGlow.addColorStop(1, "rgba(2, 16, 36, 0)");
+        const glowY = horizon + arcLift * 0.25;
+        const horizonGlow = context.createRadialGradient(width * 0.5, glowY, 0, width * 0.5, glowY, width * 0.62);
+        for (const [stop, color] of glowStops) horizonGlow.addColorStop(stop, color);
         context.fillStyle = horizonGlow;
         context.fillRect(0, 0, width, height);
+        context.lineWidth = 0.75;
 
-        // Draw rows back-to-front so nearer voxels layer cleanly
-        for (let r = 0; r < rowCount; r += 1) {
-          const depth = rowCount === 1 ? 1 : r / (rowCount - 1); // 0 = far horizon, 1 = foreground
-          const perspective = 0.35 + depth * 0.95;
-          const rowY = horizon + Math.pow(depth, 1.35) * (height - horizon * 0.85);
+        for (const row of rowData) {
+          const { depth, perspective, lut } = row;
+          const rowY = horizon + row.depthCurve * (height - horizon * 0.85);
           const spanWidth = width * (0.78 + depth * 0.56);
           const startX = (width - spanWidth) * 0.5;
           const baseSize = clamp((spanWidth / colCount) * 0.56, 3, 22);
+          const arcRow = arcLift * (1 - depth * 0.45);
+          const rowNormY = rowY / height;
+          const depthA = depth * 2.2;
+          const depthB = depth * 3.1;
+          const baseAlpha = 0.16 + depth * 0.46;
 
-          for (let c = 0; c < colCount; c += 1) {
-            const u = colCount === 1 ? 0.5 : c / (colCount - 1);
-            const centeredU = (u - 0.5) * 2; // -1 .. 1
-
-            // Parabolic horizon arc: raises center, curves downward toward edges
-            const arcOffset = (centeredU * centeredU) * arcLift * (1 - depth * 0.45);
-
-            // Calm dual-wave sea swell
-            const swellA = Math.sin(u * Math.PI * 3.4 - elapsed * waveSpeed + depth * 2.2);
-            const swellB = Math.cos(u * Math.PI * 5.2 + elapsed * waveSpeed * 0.72 - depth * 3.1);
-            const waveNorm = (swellA * 0.62 + swellB * 0.38 + 1) * 0.5; // 0 .. 1
+          for (const col of colData) {
+            const swellA = Math.sin(col.phaseA - t1 + depthA);
+            const swellB = Math.cos(col.phaseB + t2 - depthB);
+            const waveNorm = (swellA * 0.62 + swellB * 0.38 + 1) * 0.5;
 
             let mouseLift = 0;
             if (mouseInteraction) {
-              const dx = u - pointerInfluenceX;
-              const dy = (rowY / height) - pointerInfluenceY;
-              const dist = Math.hypot(dx, dy);
-              mouseLift = Math.exp(-dist * dist * 16) * 0.45;
+              const dx = col.u - pointer.x;
+              const dy = rowNormY - pointer.y;
+              mouseLift = Math.exp(-(dx * dx + dy * dy) * 16) * 0.45;
             }
 
             const totalWave = clamp(waveNorm + mouseLift, 0, 1.25);
-            const yOffset = -totalWave * waveHeight * perspective;
-            const x = startX + u * spanWidth;
-            const y = rowY + arcOffset + yOffset;
-
-            if (y < -baseSize || y > height + baseSize) continue;
-
-            const edgeFade = clamp(1 - Math.pow(Math.abs(centeredU), 2.4), 0, 1);
-            const alpha = clamp((0.16 + depth * 0.46 + totalWave * 0.25) * edgeFade * opacity, 0, 0.92);
-            if (alpha <= 0.015) continue;
-
             const size = baseSize * (0.82 + totalWave * 0.36);
             const half = size * 0.5;
-            const voxelColor = mixColor(
-              mixColor(deepColor, midColor, clamp(depth * 0.7 + totalWave * 0.3, 0, 1)),
-              crestColor,
-              clamp((totalWave - 0.35) * 1.15, 0, 1),
-            );
+            const x = startX + col.u * spanWidth;
+            const y = rowY + col.arc * arcRow - totalWave * waveHeight * perspective;
+            if (y < -size || y > height + size) continue;
 
-            // Soft voxel body
-            context.fillStyle = hexToRgba(voxelColor, alpha);
+            const alpha = clamp((baseAlpha + totalWave * 0.25) * col.edgeFade * opacity, 0, 0.92);
+            if (alpha <= 0.015) continue;
+
+            const rgb = lut[Math.round((totalWave / 1.25) * (WAVE_STEPS - 1))];
+            context.fillStyle = rgbaCached(rgb, alpha);
             context.fillRect(x - half, y - half, size, size);
 
-            // Crisp ice-blue crest rim on high swells
             if (totalWave > 0.52) {
-              context.strokeStyle = hexToRgba(crestColor, clamp((totalWave - 0.5) * 0.95 * edgeFade * opacity, 0, 0.75));
-              context.lineWidth = 0.75;
+              context.strokeStyle = rgbaCached(
+                crest,
+                clamp((totalWave - 0.5) * 0.95 * col.edgeFade * opacity, 0, 0.75),
+              );
               context.strokeRect(x - half, y - half, size, size);
             }
           }
@@ -140,4 +170,3 @@ export default function VoxelArc({
     </div>
   );
 }
-
