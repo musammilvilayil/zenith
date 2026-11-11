@@ -19,9 +19,9 @@ export default function PageHero({
     >
       {filaments && (
         <LuminousFilaments
-          coreColor="#EAF7FF"
-          fiberColor="#C1E8FF"
-          secondaryColor="#5483B3"
+          coreColor="#edf3ff"
+          fiberColor="#c1e8ff"
+          secondaryColor="#2563eb"
           originX={0.85}
           originY={0.35}
           baseAngle={Math.PI * 0.96}

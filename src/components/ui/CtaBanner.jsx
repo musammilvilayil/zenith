@@ -11,9 +11,9 @@ export default function CtaBanner({
   return (
     <section className="relative isolate overflow-hidden border-t border-ice/15 bg-gradient-to-br from-navy/90 via-midnight to-deep py-20">
       <InterferenceRibbons
-        primaryColor="#C1E8FF"
-        secondaryColor="#7DA0CA"
-        accentColor="#5483B3"
+        primaryColor="#c1e8ff"
+        secondaryColor="#80b2ff"
+        accentColor="#2563eb"
         ribbonCount={2}
         wiresPerRibbon={10}
         opacity={0.38}
