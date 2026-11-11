@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "node scripts/copy-public-assets.mjs && vite build",
+    "build": "node scripts/check-routes.mjs && node scripts/copy-public-assets.mjs && vite build",
     "preview": "vite preview",
     "test:routes": "node scripts/check-routes.mjs",
     "install:reactbits": "npx shadcn@latest add --yes @reactbits-starter/luminous-filaments-tw @reactbits-starter/interference-ribbons-tw @reactbits-starter/voxel-arc-tw"
