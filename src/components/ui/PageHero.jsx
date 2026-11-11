@@ -1,6 +1,11 @@
 import LuminousFilaments from "@/components/fx/LuminousFilaments";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { cn } from "@/lib/utils";
 
+/**
+ * Shared hero for every inner page: breadcrumb trail, mono eyebrow, editorial
+ * headline, lede, actions and an optional aside (image, card, metadata).
+ */
 export default function PageHero({
   eyebrow,
   title,
@@ -8,54 +13,56 @@ export default function PageHero({
   actions,
   aside,
   className,
+  crumb,
+  meta,
   filaments = true,
 }) {
   return (
     <section
       className={cn(
-        "relative isolate overflow-hidden border-b border-ice/15 bg-gradient-to-br from-midnight via-navy/85 to-deep py-20 sm:py-28",
+        "relative isolate -mt-[calc(var(--z-nav-h)+var(--z-nav-gap)*2)] overflow-hidden border-b border-line pt-[calc(var(--z-nav-h)+var(--z-nav-gap)*2)]",
         className,
       )}
     >
+      <div aria-hidden="true" className="z-ambient absolute inset-0 -z-20" />
+      <div aria-hidden="true" className="z-grid-bg absolute inset-0 -z-10 opacity-70" />
       {filaments && (
         <LuminousFilaments
+          className="-z-10 opacity-80"
           coreColor="#edf3ff"
           fiberColor="#c1e8ff"
-          secondaryColor="#2563eb"
-          originX={0.85}
-          originY={0.35}
+          secondaryColor="#5483b3"
+          originX={0.9}
+          originY={0.2}
           baseAngle={Math.PI * 0.96}
-          spreadAngle={Math.PI * 0.74}
-          filamentCount={28}
-          reach={0.85}
-          opacity={0.6}
+          spreadAngle={Math.PI * 0.62}
+          filamentCount={22}
+          reach={0.8}
+          opacity={0.5}
         />
       )}
 
-      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
+      <div className="z-container relative pt-10 pb-16 sm:pt-14 sm:pb-24">
+        <div className="z-rise flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4">
+          <Breadcrumbs current={crumb} />
+          {meta && <span className="z-label hidden sm:inline">{meta}</span>}
+        </div>
+
         <div
           className={cn(
-            "grid items-center gap-10",
-            aside ? "lg:grid-cols-[1.25fr_0.75fr]" : "max-w-4xl",
+            "grid gap-12 pt-12 sm:pt-16",
+            aside && "lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:gap-16",
           )}
         >
-          <div>
-            {eyebrow && (
-              <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-soft-blue">
-                {eyebrow}
-              </span>
+          <div className="max-w-4xl">
+            {eyebrow && <p className="z-label z-label-accent z-eyebrow z-rise z-delay-1">{eyebrow}</p>}
+            <h1 className="z-display-lg z-rise z-delay-2 mt-6 text-ink">{title}</h1>
+            {description && <p className="z-lede z-rise z-delay-3 mt-6">{description}</p>}
+            {actions && (
+              <div className="z-rise z-delay-4 mt-9 flex flex-wrap items-center gap-3">{actions}</div>
             )}
-            <h1 className="mt-4 font-display text-4xl font-bold leading-[1.03] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-              {title}
-            </h1>
-            {description && (
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-                {description}
-              </p>
-            )}
-            {actions && <div className="mt-8 flex flex-wrap gap-3">{actions}</div>}
           </div>
-          {aside && <div className="relative z-10">{aside}</div>}
+          {aside && <div className="z-fade z-delay-3 relative">{aside}</div>}
         </div>
       </div>
     </section>
