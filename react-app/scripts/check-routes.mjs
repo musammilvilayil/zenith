@@ -8,10 +8,10 @@ const html = await readFile(resolve("index.html"), "utf8");
 for (const route of ["/", "/about/", "/services/", "/work/", "/contact/"]) {
   assert.ok(route === "/" || route.startsWith("/"), "Route declaration should be valid");
 }
-for (const section of ["studio", "services", "work", "approach"]) {
+for (const section of ["studio", "services", "technology", "why-us", "work", "approach", "contact"]) {
   assert.ok(app.includes(`id="${section}"`), `Missing homepage section: ${section}`);
 }
-for (const component of ["GhostFibers", "ProjectCard", "Contact", "Header", "Footer"]) {
+for (const component of ["GhostFibers", "ProjectCard", "Contact", "ContactSection", "EnquiryForm", "Header", "Footer"]) {
   assert.ok(app.includes(component), `Missing React component: ${component}`);
 }
 for (const token of ["--bg:", "--navy:", "--blue:", "--cyan:"]) {
