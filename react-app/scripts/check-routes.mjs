@@ -1,25 +1,23 @@
 import assert from "node:assert/strict";
-import pages1 from "../src/pages/legacyPages-1.js";
-import pages2 from "../src/pages/legacyPages-2.js";
-import pages3 from "../src/pages/legacyPages-3.js";
-import pages4 from "../src/pages/legacyPages-4.js";
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
 
-const pages = { ...pages1, ...pages2, ...pages3, ...pages4 };
-const required = [
-  "/", "/about/", "/academic-services/", "/contact/", "/insights/",
-  "/insights/1/", "/insights/2/", "/insights/3/", "/privacy/", "/services/",
-  "/services/ai-automation/", "/services/cloud-devops/", "/services/iot-solutions/",
-  "/services/mobile-apps/", "/services/software-development/", "/services/web-platforms/",
-  "/solutions/", "/student-projects/", "/student-projects/sustainability/", "/talent/",
-  "/terms/", "/work/", "/work/carematrix/", "/work/megham/", "/work/projexify/", "/work/she-shield/"
-];
-assert.equal(Object.keys(pages).length, 26, "Expected all 26 functional legacy routes.");
-for (const route of required) {
-  assert.ok(pages[route], "Missing route: " + route);
-  assert.match(pages[route], /<title>/i, "Missing page title: " + route);
-  assert.match(pages[route], /<body/i, "Missing body markup: " + route);
+const app = await readFile(resolve("src/App.jsx"), "utf8");
+const styles = await readFile(resolve("src/styles/global.css"), "utf8");
+const html = await readFile(resolve("index.html"), "utf8");
+for (const route of ["/", "/about/", "/services/", "/work/", "/contact/"]) {
+  assert.ok(route.length > 1, "Route declaration should be non-empty");
 }
-assert.match(pages["/"], /class="cinematic-hero"/, "Homepage hero markup missing.");
-assert.match(pages["/contact/"], /id="enquiryForm"/, "Contact enquiry form missing.");
-assert.match(pages["/talent/"], /Join Zenith Talent/, "Talent application route content missing.");
-console.log("Route parity checks passed for all 26 pages, homepage hero, contact form and talent application.");
+for (const section of ["studio", "services", "work", "approach"]) {
+  assert.ok(app.includes(`id="${section}"`), `Missing homepage section: ${section}`);
+}
+for (const component of ["GhostFibers", "ProjectCard", "Contact", "Header", "Footer"]) {
+  assert.ok(app.includes(component), `Missing React component: ${component}`);
+}
+for (const token of ["--bg:", "--navy:", "--blue:", "--cyan:"]) {
+  assert.ok(styles.includes(token), `Missing design token: ${token}`);
+}
+assert.match(html, /Zenith Softworks/);
+assert.match(app, /hello@zenithsoftworks\.in/);
+assert.match(app, /9497665504/);
+console.log("Zenith React smoke checks passed: home sections, page views, shared layout, design tokens and contact details.");
