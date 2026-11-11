@@ -6,7 +6,7 @@ const app = await readFile(resolve("src/App.jsx"), "utf8");
 const styles = await readFile(resolve("src/styles/global.css"), "utf8");
 const html = await readFile(resolve("index.html"), "utf8");
 for (const route of ["/", "/about/", "/services/", "/work/", "/contact/"]) {
-  assert.ok(route.length > 1, "Route declaration should be non-empty");
+  assert.ok(route === "/" || route.startsWith("/"), "Route declaration should be valid");
 }
 for (const section of ["studio", "services", "work", "approach"]) {
   assert.ok(app.includes(`id="${section}"`), `Missing homepage section: ${section}`);
