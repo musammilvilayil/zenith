@@ -18,3 +18,35 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.zn-site *,.zn-site *::before,.zn-site *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 /* Inner routes retain their own content architecture with a coordinated studio visual language. */
 .zn-site .z-container{max-width:1240px}.zn-site .z-section{padding-block:clamp(4rem,8vw,7rem)}.zn-site .z-display-xl,.zn-site .z-display-lg,.zn-site .z-display-md{font-family:Manrope,sans-serif;letter-spacing:-.055em;line-height:1.08}.zn-site .z-display-lg{font-size:clamp(2.4rem,5vw,4.4rem);font-weight:600}.zn-site .z-display-md{font-size:clamp(2rem,4vw,3.4rem);font-weight:600}.zn-site .z-label{font-size:9px;letter-spacing:.17em;color:#69788d}.zn-site .z-label-accent{color:#416a9d}.zn-site .z-lede{font-size:clamp(14px,1.3vw,17px);line-height:1.85;color:#647185;max-width:690px}.zn-site .z-card{border:1px solid rgba(12,25,44,.13);border-radius:3px;background:#f7f8f5;box-shadow:0 15px 40px -35px #0a1425}.zn-site .z-glass{border:1px solid rgba(255,255,255,.15);border-radius:3px;background:rgba(8,16,30,.88);backdrop-filter:blur(16px)}.zn-site .z-btn{border-radius:0;font-size:11px}.zn-site .z-btn-primary{background:#101b2c;color:white;border:1px solid #101b2c}.zn-site .z-btn-secondary{background:transparent;color:#101b2c;border:1px solid rgba(12,25,44,.3)}.zn-site .z-field{border-radius:0;background:#f7f8f5;border-color:rgba(12,25,44,.2);color:#101b2c}.zn-site .z-field:focus{border-color:#416a9d;box-shadow:0 0 0 3px rgba(65,106,157,.12)}.zn-site .z-field::placeholder{color:#8893a1}.zn-site .z-grid-bg{opacity:.18}.zn-site .z-ambient{background:radial-gradient(ellipse at 75% 25%,rgba(65,106,157,.12),transparent 48%)}.zn-site .z-link{color:#315b8d}.zn-site .z-num{color:#416a9d}.zn-site form.z-card{gap:19px}.zn-site form label{font-size:12px;color:#465367}.zn-site form input[type=checkbox]{accent-color:#416a9d}@media(max-width:760px){.zn-site .z-display-lg{font-size:clamp(2.2rem,9vw,3.4rem)}.zn-site .z-section{padding-block:4.2rem}.zn-site form.z-card{padding:18px}}
+
+/* Contrast repair: inner-page components use dark text on light editorial surfaces. */
+.zn-site main .text-ink{color:#101b2c!important}
+.zn-site main .text-muted{color:#586779!important}
+.zn-site main .text-ice{color:#315f98!important}
+.zn-site main .z-card .text-ink{color:#101b2c!important}
+.zn-site main .z-card .text-muted{color:#586779!important}
+.zn-site main .z-glass .text-ink{color:#f0f4fa!important}
+.zn-site main .z-glass .text-muted{color:#bdc9d8!important}
+.zn-site main [class~="bg-deep"] .text-ink,
+.zn-site main [class~="bg-deep/90"] .text-ink{color:#f0f4fa!important}
+.zn-site main [class~="bg-deep"] .text-muted,
+.zn-site main [class~="bg-deep/90"] .text-muted{color:#bdc9d8!important}
+.zn-site main [class~="bg-deep"] .text-ice,
+.zn-site main [class~="bg-deep/90"] .text-ice{color:#a9d4ff!important}
+.zn-site main [class~="bg-navy/40"] .text-ink{color:#101b2c!important}
+.zn-site main [class~="bg-navy/40"] .text-muted{color:#586779!important}
+.zn-site main .z-card h1,.zn-site main .z-card h2,.zn-site main .z-card h3,.zn-site main .z-card h4{color:#101b2c}
+.zn-site main .z-card p,.zn-site main .z-card li{color:#586779}
+.zn-site main .z-label{color:#53647a}
+.zn-site main .z-label-accent{color:#315f98}
+.zn-site main .z-lede{color:#586779}
+.zn-site main .z-btn-primary{background:#101b2c!important;color:#fff!important}
+.zn-site main .z-btn-secondary{background:transparent!important;color:#101b2c!important;border-color:rgba(16,27,44,.35)!important}
+.zn-site main .z-field{background:#fff!important;color:#101b2c!important;border-color:rgba(16,27,44,.22)!important}
+.zn-site main .z-field::placeholder{color:#778497!important}
+.zn-site main .z-field:focus{border-color:#416a9d!important;box-shadow:0 0 0 3px rgba(65,106,157,.13)!important}
+.zn-site main input,.zn-site main select,.zn-site main textarea{color:#101b2c}
+.zn-site main input::placeholder,.zn-site main textarea::placeholder{color:#778497}
+.zn-site main .z-glass{color:#edf3ff}
+.zn-site main .z-glass p{color:#bdc9d8}
+.zn-site main .z-glass h1,.zn-site main .z-glass h2,.zn-site main .z-glass h3{color:#f0f4fa}
