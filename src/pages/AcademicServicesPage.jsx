@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import PageHead from "@/components/layout/PageHead";
 import PageHero from "@/components/ui/PageHero";
 import { SITE } from "@/data/site";

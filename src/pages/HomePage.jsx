@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { ArrowUpRight, ArrowRight, Code2, ShoppingBag, Workflow, GraduationCap, Compass, ShieldCheck, Cpu, Sparkles, Layers3 } from "lucide-react";
 import PageHead from "@/components/layout/PageHead";
 import { BRAND_IMAGES } from "@/data/site";

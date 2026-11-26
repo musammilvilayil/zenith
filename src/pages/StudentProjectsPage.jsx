@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import VoxelArc from "@/components/fx/VoxelArc";
 import PageHead from "@/components/layout/PageHead";
 import CtaBanner from "@/components/ui/CtaBanner";

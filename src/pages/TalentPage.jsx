@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import PageHead from "@/components/layout/PageHead";
 import EnquiryForm from "@/components/ui/EnquiryForm";
 import PageHero from "@/components/ui/PageHero";
