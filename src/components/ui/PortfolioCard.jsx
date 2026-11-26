@@ -9,7 +9,7 @@ export default function PortfolioCard({ project, feature = false, headingLevel =
   const Heading = headingLevel;
   return (
     <Link
-      to={`/work/${project.slug}/`}
+      to={`/projects/${project.slug}/`}
       className={cn("z-card z-card-interactive group flex flex-col overflow-hidden p-2.5", className)}
     >
       <div className="relative overflow-hidden rounded-[0.95rem]">
