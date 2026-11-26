@@ -12,7 +12,8 @@ function rateLimited(ip) { const now = Date.now(), recent = (buckets.get(ip) || 
 function validate(body) {
   const fields = { name:clean(body.name,100), email:clean(body.email,254).toLowerCase(), phone:clean(body.phone,30), company:clean(body.company,160), service:clean(body.service,80), budget:clean(body.budget,80), timeline:clean(body.timeline,80), source:clean(body.source,80), role:clean(body.role,100), portfolio:clean(body.portfolio,500), message:clean(body.message,4000), page:clean(body.page,500), enquiry_type:clean(body.enquiry_type,40), course:clean(body.course,80), project_category:clean(body.project_category,100), technology:clean(body.technology,200), deadline:clean(body.deadline,40), college:clean(body.college,160), consent:body.consent === true };
   if (!fields.name || !fields.email || !fields.phone || !fields.message) return { error:'Please complete your name, email, phone number and details.' };
-  if (!fields.consent) return { error:'Please confirm the privacy notice before submitting.' };\n  if (!validEmail(fields.email)) return { error:'Please enter a valid email address.' };
+  if (!fields.consent) return { error:'Please confirm the privacy notice before submitting.' };
+  if (!validEmail(fields.email)) return { error:'Please enter a valid email address.' };
   if (!validPhone(fields.phone)) return { error:'Please enter a valid phone number.' };
   if (fields.service && !SERVICES.has(fields.service)) return { error:'Please choose a valid service.' };
   if (!validUrl(fields.portfolio)) return { error:'Portfolio link must start with http:// or https://.' };
