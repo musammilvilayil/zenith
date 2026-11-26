@@ -13,12 +13,17 @@ import WorkDetailPage from "@/pages/WorkDetailPage";
 import WorkPage from "@/pages/WorkPage";
 import BusinessPage from "@/pages/BusinessPage";
 import StudentProjectLandingPage from "@/pages/StudentProjectLandingPage";
+import LocationPage from "@/pages/LocationPage";
 
 export default function App() {
   return (
     <SiteLayout>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/website-development-company-kollam/" element={<LocationPage location="kollam" />} />
+        <Route path="/software-development-company-kochi/" element={<LocationPage location="kochi" />} />
+        <Route path="/software-development-company-trivandrum/" element={<LocationPage location="trivandrum" />} />
+        <Route path="/website-development-company-calicut/" element={<LocationPage location="calicut" />} />
         <Route path="/business/" element={<BusinessPage />} />
         <Route path="/business/:slug/" element={<BusinessPage />} />
         <Route path="/student-projects/" element={<StudentProjectLandingPage />} />
