@@ -73,7 +73,46 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
     "about": { "@id": "https://zenithsoftworks.in/#organization" },
     "inLanguage": "en-IN"
   };
-  const schemaTag = `<script type="application/ld+json">${JSON.stringify(pageSchema).replaceAll("<", "\\u003c")}</script>`;
+  const schemaGraph = [pageSchema];
+  if (route !== "/") {
+    const segments = route.split("/").filter(Boolean);
+    const breadcrumbItems = [{ name: "Home", item: "https://zenithsoftworks.in/" }];
+    let currentPath = "";
+    for (const segment of segments) {
+      currentPath += `/${segment}`;
+      const segmentRoute = `${currentPath}/`;
+      const segmentMeta = ROUTES_META[segmentRoute];
+      breadcrumbItems.push({
+        name: segmentMeta?.ogTitle || segmentMeta?.title || segment.replaceAll("-", " "),
+        item: `https://zenithsoftworks.in${segmentRoute}`
+      });
+    }
+    schemaGraph.push({
+      "@type": "BreadcrumbList",
+      "@id": `${meta.canonical}#breadcrumb`,
+      "itemListElement": breadcrumbItems.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": item.name,
+        "item": item.item
+      }))
+    });
+  }
+  if (route.startsWith("/business/") && route.split("/").filter(Boolean).length > 1) {
+    schemaGraph.push({
+      "@type": "Service",
+      "@id": `${meta.canonical}#service`,
+      "name": meta.ogTitle || meta.title,
+      "description": meta.description,
+      "url": meta.canonical,
+      "provider": { "@id": "https://zenithsoftworks.in/#organization" },
+      "areaServed": { "@type": "Country", "name": "India" }
+    });
+  }
+  const schemaTag = `<script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": schemaGraph
+  }).replaceAll("<", "\\u003c")}</script>`;
   html = html.replace("</head>", `${schemaTag}</head>`);
 
   if (StaticApp && !["/insights/", "/services/"].includes(route)) {
