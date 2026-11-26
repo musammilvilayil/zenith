@@ -11,6 +11,10 @@ export default defineConfig({
     },
   },
   base: "/",
+  ssr: {
+    // Bundle React Router during prerender so Vite can evaluate its ESM exports.
+    noExternal: ["react-router", "react-router-dom"],
+  },
   build: {
     outDir: "dist",
     emptyOutDir: true,
