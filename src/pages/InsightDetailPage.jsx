@@ -5,6 +5,24 @@ import PageHero from "@/components/ui/PageHero";
 import { INSIGHTS } from "@/data/insights";
 import NotFoundPage from "./NotFoundPage";
 
+const RELATED_LINKS = {
+  "1": [["Custom software development", "/business/custom-software-development/"], ["Discuss a software project", "/contact/?type=business"]],
+  "2": [["Custom software development", "/business/custom-software-development/"], ["Discuss an automation requirement", "/contact/?type=business"]],
+  "3": [["Custom software development", "/business/custom-software-development/"], ["Explore selected projects", "/projects/"]],
+  "4": [["Website development in Kerala", "/business/website-development/"], ["E-commerce development", "/business/ecommerce-development/"]],
+  "5": [["Website development services", "/business/website-development/"], ["Contact Zenith Softworks", "/contact/"]],
+  "6": [["Website development", "/business/website-development/"], ["Website redesign", "/business/website-redesign/"]],
+  "7": [["E-commerce development", "/business/ecommerce-development/"], ["Discuss an online store", "/contact/?type=business"]],
+  "8": [["BCA and student project support", "/student-projects/"], ["Browse project ideas", "/student-project-ideas/"]],
+  "9": [["Student project development", "/student-projects/"], ["Explore software projects", "/projects/"]],
+  "10": [["Python project development", "/student-projects/python-project-development/"], ["Student project support", "/student-projects/"]],
+  "11": [["BCA, BTech and MCA project support", "/student-projects/"], ["Discuss a project topic", "/contact/?type=student"]],
+  "12": [["Custom software development", "/business/custom-software-development/"], ["Discuss business requirements", "/contact/?type=business"]],
+  "13": [["Custom software development", "/business/custom-software-development/"], ["Contact Zenith Softworks", "/contact/"]],
+  "14": [["Website development", "/business/website-development/"], ["Website redesign", "/business/website-redesign/"]],
+  "15": [["Website development services", "/business/website-development/"], ["Website redesign services", "/business/website-redesign/"]]
+};
+
 export default function InsightDetailPage() {
   const { id } = useParams();
   const article = INSIGHTS.find((item) => item.id === id);
