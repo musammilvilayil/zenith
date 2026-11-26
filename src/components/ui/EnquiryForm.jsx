@@ -25,10 +25,12 @@ export default function EnquiryForm({ mode = "business" }) {
   useEffect(() => {
     const service = searchParams.get("service");
     const course = searchParams.get("course");
+    const project = searchParams.get("project");
     setForm((prev) => ({
       ...prev,
-      ...(service ? { service } : {}),
+      ...(service ? { service: isStudent && service.toLowerCase() === "academic project" ? "Other" : service } : {}),
       ...(course ? { course } : {}),
+      ...(project && !prev.message ? { message: `Project idea: ${project}. Please review the requirements and discuss development scope.` } : {}),
     }));
   }, [searchParams]);
 
