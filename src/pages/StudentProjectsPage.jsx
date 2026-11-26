@@ -217,11 +217,11 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
       {!sustainabilityMode && (
         <section className="relative isolate overflow-hidden border-b border-line bg-deep py-16">
           <VoxelArc
-            crestColor="#C1E8FF"
-            midColor="#5483B3"
-            deepColor="#052659"
+            crestColor="#26b4ff"
+            midColor="#1f6bff"
+            deepColor="#cfe6fb"
             horizonY={0.5}
-            opacity={0.45}
+            opacity={0.4}
           />
           <div className="relative z-10 z-container">
             <span className="z-label z-label-accent z-eyebrow">

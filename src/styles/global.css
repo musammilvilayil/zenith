@@ -6,27 +6,26 @@
    working; values are aligned with the studio palette.
    ────────────────────────────────────────────────────────────── */
 @theme {
-  --color-midnight: #050505; /* primary background */
-  --color-navy: #050b18; /* secondary background */
-  --color-surface: #0a1428; /* elevated surface */
-  --color-deep: #04070d;
-  --color-steel: #2a6df4; /* steel blue */
-  --color-soft-blue: #3d9bff; /* electric indigo */
-  --color-ice: #7fd8ff; /* ice blue */
-  --color-ink: #edf3ff; /* primary text */
-  --color-muted: #a9bddb; /* secondary text */
-  --color-faint: #7890aa; /* muted text – labels only */
-  --color-line: rgba(127, 216, 255, 0.14);
+  --color-midnight: #f4f3ef; /* primary background (paper) */
+  --color-navy: #ecebe5; /* secondary background */
+  --color-surface: #ffffff; /* elevated surface */
+  --color-deep: #ffffff;
+  --color-steel: #1f6bff; /* brand blue */
+  --color-soft-blue: #0a66b2; /* link / accent text */
+  --color-ice: #0a66b2; /* accent text on light */
+  --color-ink: #0b1220; /* primary text */
+  --color-muted: #4b5563; /* secondary text */
+  --color-faint: #6b7280; /* labels */
+  --color-line: rgba(11, 18, 32, 0.12);
 
-  /* Light editorial surfaces (dark text on light background) */
-  --color-light-surface: #eaf3fc;
-  --color-light-ink: #050b18;
-  --color-light-muted: #3c5572;
-  --color-light-accent: #24507e;
+  --color-light-surface: #ffffff;
+  --color-light-ink: #0b1220;
+  --color-light-muted: #4b5563;
+  --color-light-accent: #0a66b2;
 
   --font-sans: "Inter Tight", "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: "Archivo", "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-mono: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
 
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -34,8 +33,8 @@
 :root {
   --z-nav-h: 70px;
   --z-nav-gap: 12px;
-  --z-border: rgba(127, 216, 255, 0.14);
-  --z-border-strong: rgba(127, 216, 255, 0.3);
+  --z-border: rgba(11, 18, 32, 0.12);
+  --z-border-strong: rgba(11, 18, 32, 0.28);
   --z-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --z-noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
@@ -48,8 +47,8 @@
 
 @layer base {
   html {
-    background-color: #050505;
-    color: #edf3ff;
+    background-color: #f4f3ef;
+    color: #0b1220;
     font-family: var(--font-sans);
     scroll-behavior: smooth;
     scroll-padding-top: calc(var(--z-nav-h) + 28px);
@@ -63,8 +62,8 @@
     margin: 0;
     min-width: 320px;
     overflow-x: clip;
-    background: #050505;
-    color: #edf3ff;
+    background: #f4f3ef;
+    color: #0b1220;
     line-height: 1.7;
   }
 
@@ -76,8 +75,8 @@
     z-index: 60;
     pointer-events: none;
     background-image: var(--z-noise);
-    opacity: 0.035;
-    mix-blend-mode: overlay;
+    opacity: 0.025;
+    mix-blend-mode: multiply;
   }
 
   h1,
@@ -105,12 +104,12 @@
   }
 
   ::selection {
-    background: #7fd8ff;
-    color: #050505;
+    background: #26b4ff;
+    color: #04101c;
   }
 
   :focus-visible {
-    outline: 2px solid #7fd8ff;
+    outline: 2px solid #0a66b2;
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -146,7 +145,7 @@
     line-height: 1.5;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #a9bddb;
+    color: #4b5563;
   }
 
   @media (min-width: 640px) {
@@ -156,7 +155,7 @@
   }
 
   .z-label-accent {
-    color: #7fd8ff;
+    color: #0a66b2;
   }
 
   .z-eyebrow {
@@ -170,8 +169,8 @@
     width: 6px;
     height: 6px;
     border-radius: 999px;
-    background: #7fd8ff;
-    box-shadow: 0 0 14px rgba(127, 216, 255, 0.7);
+    background: #0a66b2;
+    box-shadow: 0 0 14px rgba(10, 102, 178, 0.7);
   }
 
   /* Editorial display sizes */
@@ -202,36 +201,28 @@
   .z-lede {
     font-size: clamp(1rem, 1.25vw, 1.125rem);
     line-height: 1.72;
-    color: #a9bddb;
+    color: #4b5563;
     max-width: 38rem;
   }
 
   .z-accent-text {
-    color: #7fd8ff;
+    color: #0a66b2;
   }
 
   /* Glass surfaces */
   .z-glass {
     position: relative;
-    background:
-      linear-gradient(180deg, rgba(127, 216, 255, 0.055), rgba(127, 216, 255, 0.015)),
-      rgba(11, 20, 36, 0.62);
+    background: #ffffff;
     border: 1px solid var(--z-border);
-    box-shadow:
-      inset 0 1px 0 rgba(237, 243, 255, 0.07),
-      0 24px 60px -32px rgba(0, 0, 0, 0.7);
-    -webkit-backdrop-filter: blur(14px) saturate(130%);
-    backdrop-filter: blur(14px) saturate(130%);
+    box-shadow: 0 24px 60px -36px rgba(11, 18, 32, 0.25);
   }
 
   .z-card {
     position: relative;
     border-radius: 1.25rem;
     border: 1px solid var(--z-border);
-    background:
-      linear-gradient(180deg, rgba(127, 216, 255, 0.045), rgba(127, 216, 255, 0) 60%),
-      #050b18;
-    box-shadow: inset 0 1px 0 rgba(237, 243, 255, 0.06);
+    background: #ffffff;
+    box-shadow: 0 1px 0 rgba(11, 18, 32, 0.03);
     transition:
       transform 0.5s var(--z-ease),
       border-color 0.4s var(--z-ease),
@@ -243,10 +234,8 @@
   .z-card-interactive:focus-visible {
     transform: translateY(-2px);
     border-color: var(--z-border-strong);
-    background-color: #0a1428;
-    box-shadow:
-      inset 0 1px 0 rgba(237, 243, 255, 0.1),
-      0 28px 60px -34px rgba(84, 131, 179, 0.55);
+    background-color: #ffffff;
+    box-shadow: 0 28px 60px -34px rgba(31, 107, 255, 0.4);
   }
 
   .z-card-pad {
@@ -257,7 +246,7 @@
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.14em;
-    color: #7fd8ff;
+    color: #0a66b2;
   }
 
   /* Hairline section rule with metadata */
@@ -327,55 +316,51 @@
   }
 
   .z-btn-primary {
-    background: #7fd8ff;
-    color: #050505;
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.6),
-      0 10px 30px -12px rgba(127, 216, 255, 0.45);
+    background: #26b4ff;
+    color: #04101c;
+    box-shadow: 0 10px 30px -14px rgba(31, 107, 255, 0.55);
   }
 
   .z-btn-primary .z-btn-arrow {
-    background: #050505;
-    color: #7fd8ff;
+    background: #0b1220;
+    color: #26b4ff;
   }
 
   .z-btn-primary:hover {
-    background: #e2f4ff;
+    background: #0b1220;
+    color: #ffffff;
     transform: translateY(-1px);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.7),
-      0 16px 36px -14px rgba(127, 216, 255, 0.6);
   }
 
   .z-btn-secondary {
-    background: rgba(127, 216, 255, 0.04);
-    color: #edf3ff;
+    background: transparent;
+    color: #0b1220;
     border-color: var(--z-border-strong);
   }
 
   .z-btn-secondary .z-btn-arrow {
-    background: rgba(127, 216, 255, 0.1);
-    color: #7fd8ff;
+    background: rgba(11, 18, 32, 0.07);
+    color: #0b1220;
   }
 
   .z-btn-secondary:hover {
-    border-color: rgba(127, 216, 255, 0.6);
-    background: rgba(127, 216, 255, 0.09);
+    border-color: #0b1220;
+    background: rgba(11, 18, 32, 0.04);
     transform: translateY(-1px);
   }
 
   .z-btn-dark {
-    background: #050b18;
-    color: #edf3ff;
+    background: #0b1220;
+    color: #ffffff;
   }
 
   .z-btn-dark .z-btn-arrow {
-    background: #7fd8ff;
-    color: #050505;
+    background: #26b4ff;
+    color: #04101c;
   }
 
   .z-btn-dark:hover {
-    background: #050505;
+    background: #1f6bff;
     transform: translateY(-1px);
   }
 
@@ -392,16 +377,16 @@
     padding-block: 0.35rem;
     font-weight: 600;
     font-size: 0.875rem;
-    color: #edf3ff;
-    border-bottom: 1px solid rgba(127, 216, 255, 0.35);
+    color: #0b1220;
+    border-bottom: 1px solid rgba(10, 102, 178, 0.4);
     transition:
       color 0.3s var(--z-ease),
       border-color 0.3s var(--z-ease);
   }
 
   .z-link:hover {
-    color: #7fd8ff;
-    border-color: #7fd8ff;
+    color: #0a66b2;
+    border-color: #0a66b2;
   }
 
   /* Form fields */
@@ -410,9 +395,9 @@
     min-height: 48px;
     border-radius: 0.85rem;
     border: 1px solid var(--z-border);
-    background: rgba(6, 10, 19, 0.7);
+    background: #ffffff;
     padding: 0.75rem 1rem;
-    color: #edf3ff;
+    color: #0b1220;
     font-size: 0.9375rem;
     transition:
       border-color 0.3s var(--z-ease),
@@ -420,20 +405,20 @@
   }
 
   .z-field::placeholder {
-    color: #7890aa;
+    color: #8a94a3;
   }
 
   .z-field:focus {
     outline: none;
-    border-color: rgba(127, 216, 255, 0.6);
-    box-shadow: 0 0 0 3px rgba(127, 216, 255, 0.14);
+    border-color: #26b4ff;
+    box-shadow: 0 0 0 3px rgba(38, 180, 255, 0.2);
   }
 
   /* Background textures */
   .z-grid-bg {
     background-image:
-      linear-gradient(rgba(127, 216, 255, 0.07) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(127, 216, 255, 0.07) 1px, transparent 1px);
+      linear-gradient(rgba(11, 18, 32, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11, 18, 32, 0.045) 1px, transparent 1px);
     background-size: 72px 72px;
     -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%);
     mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%);
@@ -441,8 +426,8 @@
 
   .z-ambient {
     background:
-      radial-gradient(60% 50% at 78% 18%, rgba(84, 131, 179, 0.2), transparent 70%),
-      radial-gradient(40% 40% at 10% 90%, rgba(128, 178, 255, 0.08), transparent 70%);
+      radial-gradient(60% 55% at 80% 10%, rgba(38, 180, 255, 0.22), transparent 70%),
+      radial-gradient(40% 40% at 8% 95%, rgba(31, 107, 255, 0.1), transparent 70%);
   }
 
   /* Light editorial section */
@@ -539,7 +524,7 @@
   width: 1px;
   height: 36px;
   overflow: hidden;
-  background: rgba(127, 216, 255, 0.16);
+  background: rgba(10, 102, 178, 0.16);
 }
 
 .z-scroll-cue::after {
@@ -547,13 +532,13 @@
   position: absolute;
   inset: 0 0 auto;
   height: 40%;
-  background: #7fd8ff;
+  background: #0a66b2;
   animation: z-scroll-cue 2.2s var(--z-ease) infinite;
 }
 
 /* Kept for backwards compatibility with any remaining usages */
 .zenith-gradient-text {
-  color: #7fd8ff;
+  color: #0a66b2;
 }
 
 .zenith-gradient-text-dark {

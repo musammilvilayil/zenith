@@ -1,4 +1,3 @@
-import LuminousFilaments from "@/components/fx/LuminousFilaments";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { cn } from "@/lib/utils";
 
@@ -26,22 +25,6 @@ export default function PageHero({
     >
       <div aria-hidden="true" className="z-ambient absolute inset-0 -z-20" />
       <div aria-hidden="true" className="z-grid-bg absolute inset-0 -z-10 opacity-70" />
-      {filaments && (
-        <LuminousFilaments
-          className="-z-10 opacity-80"
-          coreColor="#edf3ff"
-          fiberColor="#7fd8ff"
-          secondaryColor="#2a6df4"
-          originX={0.9}
-          originY={0.2}
-          baseAngle={Math.PI * 0.96}
-          spreadAngle={Math.PI * 0.62}
-          filamentCount={22}
-          reach={0.8}
-          opacity={0.5}
-        />
-      )}
-
       <div className="z-container relative pt-10 pb-16 sm:pt-14 sm:pb-24">
         <div className="z-rise flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4">
           <Breadcrumbs current={crumb} />

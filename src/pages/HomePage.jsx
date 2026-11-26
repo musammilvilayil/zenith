@@ -53,9 +53,9 @@ export default function HomePage() {
       <PageHead />
 
       {/* 1 — centred hero with glow mark and bottom meta bar */}
-      <section className="zn-hero zn-hero-center zn-dark">
-        <img className="zn-hero-bgmark" src={BRAND_IMAGES.markLogo} alt="" aria-hidden="true" width="240" height="212" fetchPriority="high" />
+      <section className="zn-hero zn-hero-center zn-paper">
         <div className="zn-wrap zn-hero-inner">
+          <div className="zn-hero-tile" aria-hidden="true"><img src={BRAND_IMAGES.markLogo} alt="" width="240" height="212" fetchPriority="high" /></div>
           <span className="zn-pill">Digital development studio · Kollam, Kerala</span>
           <h1>Software &amp; Website Development Company in <em>Kerala</em></h1>
           <p className="zn-lede">We turn clear requirements into responsive websites, online stores and custom software for businesses across India, with a written scope from day one.</p>
@@ -72,7 +72,7 @@ export default function HomePage() {
       </section>
 
       {/* 2 — split: visual left, text right */}
-      <section className="zn-section zn-paper" id="about">
+      <section className="zn-section zn-white" id="about">
         <div className="zn-wrap zn-split">
           <div className="zn-split-media">
             <img src={BRAND_IMAGES.heroAbstractImg} alt="Abstract Zenith digital development visual" loading="lazy" decoding="async" />
@@ -89,7 +89,7 @@ export default function HomePage() {
       </section>
 
       {/* 3 — horizontal timeline with dots on a line */}
-      <section className="zn-section zn-dark">
+      <section className="zn-section zn-paper">
         <div className="zn-wrap">
           <div className="zn-head">
             <div>
@@ -107,7 +107,7 @@ export default function HomePage() {
       </section>
 
       {/* 4 — pinned scroll showcase */}
-      <section className="zn-pin-section zn-dark" aria-labelledby="what-we-build">
+      <section className="zn-pin-section zn-white" aria-labelledby="what-we-build">
         <div className="zn-wrap zn-pin-head">
           <p className="zn-label">What we build</p>
           <h2 className="zn-h2" id="what-we-build">Website development, e-commerce <em>and custom software.</em></h2>
@@ -116,7 +116,7 @@ export default function HomePage() {
       </section>
 
       {/* 5 — hover-dim list rows */}
-      <section className="zn-section zn-dark-2" id="work">
+      <section className="zn-section zn-paper" id="work">
         <div className="zn-wrap">
           <div className="zn-head">
             <div>
@@ -140,7 +140,7 @@ export default function HomePage() {
       </section>
 
       {/* 6 — tall coloured cards */}
-      <section className="zn-section zn-paper">
+      <section className="zn-section zn-white">
         <div className="zn-wrap">
           <div className="zn-head">
             <div>
@@ -160,7 +160,7 @@ export default function HomePage() {
       </section>
 
       {/* 7 — students */}
-      <section className="zn-section zn-dark">
+      <section className="zn-section zn-paper">
         <div className="zn-wrap zn-students">
           <div>
             <p className="zn-label">For students</p>
@@ -188,7 +188,7 @@ export default function HomePage() {
       </section>
 
       {/* 8 — FAQ */}
-      <section className="zn-section zn-paper">
+      <section className="zn-section zn-white">
         <div className="zn-wrap zn-faq">
           <div>
             <p className="zn-label">Before we begin</p>
@@ -208,7 +208,7 @@ export default function HomePage() {
       </section>
 
       {/* 9 — glow CTA (wave footer follows from the layout) */}
-      <section className="zn-cta-glow zn-dark">
+      <section className="zn-cta-glow">
         <div className="zn-wrap">
           <p className="zn-label">Let's talk</p>
           <h2>Ready to plan your next <em>website or software?</em></h2>
