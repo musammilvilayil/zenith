@@ -8,6 +8,9 @@ export default function ContactPage() {
   const [params] = useSearchParams();
   const mode = params.get("type") === "student" ? "student" : "business";
   const isStudent = mode === "student";
+  const whatsappText = isStudent
+    ? "Hello Zenith Softworks, I would like to discuss an academic software project. Course: __. Project topic: __. Submission deadline: __."
+    : "Hello Zenith Softworks, I would like to discuss a business development project. Service required: __. Project details: __.";
 
   return (
     <>
@@ -40,7 +43,7 @@ export default function ContactPage() {
             </div>
             <div className="rounded-2xl border border-line bg-deep p-6 text-sm leading-relaxed text-muted">
               <strong className="block font-display text-base text-ink">Direct contact</strong>
-              <p className="mt-2">WhatsApp: <a href={SITE.whatsappHref} target="_blank" rel="noopener noreferrer" className="text-ice underline-offset-4 hover:underline">{SITE.whatsappDisplay}</a></p>
+              <p className="mt-2">WhatsApp: <a href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(whatsappText)}`} target="_blank" rel="noopener noreferrer" className="text-ice underline-offset-4 hover:underline">{SITE.whatsappDisplay}</a></p>
               <p>Email: <a href={`mailto:${SITE.email}`} className="text-ice underline-offset-4 hover:underline">{SITE.email}</a></p>
               <p className="mt-2 text-soft-blue">Kerala, India · Remote delivery across India</p>
             </div>
