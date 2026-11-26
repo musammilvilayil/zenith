@@ -142,11 +142,13 @@ export const ROUTES_META = {
     title: "Student Project Ideas | Zenith Softworks",
     description: "Browse software and technology project ideas for academic exploration.",
     canonical: "https://zenithsoftworks.in/student-project-ideas/",
+    robots: "noindex,follow",
   },
   "/student-project-ideas/sustainability/": {
     title: "Sustainability and Green Tech Project Ideas | Zenith",
     description: "Explore sustainability and green technology project ideas for academic exploration.",
     canonical: "https://zenithsoftworks.in/student-project-ideas/sustainability/",
+    robots: "noindex,follow",
   },
   "/work/": { title: "Selected Work | Zenith Softworks", description: "Selected software, web and product development projects by Zenith Softworks.", canonical: "https://zenithsoftworks.in/projects/" },
   "/work/megham/": { title: "Megham Project | Zenith Softworks", description: "Explore the Megham software project.", canonical: "https://zenithsoftworks.in/projects/megham/" },
