@@ -1,4 +1,4 @@
-import navbarLogo from "@/assets/images/zenith-original-navbar.png";
+import navbarLogo from "@/assets/images/zenith-navbar.svg";
 import footerLogo from "@/assets/images/zenith-logo-footer.svg";
 import markLogo from "@/assets/images/zenith-mark.svg";
 import heroAbstractImg from "@/assets/images/hero-abstract.jpg";
