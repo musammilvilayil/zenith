@@ -2,7 +2,6 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import React from "react";
 import { renderToString } from "react-dom/server";
-import { MemoryRouter } from "react-router";
 import { createServer } from "vite";
 import { ROUTES_META } from "../src/data/routesMeta.js";
 
@@ -21,7 +20,7 @@ let App;
 let vite;
 try {
   vite = await createServer({ configFile: "./vite.config.js", server: { middlewareMode: true }, appType: "custom", ssr: { noExternal: ["react-router", "react-router-dom"] } });
-  ({ default: App } = await vite.ssrLoadModule("/src/App.jsx"));
+  ({ default: App } = await vite.ssrLoadModule("/src/entry-server.jsx"));
 } catch (error) {
   console.warn("React static rendering could not be initialised; metadata-only HTML shells will be generated.", error);
 }
@@ -47,7 +46,7 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
   if (App && !["/insights/", "/services/"].includes(route)) {
     try {
       const markup = renderToString(
-        React.createElement(MemoryRouter, { initialEntries: [route] }, React.createElement(App)),
+        React.createElement(App, { location: route }),
       );
       html = html.replace('<div id="root"></div>', `<div id="root">${markup}</div>`);
     } catch (error) {
