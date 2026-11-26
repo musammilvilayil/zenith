@@ -56,6 +56,14 @@ export default function InsightDetailPage() {
               <p className="text-base leading-relaxed text-muted">{section.body}</p>
             </section>
           ))}
+          <section className="border-t border-line pt-8">
+            <h2 className="font-display text-2xl font-bold text-ink">Related services and resources</h2>
+            <div className="mt-5 flex flex-wrap gap-3">
+              {(RELATED_LINKS[id] || [["Explore all services", "/business/"], ["Contact Zenith Softworks", "/contact/"]]).map(([label, href]) => (
+                <Link key={href} to={href} className="z-btn z-btn-secondary z-btn-sm">{label} ↗</Link>
+              ))}
+            </div>
+          </section>
         </div>
       </article>
 
