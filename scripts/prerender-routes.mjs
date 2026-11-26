@@ -57,7 +57,9 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
   html = setMeta(html, "property", "og:type", "website");
   html = setMeta(html, "property", "og:site_name", "Zenith Softworks");
   html = setMeta(html, "property", "og:url", meta.canonical);
-  html = setMeta(html, "name", "twitter:card", "summary");
+  html = setMeta(html, "property", "og:image", "https://zenithsoftworks.in/og-zenith.svg");
+  html = setMeta(html, "name", "twitter:card", "summary_large_image");
+  html = setMeta(html, "name", "twitter:image", "https://zenithsoftworks.in/og-zenith.svg");
   html = setMeta(html, "name", "twitter:title", meta.ogTitle || meta.title);
   html = setMeta(html, "name", "twitter:description", meta.ogDescription || meta.description);
   html = setCanonical(html, meta.canonical);
@@ -98,7 +100,7 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
       }))
     });
   }
-  if (route.startsWith("/business/") && route.split("/").filter(Boolean).length > 1) {
+  if ((route.startsWith("/business/") && route.split("/").filter(Boolean).length > 1) || route.startsWith("/website-development-company-") || route.startsWith("/software-development-company-")) {
     schemaGraph.push({
       "@type": "Service",
       "@id": `${meta.canonical}#service`,
@@ -107,6 +109,48 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
       "url": meta.canonical,
       "provider": { "@id": "https://zenithsoftworks.in/#organization" },
       "areaServed": { "@type": "Country", "name": "India" }
+    });
+  }
+
+  const faqByRoute = {
+    "/business/website-development/": [
+      ["How much does a business website cost?", "Pricing is custom and depends on the number of pages, design requirements, content, integrations and functionality. We provide a quotation after discussing the scope."],
+      ["Can you redesign an existing website?", "Yes. We can review an existing website and discuss improvements to its structure, design, responsiveness and performance."],
+      ["Do you work outside Kerala?", "Yes. Projects can be delivered remotely across India. In-person discussions can be arranged within Kerala where feasible."],
+      ["Will the website be mobile-friendly?", "Responsive layouts are included so the website can adapt to common mobile, tablet and desktop screen sizes."],
+      ["Will you help with domain and hosting?", "Domain, hosting and deployment requirements can be reviewed and included in the agreed project scope."]
+    ],
+    "/business/ecommerce-development/": [
+      ["Can you integrate online payments?", "Payment gateway integration can be included after confirming the provider, account requirements and checkout workflow."],
+      ["Can I manage products myself?", "An admin interface for managing products and orders can be included in the agreed scope."],
+      ["How is e-commerce pricing decided?", "Pricing depends on catalogue size, integrations, design, checkout requirements and operational features."],
+      ["Can you add delivery and order tracking?", "Shipping workflows and order status features can be included after confirming the courier or logistics provider and required integrations."],
+      ["Can the store be managed through an admin panel?", "Product, inventory and order management features can be included based on the agreed administrative requirements."]
+    ],
+    "/business/custom-software-development/": [
+      ["Can you build software based on our existing process?", "Yes. We begin by understanding the current workflow, users and business rules before proposing a scope."],
+      ["Can the application be expanded later?", "The architecture and delivery plan can account for expected future requirements, subject to scope and budget."],
+      ["Do you provide maintenance?", "Post-launch support and maintenance can be discussed and included as a separate agreed arrangement."],
+      ["Can you integrate third-party APIs?", "API integrations can be included after reviewing the provider documentation, authentication requirements and intended data flow."],
+      ["Will the software work on mobile devices?", "Web applications can be designed responsively where the user workflows require mobile and tablet access."]
+    ],
+    "/business/website-redesign/": [
+      ["Can you redesign my existing website without losing content?", "We first review the current site and identify content and functionality to preserve, improve or retire."],
+      ["Will redesign improve SEO?", "A redesign can improve technical foundations and usability, but rankings are not guaranteed. Existing URLs, content and redirects must be handled carefully."],
+      ["Can you work with my current platform?", "The available options depend on the current platform, access and technical condition of the website."],
+      ["Will my existing Google rankings be preserved?", "We review existing URLs, metadata and content, and plan redirects where needed. Search rankings cannot be guaranteed, but avoidable migration issues can be reduced."],
+      ["Can you improve website speed during redesign?", "Image optimisation, layout improvements and removal of unnecessary assets can be considered as part of the redesign scope."]
+    ]
+  };
+  if (faqByRoute[route]) {
+    schemaGraph.push({
+      "@type": "FAQPage",
+      "@id": `${meta.canonical}#faq`,
+      "mainEntity": faqByRoute[route].map(([question, answer]) => ({
+        "@type": "Question",
+        "name": question,
+        "acceptedAnswer": { "@type": "Answer", "text": answer }
+      }))
     });
   }
   const schemaTag = `<script type="application/ld+json">${JSON.stringify({
