@@ -1,24 +1,37 @@
 import assert from "node:assert/strict";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { ALL_ROUTES, ROUTES_META } from "../src/data/routesMeta.js";
 
 const requiredRoutes = [
-  "/", "/about/", "/academic-services/", "/contact/", "/insights/",
-  "/insights/1/", "/insights/2/", "/insights/3/", "/privacy/", "/services/",
-  "/services/ai-automation/", "/services/cloud-devops/", "/services/iot-solutions/",
-  "/services/mobile-apps/", "/services/software-development/", "/services/web-platforms/",
-  "/solutions/", "/student-projects/", "/student-projects/sustainability/", "/talent/",
-  "/terms/", "/work/", "/work/carematrix/", "/work/megham/", "/work/projexify/", "/work/she-shield/",
+  "/", "/about/", "/business/", "/business/website-development/",
+  "/business/ecommerce-development/", "/business/custom-software-development/",
+  "/business/website-redesign/", "/contact/", "/student-projects/",
+  "/student-projects/bca-project-development/",
+  "/student-projects/btech-project-development/",
+  "/student-projects/mca-project-development/",
+  "/student-projects/python-project-development/",
+  "/student-projects/ai-ml-project-development/",
+  "/student-projects/web-development-projects/",
+  "/projects/", "/projects/megham/", "/projects/carematrix/",
+  "/projects/she-shield/", "/projects/projexify/",
+  "/resources/", "/resources/1/", "/resources/2/", "/resources/3/",
+  "/privacy/", "/terms/",
 ];
 
-assert.equal(ALL_ROUTES.length, 26, "Expected all 26 Zenith routes in ROUTES_META.");
 for (const route of requiredRoutes) {
   const meta = ROUTES_META[route];
   assert.ok(meta, `Missing metadata for route: ${route}`);
   assert.ok(meta.title, `Missing title for route: ${route}`);
   assert.ok(meta.description, `Missing description for route: ${route}`);
   assert.ok(meta.canonical, `Missing canonical URL for route: ${route}`);
+}
+
+assert.equal(ALL_ROUTES.length, Object.keys(ROUTES_META).length, "ALL_ROUTES must reflect the metadata map.");
+
+const sitemap = readFileSync(resolve(process.cwd(), "public/sitemap.xml"), "utf8");
+for (const route of requiredRoutes.filter((path) => !["/terms/"].includes(path))) {
+  assert.ok(sitemap.includes(`https://zenithsoftworks.in${route}`), `Missing canonical URL from sitemap: ${route}`);
 }
 
 const requiredImages = [
@@ -37,4 +50,4 @@ for (const img of requiredImages) {
   assert.ok(existsSync(resolve(process.cwd(), img)), `Missing image asset: ${img}`);
 }
 
-console.log("Route parity and image asset checks passed for all 26 native React routes.");
+console.log(`SEO route metadata, sitemap and image asset checks passed for ${ALL_ROUTES.length} routes.`);

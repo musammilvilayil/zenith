@@ -8,61 +8,41 @@ import workSheShieldImg from "@/assets/images/work-she-shield.jpg";
 import workProjexifyImg from "@/assets/images/work-projexify.jpg";
 import studentLabImg from "@/assets/images/student-lab.jpg";
 
-export const BRAND_IMAGES = {
-  navbarLogo,
-  footerLogo,
-  markLogo,
-  heroAbstractImg,
-  workMeghamImg,
-  workCarematrixImg,
-  workSheShieldImg,
-  workProjexifyImg,
-  studentLabImg,
-};
+export const BRAND_IMAGES = { navbarLogo, footerLogo, markLogo, heroAbstractImg, workMeghamImg, workCarematrixImg, workSheShieldImg, workProjexifyImg, studentLabImg };
 
 export const SITE = {
   name: "Zenith Softworks",
-  tagline: "Independent Digital Studio · Kerala, India",
+  tagline: "Ideas Into Digital Products. Built With Purpose.",
   email: "info@zenithsoftworks.in",
   helloEmail: "hello@zenithsoftworks.in",
   whatsappNumber: "919497665504",
   whatsappDisplay: "+91 94976 65504",
-  whatsappHref:
-    "https://wa.me/919497665504?text=Hello%20Zenith%20Softworks%2C%20I%20would%20like%20to%20discuss%20a%20project.",
+  whatsappHref: "https://wa.me/919497665504?text=Hello%20Zenith%20Softworks%2C%20I%20would%20like%20to%20discuss%20a%20project.",
   siteUrl: "https://zenithsoftworks.in",
+  serviceArea: "Kerala, India · Remote delivery across India",
 };
 
 export const NAV_LINKS = [
-  { href: "/services/", label: "Services" },
-  { href: "/work/", label: "Work" },
-  { href: "/talent/", label: "Join Talent" },
-  { href: "/student-projects/", label: "Project Ideas" },
-  { href: "/academic-services/", label: "Student Services" },
+  { href: "/business/", label: "Business" },
+  { href: "/student-projects/", label: "Student Projects" },
+  { href: "/projects/", label: "Projects" },
+  { href: "/resources/", label: "Resources" },
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },
 ];
 
 export const FOOTER_COLUMNS = [
-  {
-    title: "Company",
-    links: [
-      { href: "/about/", label: "About" },
-      { href: "/work/", label: "Work" },
-      { href: "/talent/", label: "Join Zenith Talent" },
-      { href: "/student-projects/", label: "Project Ideas" },
-      { href: "/academic-services/", label: "Student Services" },
-      { href: "/insights/", label: "Insights" },
-    ],
-  },
-  {
-    title: "Services",
-    links: [
-      { href: "/services/", label: "Website packages" },
-      { href: "/services/web-platforms/", label: "Web applications" },
-      { href: "/services/mobile-apps/", label: "Mobile applications" },
-      { href: "/services/ai-automation/", label: "AI & automation" },
-      { href: "/services/iot-solutions/", label: "IoT systems" },
-      { href: "/solutions/", label: "Solutions" },
-    ],
-  },
+  { title: "Business", links: [
+    { href: "/business/website-development/", label: "Website Development" },
+    { href: "/business/ecommerce-development/", label: "E-commerce Development" },
+    { href: "/business/custom-software-development/", label: "Custom Software" },
+    { href: "/business/website-redesign/", label: "Website Redesign" },
+  ]},
+  { title: "Students", links: [
+    { href: "/student-projects/", label: "Project Development" },
+    { href: "/student-projects/bca-project-development/", label: "BCA Projects" },
+    { href: "/student-projects/btech-project-development/", label: "BTech Projects" },
+    { href: "/student-projects/mca-project-development/", label: "MCA Projects" },
+    { href: "/resources/", label: "Resources & Guides" },
+  ]},
 ];

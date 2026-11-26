@@ -166,8 +166,8 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
             <Link
               to={
                 sustainabilityMode
-                  ? "/contact/?service=Academic%20project"
-                  : "/academic-services/#enquiry"
+                  ? "/contact/?type=student&service=Academic%20project"
+                  : "/contact/?type=student"
               }
               className="z-btn z-btn-secondary"
             >
@@ -175,7 +175,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
             </Link>
             {!sustainabilityMode && (
               <Link
-                to="/student-projects/sustainability/"
+                to="/student-project-ideas/sustainability/"
                 className="z-btn z-btn-secondary"
               >
                 70 Sustainability ideas ↗
@@ -247,7 +247,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
                     </p>
                   </div>
                   <Link
-                    to={`/contact/?service=Academic%20project&project=${encodeURIComponent(idea.name)}`}
+                    to={`/contact/?type=student&service=Academic%20project&project=${encodeURIComponent(idea.name)}`}
                     className="mt-5 inline-flex text-xs font-bold text-ice hover:underline"
                   >
                     Request full abstract →
@@ -551,7 +551,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
 
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
-                to={`/contact/?service=Academic%20project&project=${encodeURIComponent(selectedIdea.name)}`}
+                to={`/contact/?type=student&service=Academic%20project&project=${encodeURIComponent(selectedIdea.name)}`}
                 className="z-btn z-btn-primary"
               >
                 Request full abstract
@@ -571,7 +571,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
       <CtaBanner
         title="Found an idea worth building?"
         primaryLabel="Request a detailed project brief"
-        primaryHref="/academic-services/#enquiry"
+        primaryHref="/contact/?type=student"
       />
     </>
   );

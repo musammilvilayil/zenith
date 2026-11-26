@@ -1,238 +1,161 @@
 export const ROUTES_META = {
   "/": {
-    title: "Zenith Softworks — Every Big Idea Starts Somewhere",
-    description:
-      "Zenith Softworks turns ambitious ideas into thoughtful websites, useful applications and digital experiences. Independent digital studio in Kerala, India.",
+    title: "Zenith Softworks | Website & Software Development in India",
+    description: "Zenith Softworks develops business websites, e-commerce platforms, custom software and academic projects. Based in Kerala, serving clients across India.",
     canonical: "https://zenithsoftworks.in/",
-    ogTitle: "Every Big Idea Starts Somewhere | Zenith Softworks",
-    ogDescription:
-      "Websites, applications and digital experiences built around people and possibility.",
+    ogTitle: "Ideas Into Digital Products. Built With Purpose. | Zenith Softworks",
+    ogDescription: "Business websites, e-commerce, custom software and academic project development from Kerala, India.",
   },
+  "/business/": {
+    title: "Website & Software Development Services in India | Zenith",
+    description: "Explore website development, e-commerce and custom software services from Zenith Softworks. Based in Kerala and serving businesses across India.",
+    canonical: "https://zenithsoftworks.in/business/",
+    ogTitle: "Digital Development Solutions for Growing Businesses",
+    ogDescription: "Business websites, e-commerce platforms and custom software built around your requirements.",
+  },
+  "/business/website-development/": {
+    title: "Website Development Company in India | Zenith Softworks",
+    description: "Professional, responsive business website development by Zenith Softworks. Discuss your website requirements and request a custom quotation.",
+    canonical: "https://zenithsoftworks.in/business/website-development/",
+    ogTitle: "Professional Website Development for Your Business",
+    ogDescription: "Responsive business websites designed around your audience, services and goals.",
+  },
+  "/business/ecommerce-development/": {
+    title: "E-commerce Website Development in India | Zenith",
+    description: "Build an online store with product catalogues, checkout, payment integration and order management. Discuss your e-commerce requirements with Zenith Softworks.",
+    canonical: "https://zenithsoftworks.in/business/ecommerce-development/",
+    ogTitle: "Build Your Online Store",
+    ogDescription: "E-commerce website development shaped around your products and operations.",
+  },
+  "/business/custom-software-development/": {
+    title: "Custom Software Development in India | Zenith",
+    description: "Custom web applications, dashboards and business tools designed around your workflows. Discuss your software requirements with Zenith Softworks.",
+    canonical: "https://zenithsoftworks.in/business/custom-software-development/",
+    ogTitle: "Software Built Around Your Business Requirements",
+    ogDescription: "Custom software and web applications for practical business workflows.",
+  },
+  "/business/website-redesign/": {
+    title: "Website Redesign Services in India | Zenith Softworks",
+    description: "Improve your website's usability, mobile responsiveness, content structure and performance with Zenith Softworks.",
+    canonical: "https://zenithsoftworks.in/business/website-redesign/",
+    ogTitle: "Give Your Existing Website a Better Digital Experience",
+    ogDescription: "Website redesign focused on usability, responsiveness and technical foundations.",
+  },
+  "/student-projects/": {
+    title: "Final Year Project Development for Students in India | Zenith",
+    description: "Practical software project development for BCA, BTech and MCA students. Explore Python, AI/ML and web application projects with Zenith Softworks.",
+    canonical: "https://zenithsoftworks.in/student-projects/",
+    ogTitle: "Build Your Final Year Project with Practical Development Support",
+    ogDescription: "Academic software project development with implementation support and technical walkthroughs.",
+  },
+  "/student-projects/bca-project-development/": {
+    title: "BCA Final Year Project Development in India | Zenith",
+    description: "Discuss BCA final-year software projects involving Python, web applications, databases and full-stack development with Zenith Softworks.",
+    canonical: "https://zenithsoftworks.in/student-projects/bca-project-development/",
+    ogTitle: "BCA Final Year Project Development and Support",
+    ogDescription: "Practical BCA software project development with technical walkthroughs.",
+  },
+  "/student-projects/btech-project-development/": {
+    title: "BTech Final Year Project Development in India | Zenith",
+    description: "Software project development support for BTech students, including full-stack applications, databases and feasible AI/ML implementations.",
+    canonical: "https://zenithsoftworks.in/student-projects/btech-project-development/",
+    ogTitle: "BTech Software Project Development Support",
+    ogDescription: "Plan and develop a feasible BTech software project.",
+  },
+  "/student-projects/mca-project-development/": {
+    title: "MCA Final Year Project Development in India | Zenith",
+    description: "Discuss MCA software projects involving web applications, databases, backend development and practical software implementation.",
+    canonical: "https://zenithsoftworks.in/student-projects/mca-project-development/",
+    ogTitle: "MCA Final Year Software Project Development",
+    ogDescription: "MCA project planning and practical implementation support.",
+  },
+  "/student-projects/python-project-development/": {
+    title: "Python Final Year Project Development | Zenith Softworks",
+    description: "Python project development for college students, including automation, web applications, APIs, data processing and machine learning prototypes.",
+    canonical: "https://zenithsoftworks.in/student-projects/python-project-development/",
+    ogTitle: "Python Project Development for College Students",
+    ogDescription: "Discuss Python project ideas, scope and implementation.",
+  },
+  "/student-projects/ai-ml-project-development/": {
+    title: "AI & ML Final Year Project Development | Zenith",
+    description: "Practical AI and machine learning project development involving datasets, model evaluation and application integration where feasible.",
+    canonical: "https://zenithsoftworks.in/student-projects/ai-ml-project-development/",
+    ogTitle: "AI and Machine Learning Project Development",
+    ogDescription: "Define a feasible AI/ML project with measurable objectives.",
+  },
+  "/student-projects/web-development-projects/": {
+    title: "Web Development Projects for Students | Zenith",
+    description: "Full-stack web application projects for students, including frontend, backend APIs, authentication, databases and deployment.",
+    canonical: "https://zenithsoftworks.in/student-projects/web-development-projects/",
+    ogTitle: "Full-Stack Web Application Projects for Students",
+    ogDescription: "Plan and develop a practical full-stack college project.",
+  },
+  "/projects/": {
+    title: "Software Development Projects & Portfolio | Zenith Softworks",
+    description: "Explore selected web applications, software projects and digital solutions developed by Zenith Softworks.",
+    canonical: "https://zenithsoftworks.in/projects/",
+    ogTitle: "Selected Projects | Zenith Softworks",
+    ogDescription: "Selected software and web development work.",
+  },
+  "/projects/megham/": { title: "Megham Project | Zenith Softworks", description: "Explore the Megham software project and its development approach.", canonical: "https://zenithsoftworks.in/projects/megham/" },
+  "/projects/carematrix/": { title: "CareMatrix Project | Zenith Softworks", description: "Explore the CareMatrix software project and its development approach.", canonical: "https://zenithsoftworks.in/projects/carematrix/" },
+  "/projects/she-shield/": { title: "She Shield Project | Zenith Softworks", description: "Explore the She Shield concept and its safety technology approach.", canonical: "https://zenithsoftworks.in/projects/she-shield/" },
+  "/projects/projexify/": { title: "Projexify Project | Zenith Softworks", description: "Explore the Projexify project collaboration platform.", canonical: "https://zenithsoftworks.in/projects/projexify/" },
+  "/resources/": {
+    title: "Software Development Guides & Project Resources | Zenith",
+    description: "Practical software development insights, project planning guides and resources for students and businesses.",
+    canonical: "https://zenithsoftworks.in/resources/",
+    ogTitle: "Practical Resources for Students and Businesses",
+    ogDescription: "Guides on software development, academic projects and business websites.",
+  },
+  "/resources/1/": { title: "How to Scope a Custom Software Project | Zenith", description: "A practical guide to goals, users, constraints and defining a useful first version.", canonical: "https://zenithsoftworks.in/resources/1/" },
+  "/resources/2/": { title: "When AI Automation Is Actually Useful | Zenith", description: "Understand where intelligent automation can help and where conventional software is a better fit.", canonical: "https://zenithsoftworks.in/resources/2/" },
+  "/resources/3/": { title: "MVP Does Not Mean Disposable | Zenith", description: "How to move quickly while keeping a software product maintainable.", canonical: "https://zenithsoftworks.in/resources/3/" },
   "/about/": {
-    title: "About Zenith Softworks | Agency & Talent Studio",
-    description:
-      "Zenith Softworks is a premium digital agency and supervised talent studio building websites, applications and real project opportunities.",
+    title: "About Zenith Softworks | Digital Development Studio",
+    description: "Learn about Zenith Softworks, a Kerala-based digital development studio building business websites, custom software and academic software projects.",
     canonical: "https://zenithsoftworks.in/about/",
-    ogTitle: "About Zenith Softworks",
-    ogDescription:
-      "Premium digital delivery and practical opportunities for emerging talent.",
-  },
-  "/academic-services/": {
-    title: "Academic Project Mentoring & Development Support | Zenith Softworks",
-    description:
-      "Explore Zenith Softworks academic project mentoring, software and IoT support, clear 30–45 day milestones, transparent pricing and referral rewards.",
-    canonical: "https://zenithsoftworks.in/academic-services/",
-    ogTitle: "Academic Project Mentoring | Zenith Softworks",
-    ogDescription:
-      "Software and IoT project mentoring, timelines, pricing and WhatsApp consultation.",
   },
   "/contact/": {
-    title: "Start a Project | Zenith Softworks",
-    description:
-      "Request a website, e-commerce, application, automation, branding or maintenance project review from Zenith Softworks.",
+    title: "Contact Zenith Softworks | Discuss Your Project",
+    description: "Contact Zenith Softworks to discuss business website development, custom software or academic project development across India.",
     canonical: "https://zenithsoftworks.in/contact/",
-    ogTitle: "Start a Project | Zenith Softworks",
-    ogDescription:
-      "Share your goals, scope and timeline with the Zenith Softworks team.",
-  },
-  "/insights/": {
-    title: "Insights | Zenith Softworks",
-    description:
-      "Practical insights on software development, AI automation and product strategy.",
-    canonical: "https://zenithsoftworks.in/insights/",
-    ogTitle: "Insights | Zenith Softworks",
-    ogDescription:
-      "Practical insights on software development, AI automation and product strategy.",
-  },
-  "/insights/1/": {
-    title: "How to scope a custom software project | Zenith Softworks",
-    description:
-      "A practical guide to goals, users, constraints and the first version.",
-    canonical: "https://zenithsoftworks.in/insights/1/",
-    ogTitle: "How to scope a custom software project | Zenith Softworks",
-    ogDescription:
-      "A practical guide to goals, users, constraints and the first version.",
-  },
-  "/insights/2/": {
-    title: "When AI automation is actually useful | Zenith Softworks",
-    description:
-      "Where intelligent automation creates value—and where normal software is better.",
-    canonical: "https://zenithsoftworks.in/insights/2/",
-    ogTitle: "When AI automation is actually useful | Zenith Softworks",
-    ogDescription:
-      "Where intelligent automation creates value—and where normal software is better.",
-  },
-  "/insights/3/": {
-    title: "MVP does not mean disposable | Zenith Softworks",
-    description:
-      "How to move fast without creating an architecture you immediately regret.",
-    canonical: "https://zenithsoftworks.in/insights/3/",
-    ogTitle: "MVP does not mean disposable | Zenith Softworks",
-    ogDescription:
-      "How to move fast without creating an architecture you immediately regret.",
   },
   "/privacy/": {
     title: "Privacy Policy | Zenith Softworks",
-    description:
-      "We collect only the information you submit through the enquiry form, such as your name, contact details and project description.",
+    description: "Learn how Zenith Softworks handles information submitted through business and student project enquiry forms.",
     canonical: "https://zenithsoftworks.in/privacy/",
-    ogTitle: "Privacy Policy | Zenith Softworks",
-    ogDescription:
-      "How Zenith Softworks handles enquiry form information.",
-  },
-  "/services/": {
-    title: "Website, App & Digital Product Services | Zenith Softworks",
-    description:
-      "Premium business websites, e-commerce, web applications, mobile apps, branding, automation and ongoing support from Zenith Softworks.",
-    canonical: "https://zenithsoftworks.in/services/",
-    ogTitle: "Services | Zenith Softworks",
-    ogDescription:
-      "Premium websites, applications and growth support for ambitious businesses.",
-  },
-  "/services/ai-automation/": {
-    title: "AI & Intelligent Automation | Zenith Softworks",
-    description:
-      "LLM integrations, intelligent assistants, prediction and workflow automation with useful guardrails.",
-    canonical: "https://zenithsoftworks.in/services/ai-automation/",
-    ogTitle: "AI & Intelligent Automation | Zenith Softworks",
-    ogDescription:
-      "LLM integrations, intelligent assistants, prediction and workflow automation with useful guardrails.",
-  },
-  "/services/cloud-devops/": {
-    title: "Cloud & DevOps | Zenith Softworks",
-    description:
-      "Deployment architecture, CI/CD, observability and infrastructure designed for reliable delivery.",
-    canonical: "https://zenithsoftworks.in/services/cloud-devops/",
-    ogTitle: "Cloud & DevOps | Zenith Softworks",
-    ogDescription:
-      "Deployment architecture, CI/CD, observability and infrastructure designed for reliable delivery.",
-  },
-  "/services/iot-solutions/": {
-    title: "IoT & Smart Systems | Zenith Softworks",
-    description:
-      "Connected devices, sensors, alerts and operational dashboards for physical-world problems.",
-    canonical: "https://zenithsoftworks.in/services/iot-solutions/",
-    ogTitle: "IoT & Smart Systems | Zenith Softworks",
-    ogDescription:
-      "Connected devices, sensors, alerts and operational dashboards for physical-world problems.",
-  },
-  "/services/mobile-apps/": {
-    title: "Mobile Applications | Zenith Softworks",
-    description:
-      "Cross-platform mobile experiences designed around real user journeys.",
-    canonical: "https://zenithsoftworks.in/services/mobile-apps/",
-    ogTitle: "Mobile Applications | Zenith Softworks",
-    ogDescription:
-      "Cross-platform mobile experiences designed around real user journeys.",
-  },
-  "/services/software-development/": {
-    title: "Custom Software Development | Zenith Softworks",
-    description:
-      "Secure business applications, portals, workflow systems and internal tools built around your operations.",
-    canonical: "https://zenithsoftworks.in/services/software-development/",
-    ogTitle: "Custom Software Development | Zenith Softworks",
-    ogDescription:
-      "Secure business applications, portals, workflow systems and internal tools built around your operations.",
-  },
-  "/services/web-platforms/": {
-    title: "Web Platforms | Zenith Softworks",
-    description:
-      "Fast, accessible and scalable platforms for businesses, services and digital products.",
-    canonical: "https://zenithsoftworks.in/services/web-platforms/",
-    ogTitle: "Web Platforms | Zenith Softworks",
-    ogDescription:
-      "Fast, accessible and scalable platforms for businesses, services and digital products.",
-  },
-  "/solutions/": {
-    title: "Digital Solutions for Businesses & Startups | Zenith Softworks",
-    description:
-      "Websites, applications, e-commerce, automation and digital systems for businesses, professionals, startups and institutions.",
-    canonical: "https://zenithsoftworks.in/solutions/",
-    ogTitle: "Solutions | Zenith Softworks",
-    ogDescription:
-      "Digital solutions shaped around the audience, operation and growth stage.",
-  },
-  "/student-projects/": {
-    title: "500 Final-Year Project Ideas for Students | Zenith Softworks",
-    description:
-      "Explore 500 practical final-year project ideas across software, AI, data, IoT, cloud, security, mobile and sustainability with advanced search, sorting and filters.",
-    canonical: "https://zenithsoftworks.in/student-projects/",
-    ogTitle: "500 Final-Year Project Ideas | Zenith Softworks",
-    ogDescription:
-      "Search and filter practical project ideas, including 70 curated Sustainability & Green Tech concepts.",
-  },
-  "/student-projects/sustainability/": {
-    title: "70 Sustainability & Green Tech Project Ideas | Zenith Softworks",
-    description:
-      "Search 70 curated sustainability and green technology project ideas across energy, water, waste, agriculture, climate, EV and sustainable buildings.",
-    canonical: "https://zenithsoftworks.in/student-projects/sustainability/",
-    ogTitle: "Sustainability & Green Tech Project Ideas",
-    ogDescription:
-      "70 client-friendly sustainable project concepts with searchable titles and detailed project directions.",
-  },
-  "/talent/": {
-    title: "Join Zenith Talent | Real Project Experience",
-    description:
-      "Apply to the Zenith Talent Network for supervised real-project experience in development, design, content, marketing, QA and product delivery.",
-    canonical: "https://zenithsoftworks.in/talent/",
-    ogTitle: "Join Zenith Talent",
-    ogDescription:
-      "Learn by building. Earn by delivering. Grow through real reviewed work.",
   },
   "/terms/": {
     title: "Terms of Use | Zenith Softworks",
-    description:
-      "Website information is provided for general guidance. Project scope, price, timeline, ownership, support and confidentiality are governed by a separate written agreement.",
+    description: "Website terms covering general information and project-specific agreements for Zenith Softworks.",
     canonical: "https://zenithsoftworks.in/terms/",
-    ogTitle: "Terms of Use | Zenith Softworks",
-    ogDescription:
-      "Terms of use for Zenith Softworks website and guidance.",
   },
-  "/work/": {
-    title: "Work | Zenith Softworks",
-    description:
-      "Selected software, AI, healthcare, safety and collaboration projects by Zenith Softworks.",
-    canonical: "https://zenithsoftworks.in/work/",
-    ogTitle: "Work | Zenith Softworks",
-    ogDescription:
-      "Selected software, AI, healthcare, safety and collaboration projects by Zenith Softworks.",
+  "/talent/": {
+    title: "Zenith Talent | Zenith Softworks",
+    description: "Information about the Zenith Talent Network.",
+    canonical: "https://zenithsoftworks.in/talent/",
+    robots: "noindex,follow",
   },
-  "/work/carematrix/": {
-    title: "CareMatrix | Zenith Softworks",
-    description:
-      "An AI-driven business intelligence platform for hospital operations, forecasting and decision support.",
-    canonical: "https://zenithsoftworks.in/work/carematrix/",
-    ogTitle: "CareMatrix | Zenith Softworks",
-    ogDescription:
-      "An AI-driven business intelligence platform for hospital operations, forecasting and decision support.",
+  "/student-project-ideas/": {
+    title: "Student Project Ideas | Zenith Softworks",
+    description: "Browse software and technology project ideas for academic exploration.",
+    canonical: "https://zenithsoftworks.in/student-project-ideas/",
   },
-  "/work/megham/": {
-    title: "MEGHAM | Zenith Softworks",
-    description:
-      "A secure cloud workspace for upload, organisation, sharing, access control and operational visibility.",
-    canonical: "https://zenithsoftworks.in/work/megham/",
-    ogTitle: "MEGHAM | Zenith Softworks",
-    ogDescription:
-      "A secure cloud workspace for upload, organisation, sharing, access control and operational visibility.",
+  "/student-project-ideas/sustainability/": {
+    title: "Sustainability and Green Tech Project Ideas | Zenith",
+    description: "Explore sustainability and green technology project ideas for academic exploration.",
+    canonical: "https://zenithsoftworks.in/student-project-ideas/sustainability/",
   },
-  "/work/projexify/": {
-    title: "Projexify | Zenith Softworks",
-    description:
-      "A structured project management platform for planning, collaboration and delivery.",
-    canonical: "https://zenithsoftworks.in/work/projexify/",
-    ogTitle: "Projexify | Zenith Softworks",
-    ogDescription:
-      "A structured project management platform for planning, collaboration and delivery.",
-  },
-  "/work/she-shield/": {
-    title: "She Shield | Zenith Softworks",
-    description:
-      "A mobile and IoT safety system connecting emergency signals, location and trusted contacts.",
-    canonical: "https://zenithsoftworks.in/work/she-shield/",
-    ogTitle: "She Shield | Zenith Softworks",
-    ogDescription:
-      "A mobile and IoT safety system connecting emergency signals, location and trusted contacts.",
-  },
+  "/work/": { title: "Selected Work | Zenith Softworks", description: "Selected software, web and product development projects by Zenith Softworks.", canonical: "https://zenithsoftworks.in/projects/" },
+  "/work/megham/": { title: "Megham Project | Zenith Softworks", description: "Explore the Megham software project.", canonical: "https://zenithsoftworks.in/projects/megham/" },
+  "/work/carematrix/": { title: "CareMatrix Project | Zenith Softworks", description: "Explore the CareMatrix software project.", canonical: "https://zenithsoftworks.in/projects/carematrix/" },
+  "/work/she-shield/": { title: "She Shield Project | Zenith Softworks", description: "Explore the She Shield project concept.", canonical: "https://zenithsoftworks.in/projects/she-shield/" },
+  "/work/projexify/": { title: "Projexify Project | Zenith Softworks", description: "Explore the Projexify project.", canonical: "https://zenithsoftworks.in/projects/projexify/" },
+  "/insights/": { title: "Resources | Zenith Softworks", description: "Practical software development guides and insights for students and businesses.", canonical: "https://zenithsoftworks.in/resources/" },
+  "/insights/1/": { title: "How to Scope a Custom Software Project | Zenith", description: "A practical guide to scoping a custom software project.", canonical: "https://zenithsoftworks.in/resources/1/" },
+  "/insights/2/": { title: "When AI Automation Is Actually Useful | Zenith", description: "Where intelligent automation creates value and where normal software is better.", canonical: "https://zenithsoftworks.in/resources/2/" },
+  "/insights/3/": { title: "MVP Does Not Mean Disposable | Zenith", description: "How to move fast without creating an architecture you immediately regret.", canonical: "https://zenithsoftworks.in/resources/3/" },
 };
 
 export const ALL_ROUTES = Object.keys(ROUTES_META);
