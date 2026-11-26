@@ -20,7 +20,7 @@ export default function InsightDetailPage() {
         description={article.summary}
         actions={
           <Link
-            to="/insights/"
+            to="/resources/"
             className="z-btn z-btn-secondary z-btn-sm"
           >
             ← All insights
