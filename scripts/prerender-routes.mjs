@@ -2,7 +2,6 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import React from "react";
 import { renderToString } from "react-dom/server";
-import { StaticRouter } from "react-router";
 import { createServer } from "vite";
 import { ROUTES_META } from "../src/data/routesMeta.js";
 
@@ -17,11 +16,11 @@ function escapeAttr(value) {
     .replaceAll(">", "&gt;");
 }
 
-let App;
+let StaticApp;
 let vite;
 try {
   vite = await createServer({ configFile: "./vite.config.js", server: { middlewareMode: true }, appType: "custom" });
-  ({ default: App } = await vite.ssrLoadModule("/src/App.jsx"));
+  ({ default: StaticApp } = await vite.ssrLoadModule("/src/ssr.jsx"));
 } catch (error) {
   console.warn("React static rendering could not be initialised; metadata-only HTML shells will be generated.", error);
 }
@@ -44,10 +43,10 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
 
   html = html.replace("</head>", `${headInject}</head>`);
 
-  if (App && !["/insights/", "/services/"].includes(route)) {
+  if (StaticApp && !["/insights/", "/services/"].includes(route)) {
     try {
       const markup = renderToString(
-        React.createElement(StaticRouter, { location: route }, React.createElement(App)),
+        React.createElement(StaticApp, { location: route }),
       );
       html = html.replace('<div id="root"></div>', `<div id="root">${markup}</div>`);
     } catch (error) {
