@@ -6,7 +6,7 @@
    working; values are aligned with the studio palette.
    ────────────────────────────────────────────────────────────── */
 @theme {
-  --color-midnight: #02050d; /* primary background */
+  --color-midnight: #050505; /* primary background */
   --color-navy: #050b18; /* secondary background */
   --color-surface: #0a1428; /* elevated surface */
   --color-deep: #04070d;
@@ -24,8 +24,8 @@
   --color-light-muted: #3c5572;
   --color-light-accent: #24507e;
 
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-display: "Manrope", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Tight", "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Archivo", "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
@@ -48,7 +48,7 @@
 
 @layer base {
   html {
-    background-color: #02050d;
+    background-color: #050505;
     color: #edf3ff;
     font-family: var(--font-sans);
     scroll-behavior: smooth;
@@ -63,7 +63,7 @@
     margin: 0;
     min-width: 320px;
     overflow-x: clip;
-    background: #02050d;
+    background: #050505;
     color: #edf3ff;
     line-height: 1.7;
   }
@@ -106,7 +106,7 @@
 
   ::selection {
     background: #7fd8ff;
-    color: #02050d;
+    color: #050505;
   }
 
   :focus-visible {
@@ -328,14 +328,14 @@
 
   .z-btn-primary {
     background: #7fd8ff;
-    color: #02050d;
+    color: #050505;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.6),
       0 10px 30px -12px rgba(127, 216, 255, 0.45);
   }
 
   .z-btn-primary .z-btn-arrow {
-    background: #02050d;
+    background: #050505;
     color: #7fd8ff;
   }
 
@@ -371,11 +371,11 @@
 
   .z-btn-dark .z-btn-arrow {
     background: #7fd8ff;
-    color: #02050d;
+    color: #050505;
   }
 
   .z-btn-dark:hover {
-    background: #02050d;
+    background: #050505;
     transform: translateY(-1px);
   }
 

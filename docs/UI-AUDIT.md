@@ -22,8 +22,8 @@ Audit of the previous site (light "editorial" theme) and what the redesign chang
 ## 2. What changed
 
 * **Logo** – replaced with the supplied "Z / ZENITH SOFTWORKS" artwork. Black background was converted to true transparency, so it sits on the dark UI without a box. Assets: `zenith-logo.webp` (lock-up), `zenith-mark.webp` (Z), favicons, `apple-touch-icon.png`, `icon-512.png`, `og-zenith.png` (1200×630).
-* **Design system "Zenith Glow"** – tokens derived from the logo: `#02050d` field, electric blue `#1f6bff` → sky `#35a8ff` → cyan `#19e0ff` gradient, white type. Manrope (display), DM Sans (body), Space Mono (labels only, ≥11px).
-* **Components** – pill buttons with gradient primary + ghost secondary, glass header, cards with hover lift, FAQ accordions, process steps, city chips.
+* **Design system (GrowXpace approach)** – modelled on the GrowXpace site: `#050505` black and `#F4F3EF` paper sections alternating, a single accent (Zenith blue `#26b4ff`, from the logo) instead of GrowXpace yellow, Archivo 700 display with tight tracking + Inter Tight body, 6–10px radii, numbered "01 —" section labels, pill buttons with arrow discs, giant accent CTA band with a ZENITH wordmark. Homepage flow: hero → about → what we build → approach → work → why → students → FAQ → CTA.
+* **Components** – pill buttons with arrow discs, sticky blur header, hover-lift cards, numbered step rows, FAQ accordions, city chips.
 * **Homepage** – new hero (H1 + glowing Z mark), 116-word intro, business/student pathways, services, projects, process + principles, FAQ + city links, CTA band. No third-party images.
 * **Inner pages** – the 50+ routes use shared `z-*` classes; the light overrides were deleted so they return to the dark system, with rounded cards/pill buttons layered on top.
 * **Accessibility** – skip link kept, 44px targets, visible focus ring, `prefers-reduced-motion` respected, labels no longer below 11px.
