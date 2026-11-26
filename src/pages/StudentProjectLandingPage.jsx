@@ -34,7 +34,7 @@ export default function StudentProjectLandingPage() {
         eyebrow={detail ? `Student project development · ${detail.label}` : "Academic software project development · India"}
         title={detail?.title || "Build Your Final Year Project with Practical Development Support"}
         description={detail?.intro || "Have a project idea but need help turning it into a working application? Zenith Softworks provides academic software project development for students who need practical implementation support, agreed documentation and technical walkthroughs. Students should participate in understanding and presenting their project."}
-        actions={<><Link to={`/contact/?type=student${detail ? `&course=${encodeURIComponent(detail.label)}` : ""}`} className="z-btn z-btn-primary">Discuss Your Student Project</Link><Link to="/projects/" className="z-btn z-btn-secondary">Explore Project Work</Link></>}
+        actions={<><Link to={`/contact/?type=student${detail ? `&course=${encodeURIComponent(detail.label)}` : ""}`} className="z-btn z-btn-primary">Discuss Your Student Project</Link><Link to="/projects/" className="z-btn z-btn-secondary">Explore Project Work</Link><Link to="/student-project-ideas/" className="z-btn z-btn-secondary">Browse Project Ideas</Link></>}
         meta="Based in Kerala · Remote project delivery across India"
       />
       {detail ? (
