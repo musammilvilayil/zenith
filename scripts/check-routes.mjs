@@ -40,9 +40,9 @@ for (const route of requiredRoutes.filter((path) => !["/terms/"].includes(path))
 }
 
 const requiredImages = [
-  "src/assets/images/zenith-original-navbar.png",
-  "src/assets/images/zenith-logo-footer.svg",
-  "src/assets/images/zenith-mark.svg",
+  "src/assets/images/zenith-logo.webp",
+  "public/og-zenith.png",
+  "src/assets/images/zenith-mark.webp",
   "src/assets/images/hero-abstract.jpg",
   "src/assets/images/work-megham.jpg",
   "src/assets/images/work-carematrix.jpg",

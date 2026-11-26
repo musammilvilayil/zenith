@@ -30,8 +30,8 @@ export default function PageHero({
         <LuminousFilaments
           className="-z-10 opacity-80"
           coreColor="#edf3ff"
-          fiberColor="#c1e8ff"
-          secondaryColor="#5483b3"
+          fiberColor="#7fd8ff"
+          secondaryColor="#2a6df4"
           originX={0.9}
           originY={0.2}
           baseAngle={Math.PI * 0.96}

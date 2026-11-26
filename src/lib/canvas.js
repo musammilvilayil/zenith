@@ -2,7 +2,7 @@ export function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
 
-export function parseHex(hex, fallback = [193, 232, 255]) {
+export function parseHex(hex, fallback = [127, 216, 255]) {
   const normalized = String(hex || "").replace("#", "").trim();
   const expanded =
     normalized.length === 3

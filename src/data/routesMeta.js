@@ -1,7 +1,7 @@
 export const ROUTES_META = {
   "/": {
-    title: "Zenith Softworks | Software Development Company Kerala",
-    description: "Build business websites, e-commerce platforms and custom software with Zenith Softworks, a Kerala development studio serving clients across India.",
+    title: "Software Development Company in Kerala | Zenith Softworks",
+    description: "Zenith Softworks builds business websites, online stores and custom software from Kerala for clients across India. Share your requirement today.",
     canonical: "https://zenithsoftworks.in/",
     ogTitle: "Software & Website Development Company in Kerala | Zenith Softworks",
     ogDescription: "Website development, e-commerce and custom software solutions from Kollam, Kerala, serving India.",

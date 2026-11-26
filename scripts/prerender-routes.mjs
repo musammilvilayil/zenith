@@ -57,9 +57,9 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
   html = setMeta(html, "property", "og:type", "website");
   html = setMeta(html, "property", "og:site_name", "Zenith Softworks");
   html = setMeta(html, "property", "og:url", meta.canonical);
-  html = setMeta(html, "property", "og:image", "https://zenithsoftworks.in/og-zenith.svg");
+  html = setMeta(html, "property", "og:image", "https://zenithsoftworks.in/og-zenith.png");
   html = setMeta(html, "name", "twitter:card", "summary_large_image");
-  html = setMeta(html, "name", "twitter:image", "https://zenithsoftworks.in/og-zenith.svg");
+  html = setMeta(html, "name", "twitter:image", "https://zenithsoftworks.in/og-zenith.png");
   html = setMeta(html, "name", "twitter:title", meta.ogTitle || meta.title);
   html = setMeta(html, "name", "twitter:description", meta.ogDescription || meta.description);
   html = setCanonical(html, meta.canonical);

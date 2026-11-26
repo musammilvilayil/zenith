@@ -32,7 +32,7 @@ export default function PageHead({ title, description, canonical, ogTitle, ogDes
     upsertMeta('meta[property="og:description"]', { property: "og:description" }, finalOgDescription);
     upsertMeta('meta[property="og:url"]', { property: "og:url" }, finalCanonical);
     upsertMeta('meta[property="og:type"]', { property: "og:type" }, "website");
-    upsertMeta('meta[name="twitter:card"]', { name: "twitter:card" }, "summary");
+    upsertMeta('meta[name="twitter:card"]', { name: "twitter:card" }, "summary_large_image");
     upsertMeta('meta[name="twitter:title"]', { name: "twitter:title" }, finalOgTitle);
     upsertMeta('meta[name="twitter:description"]', { name: "twitter:description" }, finalOgDescription);
     upsertMeta('meta[name="robots"]', { name: "robots" }, finalRobots);

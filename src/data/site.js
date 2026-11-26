@@ -1,6 +1,5 @@
-import navbarLogo from "@/assets/images/zenith-navbar.svg";
-import footerLogo from "@/assets/images/zenith-logo-footer.svg";
-import markLogo from "@/assets/images/zenith-mark.svg";
+import logoLockup from "@/assets/images/zenith-logo.webp";
+import markLogo from "@/assets/images/zenith-mark.webp";
 import heroAbstractImg from "@/assets/images/hero-abstract.jpg";
 import workMeghamImg from "@/assets/images/work-megham.jpg";
 import workCarematrixImg from "@/assets/images/work-carematrix.jpg";
@@ -8,7 +7,7 @@ import workSheShieldImg from "@/assets/images/work-she-shield.jpg";
 import workProjexifyImg from "@/assets/images/work-projexify.jpg";
 import studentLabImg from "@/assets/images/student-lab.jpg";
 
-export const BRAND_IMAGES = { navbarLogo, footerLogo, markLogo, heroAbstractImg, workMeghamImg, workCarematrixImg, workSheShieldImg, workProjexifyImg, studentLabImg };
+export const BRAND_IMAGES = { logoLockup, markLogo, heroAbstractImg, workMeghamImg, workCarematrixImg, workSheShieldImg, workProjexifyImg, studentLabImg };
 
 export const SITE = {
   name: "Zenith Softworks",

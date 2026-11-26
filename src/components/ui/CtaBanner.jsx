@@ -15,9 +15,9 @@ export default function CtaBanner({
       <div aria-hidden="true" className="z-ambient absolute inset-0 -z-20" />
       <InterferenceRibbons
         className="-z-10"
-        primaryColor="#c1e8ff"
-        secondaryColor="#80b2ff"
-        accentColor="#5483b3"
+        primaryColor="#7fd8ff"
+        secondaryColor="#3d9bff"
+        accentColor="#2a6df4"
         ribbonCount={2}
         wiresPerRibbon={10}
         opacity={0.32}

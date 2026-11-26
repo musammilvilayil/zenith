@@ -54,7 +54,7 @@
   "redirects": [
     {
       "source": "/images/zenith-original-navbar.png",
-      "destination": "/zenith-nav-logo.svg",
+      "destination": "/zenith-logo.png",
       "permanent": true
     },
     {
