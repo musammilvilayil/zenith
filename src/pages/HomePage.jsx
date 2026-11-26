@@ -3,12 +3,12 @@ import { ArrowDown, ArrowUpRight, ArrowRight, Compass, ShieldCheck, Cpu, Sparkle
 import PageHead from "@/components/layout/PageHead";
 import { CASE_STUDIES } from "@/data/work";
 
-const image = (id, width = 1100) => "https://images.unsplash.com/" + id + "?auto=format&fit=crop&w=" + width + "&q=74";
+const image = (id, width = 800) => "https://images.unsplash.com/" + id + "?auto=format&fit=crop&w=" + width + "&q=70";
 const capabilities = [
- {number:"01",title:"Websites that work harder.",text:"Clear, considered websites that make your business easier to understand, trust and choose.",label:"WEBSITE DEVELOPMENT",href:"/business/website-development/",src:image("photo-1460925895917-afdab827c52f",1100),alt:"Analytics dashboard on a desktop screen"},
- {number:"02",title:"Commerce without friction.",text:"Thoughtful storefronts and practical e-commerce systems built around how you sell.",label:"E-COMMERCE",href:"/business/ecommerce-development/",src:image("photo-1556742049-0cfed4f6a45d",1100),alt:"A customer making a secure digital payment"},
- {number:"03",title:"Software for real workflows.",text:"Custom applications, dashboards and connected tools shaped around your operations.",label:"CUSTOM SOFTWARE",href:"/business/custom-software-development/",src:image("photo-1518770660439-4636190af475",1100),alt:"Close-up of a technology circuit board"},
- {number:"04",title:"Projects you can understand.",text:"Hands-on implementation support, documentation and code walkthroughs for students.",label:"STUDENT PROJECTS",href:"/student-projects/",src:image("photo-1516321318423-f06f85e504b3",1100),alt:"Student working on a laptop at a desk"}
+ {number:"01",title:"Websites that work harder.",text:"Clear, considered websites that make your business easier to understand, trust and choose.",label:"WEBSITE DEVELOPMENT",href:"/business/website-development/",src:image("photo-1460925895917-afdab827c52f",800),alt:"Analytics dashboard on a desktop screen"},
+ {number:"02",title:"Commerce without friction.",text:"Thoughtful storefronts and practical e-commerce systems built around how you sell.",label:"E-COMMERCE",href:"/business/ecommerce-development/",src:image("photo-1556742049-0cfed4f6a45d",800),alt:"A customer making a secure digital payment"},
+ {number:"03",title:"Software for real workflows.",text:"Custom applications, dashboards and connected tools shaped around your operations.",label:"CUSTOM SOFTWARE",href:"/business/custom-software-development/",src:image("photo-1518770660439-4636190af475",800),alt:"Close-up of a technology circuit board"},
+ {number:"04",title:"Projects you can understand.",text:"Hands-on implementation support, documentation and code walkthroughs for students.",label:"STUDENT PROJECTS",href:"/student-projects/",src:image("photo-1516321318423-f06f85e504b3",800),alt:"Student working on a laptop at a desk"}
 ];
 const questions = [
  ["What does Zenith Softworks build?","We develop business websites, e-commerce platforms, custom software and academic software projects. Every engagement starts by understanding the requirement and agreeing on a practical scope."],
@@ -21,7 +21,7 @@ export default function HomePage() {
  return <>
   <PageHead/>
   <section className="zn-hero">
-   <div className="zn-hero-photo"><img src={image("photo-1498050108023-c5249f4df085",1600)} alt="Creative developer workspace with a laptop and code on screen" fetchPriority="high" decoding="async"/></div><div className="zn-hero-shade"/>
+   <div className="zn-hero-photo"><img src={image("photo-1498050108023-c5249f4df085",1400)} alt="Creative developer workspace with a laptop and code on screen" fetchPriority="high" decoding="async"/></div><div className="zn-hero-shade"/>
    <div className="zn-wrap zn-hero-content">
     <div className="zn-eyebrow"><span/> INDEPENDENT DIGITAL DEVELOPMENT STUDIO <i>—</i> KERALA, INDIA</div>
     <h1>Ideas into digital products.<br/><em>Built with purpose.</em></h1>
@@ -39,6 +39,6 @@ export default function HomePage() {
   <section className="zn-method zn-section"><div className="zn-wrap zn-method-grid"><div className="zn-method-image"><img src={image("photo-1497366754035-f200968a6e72",1000)} alt="Minimal modern creative workspace" loading="lazy"/><span>THOUGHTFUL BY DESIGN</span></div><div className="zn-method-copy"><p className="zn-overline">HOW WE WORK / NO GUESSWORK</p><h2>Good work starts<br/><em>with clarity.</em></h2><p>We keep the process collaborative and transparent. You know what is being built, why it matters and what happens next.</p><div className="zn-steps">{["Listen and understand","Define the right scope","Design and develop","Test, refine and deliver"].map((step,i)=><div key={step}><span>0{i+1}</span><strong>{step}</strong><ArrowUpRight size={17}/></div>)}</div><Link to="/about/" className="zn-arrow-link">Get to know Zenith <ArrowRight size={17}/></Link></div></div></section>
   <section className="zn-principles zn-section"><div className="zn-wrap"><p className="zn-overline">THE ZENITH STANDARD</p><div className="zn-principle-grid"><article><Compass/><h3>Purpose first</h3><p>Understand the problem before choosing the solution.</p></article><article><ShieldCheck/><h3>Built with care</h3><p>Accessible, responsive and maintainable by design.</p></article><article><Cpu/><h3>Practical technology</h3><p>Use the right tools, not complexity for its own sake.</p></article><article><Sparkles/><h3>Clear handover</h3><p>Useful documentation and a product you can understand.</p></article></div></div></section>
   <section className="zn-faq zn-section"><div className="zn-wrap zn-faq-grid"><div><p className="zn-overline">BEFORE WE BEGIN</p><h2>Questions worth<br/><span>asking.</span></h2><p>Tell us what you're planning. We'll help you understand a sensible next step.</p><Link to="/contact/" className="zn-arrow-link">Talk to our team <ArrowUpRight size={18}/></Link></div><div className="zn-faq-list">{questions.map(([question,answer])=><details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div></div></section>
-  <section className="zn-contact-band"><div className="zn-wrap zn-contact-inner"><p className="zn-overline">HAVE A PROJECT IN MIND?</p><h2>Let's build something<br/><em>worth putting into the world.</em></h2><Link to="/contact/" className="zn-button zn-button-dark">Start a conversation <ArrowUpRight size={18}/></Link><span className="zn-contact-mark">Z.</span></div></section>
+  <section className="zn-contact-band"><div className="zn-wrap zn-contact-inner"><p className="zn-overline">HAVE A PROJECT IN MIND?</p><h2>Let's build something<br/><em>worth putting into the world.</em></h2><Link to="/contact/" className="zn-button zn-button-dark">Start a conversation <ArrowUpRight size={18}/></Link><span className="zn-contact-mark" aria-hidden="true">Z.</span></div></section>
  </>;
 }
