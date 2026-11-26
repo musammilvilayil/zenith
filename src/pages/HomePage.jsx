@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, ArrowDown, Code2, Compass, Cpu, GraduationCap
 import PageHead from "@/components/layout/PageHead";
 import { CASE_STUDIES } from "@/data/work";
 import { BRAND_IMAGES } from "@/data/site";
+import PinnedShowcase from "@/components/ui/PinnedShowcase";
 
 const services = [
   { icon: Globe, title: "Website development", text: "Fast, responsive business websites that explain what you do and make it easy to enquire.", href: "/business/website-development/" },
@@ -11,11 +12,18 @@ const services = [
   { icon: GraduationCap, title: "BCA, BTech & MCA projects", text: "Guided project development with documentation and code walkthroughs you can explain at viva.", href: "/student-projects/" },
 ];
 
+const showcase = [
+  { short: "Websites", tag: "Website development", ghost: "WEBSITES", title: "Websites that explain and convert.", text: "Fast, responsive business websites with clear navigation, search-friendly structure and an easy way for customers to enquire.", href: "/business/website-development/", image: BRAND_IMAGES.workMeghamImg, alt: "Cloud file management web application interface" },
+  { short: "E-commerce", tag: "E-commerce development", ghost: "STOREFRONTS", title: "Online stores built around how you sell.", text: "Product catalogues, checkout, payments and order management shaped to your products, pricing and delivery.", href: "/business/ecommerce-development/", image: BRAND_IMAGES.workProjexifyImg, alt: "Project collaboration platform dashboard" },
+  { short: "Software", tag: "Custom software", ghost: "SOFTWARE", title: "Software for real workflows.", text: "Web applications, dashboards and internal tools that replace spreadsheets and manual follow-ups with one reliable system.", href: "/business/custom-software-development/", image: BRAND_IMAGES.workCarematrixImg, alt: "Hospital intelligence dashboard" },
+  { short: "Student projects", tag: "BCA · BTech · MCA", ghost: "STUDENTS", title: "Projects you can build and explain.", text: "Guided project development with documentation and code walkthroughs, so you understand every module at viva.", href: "/student-projects/", image: BRAND_IMAGES.studentLabImg, alt: "Students working on a software project" },
+];
+
 const steps = [
-  ["Understand your business", "We start with your goals, customers and constraints, not a ready-made template."],
-  ["Define a written scope", "Features, timeline and a fixed estimate agreed in writing before any work begins."],
-  ["Design and build", "Development in visible milestones, so you can review progress and give feedback early."],
-  ["Launch and hand over", "Testing, launch support, documentation and a handover you can actually understand."],
+  ["Understand your business", "Goals, customers and constraints first, not a ready-made template."],
+  ["Define a written scope", "Features, timeline and estimate agreed in writing before work begins."],
+  ["Design and build", "Visible milestones, so you can review progress and give early feedback."],
+  ["Launch and hand over", "Testing, launch support and documentation you can understand."],
 ];
 
 const principles = [
@@ -44,133 +52,118 @@ export default function HomePage() {
     <>
       <PageHead />
 
-      <section className="zn-hero zn-dark">
-        <div className="zn-wrap zn-hero-grid">
-          <div>
-            <span className="zn-pill">Digital development studio · Kollam, Kerala</span>
-            <h1>Software &amp; Website Development Company in <em>Kerala</em></h1>
-            <p className="zn-lede">We turn clear requirements into responsive websites, online stores and custom software for businesses across India, with plain-language communication and a written scope from day one.</p>
-            <div className="zn-hero-actions">
-              <Link to="/contact/" className="zn-button zn-button-primary">Get a free project estimate <i><ArrowUpRight size={18} /></i></Link>
-              <Link to="/projects/" className="zn-arrow-link">See our work <ArrowRight size={16} /></Link>
-            </div>
-            <ul className="zn-hero-meta">
-              <li>Remote across India</li>
-              <li>Written scope &amp; quote</li>
-              <li>Student project support</li>
-              <li><a href="#about" style={{ color: "inherit", textDecoration: "none" }}>Scroll <ArrowDown size={12} style={{ verticalAlign: "-1px" }} /></a></li>
-            </ul>
+      {/* 1 — centred hero with glow mark and bottom meta bar */}
+      <section className="zn-hero zn-hero-center zn-dark">
+        <img className="zn-hero-bgmark" src={BRAND_IMAGES.markLogo} alt="" aria-hidden="true" width="240" height="212" fetchPriority="high" />
+        <div className="zn-wrap zn-hero-inner">
+          <span className="zn-pill">Digital development studio · Kollam, Kerala</span>
+          <h1>Software &amp; Website Development Company in <em>Kerala</em></h1>
+          <p className="zn-lede">We turn clear requirements into responsive websites, online stores and custom software for businesses across India, with a written scope from day one.</p>
+          <div className="zn-hero-actions">
+            <Link to="/contact/" className="zn-button zn-button-primary">Get a free project estimate <i><ArrowUpRight size={18} /></i></Link>
+            <Link to="/projects/" className="zn-button zn-button-ghost">See our work</Link>
           </div>
-          <div className="zn-hero-visual" aria-hidden="true">
-            <img src={BRAND_IMAGES.markLogo} alt="" width="240" height="212" fetchPriority="high" />
-          </div>
+        </div>
+        <div className="zn-wrap zn-hero-bar">
+          <span>Studio in Kollam, Kerala</span>
+          <a href="#about" className="zn-scroll"><i />Scroll</a>
+          <span>Remote across India</span>
         </div>
       </section>
 
+      {/* 2 — split: visual left, text right */}
       <section className="zn-section zn-paper" id="about">
-        <div className="zn-wrap zn-about">
-          <div>
-            <p className="zn-label">01 — About the studio</p>
-            <h2 className="zn-h2">Websites and software built around <em>how you work.</em></h2>
+        <div className="zn-wrap zn-split">
+          <div className="zn-split-media">
+            <img src={BRAND_IMAGES.heroAbstractImg} alt="Abstract Zenith digital development visual" loading="lazy" decoding="async" />
+            <span>Kollam · Kerala</span>
           </div>
-          <div>
-            <p className="zn-copy">Zenith Softworks is an independent digital development studio in Kollam, Kerala. We build business websites, e-commerce stores and custom software for clients across India, working remotely with clear communication from the first call to the final handover. Every project starts with your requirement: who the users are, what they need to do and how success will be measured. Only then do we choose the technology and agree a scope in writing. We also help BCA, BTech and MCA students build academic projects they understand and can explain at viva. If you are planning a new website, an online store or an internal tool, tell us what you need and we will suggest a sensible next step.</p>
-            <div className="zn-stats">
-              <div><strong>Kerala-based</strong><span>Studio in Kollam, serving all of India</span></div>
-              <div><strong>Written scope</strong><span>Quote and timeline before work begins</span></div>
-              <div><strong>Clear handover</strong><span>Documentation and walkthroughs included</span></div>
-            </div>
+          <div className="zn-split-copy">
+            <p className="zn-label">About the studio</p>
+            <h2 className="zn-h2 zn-h2-md">Websites and software built around <em>how you work.</em></h2>
+            <p className="zn-copy">Zenith Softworks is an independent digital development studio in Kollam, Kerala. We build business websites, e-commerce stores and custom software for clients across India, working remotely with clear communication from the first call to the final handover.</p>
+            <p className="zn-copy">Every project starts with your requirement: who the users are, what they need to do and how success will be measured. Only then do we choose the technology and agree a scope in writing. We also help BCA, BTech and MCA students build academic projects they understand and can explain at viva.</p>
+            <p className="zn-copy">If you are planning a new website, an online store or an internal tool, tell us what you need and we will suggest a sensible next step.</p>
           </div>
         </div>
       </section>
 
+      {/* 3 — horizontal timeline with dots on a line */}
       <section className="zn-section zn-dark">
         <div className="zn-wrap">
           <div className="zn-head">
             <div>
-              <p className="zn-label">02 — What we build</p>
-              <h2 className="zn-h2">Website development, e-commerce <em>and custom software.</em></h2>
-            </div>
-            <p className="zn-lede">From the first sketch to the final handover, strategy, design and development stay in one focused process.</p>
-          </div>
-          <div className="zn-grid-4">
-            {services.map(({ icon: Icon, title, text, href }, i) => (
-              <Link to={href} className="zn-card zn-service" key={title}>
-                <span className="zn-num">0{i + 1}</span>
-                <span className="zn-icon"><Icon size={24} /></span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-                <span className="zn-more">Learn more <ArrowRight size={15} /></span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="zn-section zn-paper">
-        <div className="zn-wrap">
-          <div className="zn-head">
-            <div>
-              <p className="zn-label">03 — Our approach</p>
+              <p className="zn-label">Our approach</p>
               <h2 className="zn-h2">We start with your requirement, <em>not a template.</em></h2>
             </div>
-            <p className="zn-lede">You always know what is being built, why it matters and what happens next.</p>
+            <p className="zn-lede">Four connected steps. Each one builds on the last.</p>
           </div>
-          <div className="zn-steps">
+          <ol className="zn-timeline">
             {steps.map(([title, text], i) => (
-              <div className="zn-step" key={title}><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></div>
+              <li key={title}><i /><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      <section className="zn-section zn-dark" id="work">
+      {/* 4 — pinned scroll showcase */}
+      <section className="zn-pin-section zn-dark" aria-labelledby="what-we-build">
+        <div className="zn-wrap zn-pin-head">
+          <p className="zn-label">What we build</p>
+          <h2 className="zn-h2" id="what-we-build">Website development, e-commerce <em>and custom software.</em></h2>
+        </div>
+        <PinnedShowcase items={showcase} />
+      </section>
+
+      {/* 5 — hover-dim list rows */}
+      <section className="zn-section zn-dark-2" id="work">
         <div className="zn-wrap">
           <div className="zn-head">
             <div>
-              <p className="zn-label">04 — Selected projects</p>
+              <p className="zn-label">Selected projects</p>
               <h2 className="zn-h2">Ideas, made <em>real.</em></h2>
             </div>
-            <div><Link to="/projects/" className="zn-arrow-link">View all projects <ArrowUpRight size={17} /></Link></div>
+            <div><Link to="/projects/" className="zn-arrow-link">All projects <ArrowUpRight size={17} /></Link></div>
           </div>
-          <div className="zn-grid-2">
+          <div className="zn-rows">
             {CASE_STUDIES.map((project) => (
-              <Link to={"/projects/" + project.slug + "/"} className="zn-card zn-project" key={project.slug}>
-                <div className="zn-project-visual">
-                  <img src={project.image} alt={project.imageAlt} loading="lazy" decoding="async" />
-                  <span className="zn-project-open"><ArrowUpRight size={20} /></span>
-                </div>
-                <div className="zn-project-body">
-                  <span className="zn-project-type">{project.index} / {project.category}</span>
-                  <h3>{project.title}</h3>
-                  <p>{project.homeSummary}</p>
-                </div>
+              <Link to={"/projects/" + project.slug + "/"} className="zn-row" key={project.slug}>
+                <img src={project.image} alt={project.imageAlt} loading="lazy" decoding="async" />
+                <span className="zn-row-num">{project.index}</span>
+                <div><h3>{project.title}</h3><p>{project.homeSummary}</p></div>
+                <span className="zn-row-cat">{project.category}</span>
+                <ArrowUpRight className="zn-row-arrow" size={22} />
               </Link>
             ))}
           </div>
         </div>
       </section>
 
+      {/* 6 — tall coloured cards */}
       <section className="zn-section zn-paper">
         <div className="zn-wrap">
           <div className="zn-head">
             <div>
-              <p className="zn-label">05 — Why Zenith</p>
+              <p className="zn-label">Why Zenith</p>
               <h2 className="zn-h2">Not just another <em>development studio.</em></h2>
             </div>
           </div>
-          <div className="zn-why">
-            {principles.map(({ icon: Icon, title, text }) => (
-              <article key={title}><Icon /><h3>{title}</h3><p>{text}</p></article>
+          <div className="zn-tall">
+            {principles.map(({ icon: Icon, title, text }, i) => (
+              <article className={"zn-tall-" + (i + 1)} key={title}>
+                <span className="zn-tall-top"><b>0{i + 1}</b><Icon size={22} /></span>
+                <div><h3>{title}</h3><p>{text}</p></div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="zn-section zn-dark-2">
+      {/* 7 — students */}
+      <section className="zn-section zn-dark">
         <div className="zn-wrap zn-students">
           <div>
-            <p className="zn-label">06 — For students</p>
+            <p className="zn-label">For students</p>
             <h2 className="zn-h2">BCA, BTech and MCA projects you can <em>explain.</em></h2>
             <p className="zn-lede" style={{ marginTop: 22, maxWidth: 520 }}>Practical project support with documentation and code walkthroughs, for students across Kerala and India.</p>
             <ul className="zn-chiplist">
@@ -194,10 +187,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 8 — FAQ */}
       <section className="zn-section zn-paper">
         <div className="zn-wrap zn-faq">
           <div>
-            <p className="zn-label">07 — Before we begin</p>
+            <p className="zn-label">Before we begin</p>
             <h2 className="zn-h2">Questions worth <em>asking.</em></h2>
             <p className="zn-lede">Working from Kollam and serving Kochi, Trivandrum, Calicut and the rest of India.</p>
             <Link to="/contact/" className="zn-arrow-link">Talk to our team <ArrowUpRight size={17} /></Link>
@@ -213,13 +207,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="zn-cta-band">
+      {/* 9 — glow CTA (wave footer follows from the layout) */}
+      <section className="zn-cta-glow zn-dark">
         <div className="zn-wrap">
           <p className="zn-label">Let's talk</p>
           <h2>Ready to plan your next <em>website or software?</em></h2>
-          <Link to="/contact/" className="zn-button zn-button-dark">Start a conversation <i><ArrowUpRight size={18} /></i></Link>
+          <Link to="/contact/" className="zn-button zn-button-primary">Start a conversation <i><ArrowUpRight size={18} /></i></Link>
         </div>
-        <span className="zn-wordmark" aria-hidden="true">ZENITH</span>
       </section>
     </>
   );

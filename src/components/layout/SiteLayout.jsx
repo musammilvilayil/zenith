@@ -71,12 +71,16 @@ export default function SiteLayout({ children }) {
       <main id="main-content" tabIndex="-1">{children}</main>
 
       <footer className="zn-footer">
+        <div className="zn-footer-wave" aria-hidden="true" />
         <div className="zn-wrap">
+          <div className="zn-footer-brand">
+            <img src={BRAND_IMAGES.markLogo} alt="" width="56" height="50" loading="lazy" />
+            <p>An independent digital development studio building websites, e-commerce stores, custom software and student projects from Kollam, Kerala.</p>
+          </div>
+          <nav className="zn-footer-nav" aria-label="Footer">
+            <Link to="/">Home</Link><Link to="/about/">About</Link><Link to="/business/">Business</Link><Link to="/student-projects/">Student projects</Link><Link to="/projects/">Work</Link><Link to="/resources/">Insights</Link><Link to="/contact/">Contact</Link>
+          </nav>
           <div className="zn-footer-columns">
-            <div className="zn-footer-brand">
-              <img src={BRAND_IMAGES.logoLockup} alt="Zenith Softworks" width="150" height="150" loading="lazy" />
-              <p>An independent digital development studio building websites, e-commerce stores, custom software and student projects from Kollam, Kerala.</p>
-            </div>
             <div>
               <h3>Business</h3>
               <Link to="/business/website-development/">Website development</Link>
@@ -86,7 +90,6 @@ export default function SiteLayout({ children }) {
             </div>
             <div>
               <h3>Students</h3>
-              <Link to="/student-projects/">Project support</Link>
               <Link to="/student-projects/bca-project-development/">BCA projects</Link>
               <Link to="/student-projects/btech-project-development/">BTech projects</Link>
               <Link to="/student-projects/mca-project-development/">MCA projects</Link>
@@ -99,16 +102,16 @@ export default function SiteLayout({ children }) {
               <Link to="/website-development-company-calicut/">Calicut</Link>
             </div>
             <div>
-              <h3>Get in touch</h3>
+              <h3>Contact</h3>
               <a href={"mailto:" + SITE.email}>{SITE.email}</a>
               <a href={SITE.whatsappHref} target="_blank" rel="noreferrer">{SITE.whatsappDisplay}</a>
-              <Link to="/projects/">Selected work</Link>
-              <Link to="/resources/">Insights</Link>
+              <span>Kerala, India · Remote across India</span>
             </div>
           </div>
+          <p className="zn-footer-strip" aria-hidden="true">ZENITH<span>SOFTWORKS</span></p>
           <div className="zn-footer-bottom">
-            <span>© {new Date().getFullYear()} Zenith Softworks · Kerala, India</span>
-            <div><Link to="/privacy/">Privacy</Link><Link to="/terms/">Terms</Link><Link to="/about/">About</Link></div>
+            <span>© {new Date().getFullYear()} Zenith Softworks. All rights reserved.</span>
+            <div><Link to="/privacy/">Privacy Policy</Link><Link to="/terms/">Terms</Link></div>
           </div>
         </div>
       </footer>
