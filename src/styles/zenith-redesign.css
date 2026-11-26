@@ -84,3 +84,9 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var
 .zn-work .zn-project-type{color:#c5d4e8}
 .zn-work .zn-project-caption p{color:#d5dfeb}
 .zn-contact-band .zn-overline{color:#304965}
+
+/* Final Lighthouse contrast fixes for large editorial text and decorative lettering. */
+.zn-intro-aside span{color:#526176}
+.zn-contact-mark{color:#3b5270}
+.zn-brand img{width:156px;height:38px;object-fit:contain;object-position:left center;filter:none}
+@media(max-width:760px){.zn-brand img{width:135px;height:34px}}
