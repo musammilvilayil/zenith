@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import PageHead from "@/components/layout/PageHead";
 import Button from "@/components/ui/Button";
 import CtaBanner from "@/components/ui/CtaBanner";
