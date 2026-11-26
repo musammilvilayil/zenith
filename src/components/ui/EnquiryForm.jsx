@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 import { SITE } from "@/data/site";
 
-const BUSINESS_SERVICES = ["Business website", "E-commerce website", "Custom software / web application", "Website redesign", "Other"];
+const BUSINESS_SERVICES = ["Business website", "E-commerce website", "Custom software development", "Website redesign", "Other"];
 const STUDENT_CATEGORIES = ["Python project", "AI / Machine Learning", "Web development", "Database application", "Management system", "Other"];
 const TALENT_ROLES = ["Frontend development", "Full stack development", "Mobile app development", "UI/UX design", "QA and documentation", "Content and social media", "AI and automation", "Cloud and DevOps"];
 
@@ -46,7 +46,12 @@ export default function EnquiryForm({ mode = "business" }) {
     const payload = {
       ...form,
       company: isStudent ? form.college : form.company,
-      service: isStudent ? `Student project — ${form.course} — ${form.service}` : form.service,
+      service: isStudent ? "Academic project development" : isTalent ? "Join Zenith Talent" : form.service,
+      project_category: isStudent ? form.service : "",
+      course: isStudent ? form.course : "",
+      technology: isStudent ? form.technology : "",
+      deadline: isStudent ? form.deadline : "",
+      college: isStudent ? form.college : "",
       timeline: isStudent ? form.deadline : form.timeline,
       message: isStudent
         ? `Course: ${form.course}\nProject category: ${form.service}\nPreferred technology: ${form.technology || "Not specified"}\nCollege: ${form.college || "Not specified"}\nSubmission deadline: ${form.deadline}\nProject requirements: ${form.message}`

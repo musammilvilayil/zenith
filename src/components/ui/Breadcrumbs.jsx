@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router";
 import { SITE } from "@/data/site";
 
 const SEGMENT_LABELS = {

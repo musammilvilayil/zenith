@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
-    "postbuild": "node scripts/prerender-routes.mjs",
+    "postbuild": "node scripts/prerender-routes.mjs && npm run test:routes",
     "preview": "vite preview",
     "test:routes": "node scripts/check-routes.mjs"
   },
@@ -16,6 +16,7 @@
     "lucide-react": "^0.468.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-router": "^7.1.5",
     "react-router-dom": "^7.1.5",
     "tailwind-merge": "^2.6.0"
   },

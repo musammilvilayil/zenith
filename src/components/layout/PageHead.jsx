@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import { ROUTES_META } from "@/data/routesMeta";
 import { SITE } from "@/data/site";
 

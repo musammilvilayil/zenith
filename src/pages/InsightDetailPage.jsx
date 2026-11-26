@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router";
 import PageHead from "@/components/layout/PageHead";
 import CtaBanner from "@/components/ui/CtaBanner";
 import PageHero from "@/components/ui/PageHero";
