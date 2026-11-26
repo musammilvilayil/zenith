@@ -223,8 +223,7 @@ export default function SiteLayout({ children }) {
                 />
               </Link>
               <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted">
-                Thoughtful digital work for growing businesses. Real opportunities for ambitious
-                talent.
+                Business websites, custom software and academic project development built around real requirements.
               </p>
             </div>
 
