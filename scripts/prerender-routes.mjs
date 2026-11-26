@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import React from "react";
 import { renderToString } from "react-dom/server";
-import { StaticRouter } from "react-router";
+import { MemoryRouter } from "react-router";
 import { createServer } from "vite";
 import { ROUTES_META } from "../src/data/routesMeta.js";
 
@@ -47,7 +47,7 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
   if (App && !["/insights/", "/services/"].includes(route)) {
     try {
       const markup = renderToString(
-        React.createElement(StaticRouter, { location: route }, React.createElement(App)),
+        React.createElement(MemoryRouter, { initialEntries: [route] }, React.createElement(App)),
       );
       html = html.replace('<div id="root"></div>', `<div id="root">${markup}</div>`);
     } catch (error) {
