@@ -29,7 +29,7 @@ export default function WorkDetailPage() {
         actions={
           <>
             <Button to="/contact/">Discuss a similar project</Button>
-            <Button to="/work/" variant="secondary" arrow={null}>
+            <Button to="/projects/" variant="secondary" arrow={null}>
               All work
             </Button>
           </>
