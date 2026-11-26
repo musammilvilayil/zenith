@@ -16,6 +16,11 @@ const requiredRoutes = [
   "/projects/", "/projects/megham/", "/projects/carematrix/",
   "/projects/she-shield/", "/projects/projexify/",
   "/resources/", "/resources/1/", "/resources/2/", "/resources/3/",
+  "/website-development-company-kollam/", "/software-development-company-kochi/",
+  "/software-development-company-trivandrum/", "/website-development-company-calicut/",
+  "/resources/4/", "/resources/5/", "/resources/6/", "/resources/7/",
+  "/resources/8/", "/resources/9/", "/resources/10/", "/resources/11/",
+  "/resources/12/", "/resources/13/", "/resources/14/", "/resources/15/",
   "/privacy/", "/terms/",
 ];
 
