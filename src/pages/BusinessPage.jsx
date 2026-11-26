@@ -6,7 +6,7 @@ import NotFoundPage from "./NotFoundPage";
 
 const SERVICES = {
   "website-development": {
-    title: "Professional Website Development for Your Business",
+    title: "Website Development Company in Kerala",
     intro: "A professional website helps customers understand your business, explore your services and contact you with confidence. We develop responsive business websites with clear navigation, thoughtful layouts and functionality suited to your requirements.",
     description: "Professional, responsive business website development for companies and service providers across India.",
     items: ["Company and corporate websites", "Service business websites", "Landing pages and campaign pages", "Portfolio and professional websites", "Multi-page business websites"],
@@ -14,7 +14,7 @@ const SERVICES = {
     faqs: [["How much does a business website cost?", "Pricing is custom and depends on the number of pages, design requirements, content, integrations and functionality. We provide a quotation after discussing the scope."], ["Can you redesign an existing website?", "Yes. We can review an existing website and discuss improvements to its structure, design, responsiveness and performance."], ["Do you work outside Kerala?", "Yes. Projects can be delivered remotely across India. In-person discussions can be arranged within Kerala where feasible."], ["Will the website be mobile-friendly?", "Responsive layouts are included so the website can adapt to common mobile, tablet and desktop screen sizes."], ["Will you help with domain and hosting?", "Domain, hosting and deployment requirements can be reviewed and included in the agreed project scope."]],
   },
   "ecommerce-development": {
-    title: "Build Your Online Store with a Custom E-commerce Website",
+    title: "E-commerce Website Development in Kerala",
     intro: "Take your products online with an e-commerce website designed to make product discovery, ordering and management easier. We plan the store around your catalogue, customer journey and operational requirements.",
     description: "E-commerce website development with product catalogues, checkout, payment integration and order management.",
     items: ["Product and category management", "Shopping cart and checkout", "Payment gateway integration", "Order and customer management", "Admin dashboard", "Shipping integrations where required"],
@@ -22,7 +22,7 @@ const SERVICES = {
     faqs: [["Can you integrate online payments?", "Payment gateway integration can be included after confirming the provider, account requirements and checkout workflow."], ["Can I manage products myself?", "An admin interface for managing products and orders can be included in the agreed scope."], ["How is e-commerce pricing decided?", "Pricing depends on catalogue size, integrations, design, checkout requirements and operational features."], ["Can you add delivery and order tracking?", "Shipping workflows and order status features can be included after confirming the courier or logistics provider and required integrations."], ["Can the store be managed through an admin panel?", "Product, inventory and order management features can be included based on the agreed administrative requirements."]],
   },
   "custom-software-development": {
-    title: "Software Built Around Your Business Requirements",
+    title: "Custom Software Development for Businesses in India",
     intro: "When standard tools do not fit your workflow, custom software can provide a more suitable way to manage operations. We develop web-based systems around specific requirements, users and business processes.",
     description: "Custom web applications, dashboards and business tools designed around your operations.",
     items: ["Booking and appointment systems", "Inventory management applications", "Business management dashboards", "Customer and partner portals", "Internal workflow systems", "Custom web applications"],
@@ -30,7 +30,7 @@ const SERVICES = {
     faqs: [["Can you build software based on our existing process?", "Yes. We begin by understanding the current workflow, users and business rules before proposing a scope."], ["Can the application be expanded later?", "The architecture and delivery plan can account for expected future requirements, subject to scope and budget."], ["Do you provide maintenance?", "Post-launch support and maintenance can be discussed and included as a separate agreed arrangement."], ["Can you integrate third-party APIs?", "API integrations can be included after reviewing the provider documentation, authentication requirements and intended data flow."], ["Will the software work on mobile devices?", "Web applications can be designed responsively where the user workflows require mobile and tablet access."]],
   },
   "website-redesign": {
-    title: "Give Your Existing Website a Better Digital Experience",
+    title: "Website Redesign Services in Kerala",
     intro: "An outdated website can make it harder for visitors to understand your services or take action. We help improve existing websites through better structure, responsive layouts, usability and technical improvements.",
     description: "Website redesign services focused on usability, responsive layouts, content structure and performance.",
     items: ["Modern interface and visual design", "Mobile responsiveness", "Navigation and content hierarchy", "Performance improvements", "SEO structure and metadata", "Conversion-focused enquiry paths"],
