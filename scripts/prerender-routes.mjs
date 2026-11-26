@@ -153,6 +153,24 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
       }))
     });
   }
+
+  if (route === "/student-projects/") {
+    schemaGraph.push({
+      "@type": "FAQPage",
+      "@id": `${meta.canonical}#faq`,
+      "mainEntity": [
+        ["Do you support BCA final-year projects?", "Yes. We discuss BCA project requirements involving web applications, Python, databases and other suitable software topics. The scope is agreed after reviewing your course requirements."],
+        ["Can you help with BTech and MCA projects?", "Yes. We review relevant computer science and IT project briefs, technical depth, available data and timelines before confirming feasibility."],
+        ["Which technologies can be used?", "Depending on the project, options may include React, Node.js, Express, Python, REST APIs, PostgreSQL, MySQL and suitable AI or machine-learning libraries."],
+        ["Will I understand the source code?", "The agreed handover can include code walkthroughs and explanations of the architecture, modules and implementation. Students are expected to participate and understand their work."],
+        ["Do you work with students outside Kollam?", "Yes. Project discussions and delivery can be handled remotely across Kerala and India. In-person discussions within Kerala may be arranged where feasible."]
+      ].map(([question, answer]) => ({
+        "@type": "Question",
+        "name": question,
+        "acceptedAnswer": { "@type": "Answer", "text": answer }
+      }))
+    });
+  }
   const schemaTag = `<script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org",
     "@graph": schemaGraph
