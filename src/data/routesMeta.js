@@ -48,6 +48,7 @@ export const ROUTES_META = {
     ogTitle: "Build Your Final Year Project with Practical Development Support",
     ogDescription: "Academic software project development with implementation support and technical walkthroughs.",
   },
+  "/student-projects/kerala/": { title: "Final Year Project Development in Kerala | Zenith Softworks", description: "Discuss BCA, BTech and MCA software project development in Kerala with Zenith Softworks. Remote project support across India and in-person discussions in Kerala where feasible.", canonical: "https://zenithsoftworks.in/student-projects/kerala/" },
   "/student-projects/bca-project-development/": {
     title: "BCA Final Year Project Development in India | Zenith",
     description: "Discuss BCA final-year software projects involving Python, web applications, databases and full-stack development with Zenith Softworks.",
