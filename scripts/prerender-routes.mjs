@@ -16,10 +16,6 @@ function escapeAttr(value) {
     .replaceAll(">", "&gt;");
 }
 
-function escapeRegExp(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
 function setHeadTag(html, pattern, replacement) {
   const matches = [...html.matchAll(new RegExp(pattern.source, pattern.flags.includes("g") ? pattern.flags : pattern.flags + "g"))];
   if (!matches.length) return html.replace("</head>", `${replacement}</head>`);
@@ -34,12 +30,11 @@ function setHeadTag(html, pattern, replacement) {
 function setMeta(html, attribute, value) {
   const escaped = escapeAttr(value);
   const pattern = new RegExp(`<meta\\b(?=[^>]*\\b${attribute}=["'])[^>]*>`, "gi");
-  const replacement = `<meta ${attribute}="${escaped}" />`;
-  return setHeadTag(html, pattern, replacement);
+  return setHeadTag(html, pattern, `<meta ${attribute}="${escaped}" />`);
 }
 
 function setCanonical(html, href) {
-  const pattern = /<link\\b(?=[^>]*\\brel=["']canonical["'])[^>]*>/gi;
+  const pattern = /<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/gi;
   return setHeadTag(html, pattern, `<link rel="canonical" href="${escapeAttr(href)}" />`);
 }
 
@@ -53,7 +48,7 @@ try {
 }
 
 for (const [route, meta] of Object.entries(ROUTES_META)) {
-  let html = baseHtml.replace(/<title\\b[^>]*>[\\s\\S]*?<\\/title>/i, `<title>${escapeAttr(meta.title)}</title>`);
+  let html = baseHtml.replace(/<title\b[^>]*>[\s\S]*?<\/title>/i, `<title>${escapeAttr(meta.title)}</title>`);
 
   html = setMeta(html, 'name="description"', meta.description);
   html = setMeta(html, 'name="robots"', meta.robots || "index,follow");
@@ -90,7 +85,7 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
     }
   }
 
-  const relative = route === "/" ? "index.html" : `${route.replace(/^\\/+|\\/+$/g, "")}/index.html`;
+  const relative = route === "/" ? "index.html" : `${route.replace(/^\/+|\/+$/g, "")}/index.html`;
   const target = join(dist, relative);
   await mkdir(dirname(target), { recursive: true });
   await writeFile(target, html, "utf8");
