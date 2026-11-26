@@ -167,7 +167,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
               to={
                 sustainabilityMode
                   ? "/contact/?type=student&service=Academic%20project"
-                  : "/academic-services/#enquiry"
+                  : "/contact/?type=student"
               }
               className="z-btn z-btn-secondary"
             >
@@ -571,7 +571,7 @@ export default function StudentProjectsPage({ sustainabilityMode = false }) {
       <CtaBanner
         title="Found an idea worth building?"
         primaryLabel="Request a detailed project brief"
-        primaryHref="/academic-services/#enquiry"
+        primaryHref="/contact/?type=student"
       />
     </>
   );
