@@ -27,10 +27,10 @@ function setHeadTag(html, pattern, replacement) {
   return output;
 }
 
-function setMeta(html, attribute, value) {
+function setMeta(html, key, attrValue, value) {
   const escaped = escapeAttr(value);
-  const pattern = new RegExp(`<meta\\b(?=[^>]*\\b${attribute}=["'])[^>]*>`, "gi");
-  return setHeadTag(html, pattern, `<meta ${attribute}="${escaped}" />`);
+  const pattern = new RegExp(`<meta\\b(?=[^>]*\\b${key}=["']${attrValue}["'])[^>]*>`, "gi");
+  return setHeadTag(html, pattern, `<meta ${key}="${attrValue}" content="${escaped}" />`);
 }
 
 function setCanonical(html, href) {
@@ -50,16 +50,16 @@ try {
 for (const [route, meta] of Object.entries(ROUTES_META)) {
   let html = baseHtml.replace(/<title\b[^>]*>[\s\S]*?<\/title>/i, `<title>${escapeAttr(meta.title)}</title>`);
 
-  html = setMeta(html, 'name="description"', meta.description);
-  html = setMeta(html, 'name="robots"', meta.robots || "index,follow");
-  html = setMeta(html, 'property="og:title"', meta.ogTitle || meta.title);
-  html = setMeta(html, 'property="og:description"', meta.ogDescription || meta.description);
-  html = setMeta(html, 'property="og:type"', "website");
-  html = setMeta(html, 'property="og:site_name"', "Zenith Softworks");
-  html = setMeta(html, 'property="og:url"', meta.canonical);
-  html = setMeta(html, 'name="twitter:card"', "summary");
-  html = setMeta(html, 'name="twitter:title"', meta.ogTitle || meta.title);
-  html = setMeta(html, 'name="twitter:description"', meta.ogDescription || meta.description);
+  html = setMeta(html, "name", "description", meta.description);
+  html = setMeta(html, "name", "robots", meta.robots || "index,follow");
+  html = setMeta(html, "property", "og:title", meta.ogTitle || meta.title);
+  html = setMeta(html, "property", "og:description", meta.ogDescription || meta.description);
+  html = setMeta(html, "property", "og:type", "website");
+  html = setMeta(html, "property", "og:site_name", "Zenith Softworks");
+  html = setMeta(html, "property", "og:url", meta.canonical);
+  html = setMeta(html, "name", "twitter:card", "summary");
+  html = setMeta(html, "name", "twitter:title", meta.ogTitle || meta.title);
+  html = setMeta(html, "name", "twitter:description", meta.ogDescription || meta.description);
   html = setCanonical(html, meta.canonical);
 
   const pageSchema = {
