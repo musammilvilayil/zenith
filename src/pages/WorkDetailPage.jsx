@@ -93,7 +93,7 @@ export default function WorkDetailPage() {
           ].map(([label, item, arrow], idx) => (
             <Link
               key={label}
-              to={`/work/${item.slug}/`}
+              to={`/projects/${item.slug}/`}
               className={`group py-10 transition-colors hover:bg-navy/40 sm:px-6 ${idx === 1 ? "border-t border-line text-right sm:border-t-0 sm:border-l" : ""}`}
             >
               <span className="z-label">{label}</span>
