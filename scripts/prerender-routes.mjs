@@ -20,7 +20,7 @@ function escapeAttr(value) {
 let App;
 let vite;
 try {
-  vite = await createServer({ configFile: "./vite.config.js", server: { middlewareMode: true }, appType: "custom" });
+  vite = await createServer({ configFile: "./vite.config.js", server: { middlewareMode: true }, appType: "custom", ssr: { noExternal: ["react-router", "react-router-dom"] } });
   ({ default: App } = await vite.ssrLoadModule("/src/App.jsx"));
 } catch (error) {
   console.warn("React static rendering could not be initialised; metadata-only HTML shells will be generated.", error);
