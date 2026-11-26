@@ -23,6 +23,14 @@ const MAIN_AREAS = [
 
 const PROCESS = ["Share your course, topic and college requirements","Discuss scope, feasibility and timeline","Agree features and development milestones","Develop and test the application","Review the code and understand the implementation","Complete agreed handover and demonstration preparation"];
 
+const GENERAL_FAQS = [
+  ["Do you support BCA final-year projects?", "Yes. We discuss BCA project requirements involving web applications, Python, databases and other suitable software topics. The scope is agreed after reviewing your course requirements."],
+  ["Can you help with BTech and MCA projects?", "Yes. We review relevant computer science and IT project briefs, technical depth, available data and timelines before confirming feasibility."],
+  ["Which technologies can be used?", "Depending on the project, options may include React, Node.js, Express, Python, REST APIs, PostgreSQL, MySQL and suitable AI or machine-learning libraries."],
+  ["Will I understand the source code?", "The agreed handover can include code walkthroughs and explanations of the architecture, modules and implementation. Students are expected to participate and understand their work."],
+  ["Do you work with students outside Kollam?", "Yes. Project discussions and delivery can be handled remotely across Kerala and India. In-person discussions within Kerala may be arranged where feasible."]
+];
+
 export default function StudentProjectLandingPage() {
   const { slug } = useParams();
   const detail = slug ? TRACKS[slug] : null;
@@ -33,7 +41,7 @@ export default function StudentProjectLandingPage() {
       <PageHead />
       <PageHero
         eyebrow={detail ? `Student project development · ${detail.label}` : "Academic software project development · India"}
-        title={detail?.title || "Build Your Final Year Project with Practical Development Support"}
+        title={detail?.title || "BCA, BTech and MCA Project Development in Kerala"}
         description={detail?.intro || "Have a project idea but need help turning it into a working application? Zenith Softworks provides academic software project development for students who need practical implementation support, agreed documentation and technical walkthroughs. Students should participate in understanding and presenting their project."}
         actions={<><Link to={`/contact/?type=student${detail ? `&course=${encodeURIComponent(detail.label)}` : ""}`} className="z-btn z-btn-primary">Discuss Your Student Project</Link><Link to="/projects/" className="z-btn z-btn-secondary">Explore Project Work</Link><Link to="/student-project-ideas/" className="z-btn z-btn-secondary">Browse Project Ideas</Link></>}
         meta="Based in Kerala · Remote project delivery across India"
@@ -51,6 +59,14 @@ export default function StudentProjectLandingPage() {
         </>
       )}
       <section className="z-section"><div className="z-container"><h2 className="z-display-md">How project development works</h2><div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{PROCESS.map((step,i)=><article key={step} className="z-card p-5"><span className="z-num">0{i+1}</span><p className="mt-3 text-sm leading-relaxed text-muted">{step}</p></article>)}</div><p className="mt-7 max-w-4xl text-sm leading-relaxed text-muted">The exact deliverables depend on the agreed scope and college requirements. Students should follow their institution's academic integrity and authorship rules. We do not guarantee grades or academic outcomes.</p></div></section>
+      <section className="z-section border-t border-line">
+        <div className="z-container max-w-4xl">
+          <h2 className="z-display-md">Frequently asked questions</h2>
+          <div className="mt-8 divide-y divide-line border-t border-line">
+            {GENERAL_FAQS.map(([question, answer]) => <article key={question} className="py-6"><h3 className="font-display text-lg font-bold">{question}</h3><p className="mt-2 leading-relaxed text-muted">{answer}</p></article>)}
+          </div>
+        </div>
+      </section>
       <CtaBanner title="Have a final-year project requirement?" primaryLabel="Discuss your project" primaryHref="/contact/?type=student" />
     </>
   );
