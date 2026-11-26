@@ -22,6 +22,7 @@ export default function App() {
         <Route path="/business/" element={<BusinessPage />} />
         <Route path="/business/:slug/" element={<BusinessPage />} />
         <Route path="/student-projects/" element={<StudentProjectLandingPage />} />
+        <Route path="/student-projects/sustainability/" element={<Navigate to="/student-project-ideas/sustainability/" replace />} />
         <Route path="/student-projects/:slug/" element={<StudentProjectLandingPage />} />
         <Route path="/projects/" element={<WorkPage />} />
         <Route path="/projects/:slug/" element={<WorkDetailPage />} />
@@ -37,8 +38,10 @@ export default function App() {
         <Route path="/services/*" element={<Navigate to="/business/" replace />} />
         <Route path="/academic-services/*" element={<Navigate to="/student-projects/" replace />} />
         <Route path="/solutions/*" element={<Navigate to="/business/" replace />} />
-        <Route path="/work/*" element={<Navigate to="/projects/" replace />} />
-        <Route path="/insights/*" element={<Navigate to="/resources/" replace />} />
+        <Route path="/work/" element={<WorkPage />} />
+        <Route path="/work/:slug/*" element={<WorkDetailPage />} />
+        <Route path="/insights/" element={<Navigate to="/resources/" replace />} />
+        <Route path="/insights/:id/*" element={<InsightDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </SiteLayout>
