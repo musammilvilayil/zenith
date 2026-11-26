@@ -21,7 +21,7 @@ export default function HomePage() {
  return <>
   <PageHead/>
   <section className="zn-hero">
-   <div className="zn-hero-photo"><img src={image("photo-1498050108023-c5249f4df085",1400)} alt="Creative developer workspace with a laptop and code on screen" fetchPriority="high" decoding="async"/></div><div className="zn-hero-shade"/>
+   <div className="zn-hero-photo"><picture><source media="(max-width: 760px)" srcSet={image("photo-1498050108023-c5249f4df085",900)}/><img src={image("photo-1498050108023-c5249f4df085",1400)} alt="Creative developer workspace with a laptop and code on screen" fetchPriority="high" decoding="async"/></picture></div><div className="zn-hero-shade"/>
    <div className="zn-wrap zn-hero-content">
     <div className="zn-eyebrow"><span/> INDEPENDENT DIGITAL DEVELOPMENT STUDIO <i>—</i> KERALA, INDIA</div>
     <h1>Ideas into digital products.<br/><em>Built with purpose.</em></h1>
