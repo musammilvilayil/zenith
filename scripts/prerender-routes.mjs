@@ -1,5 +1,9 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
+import React from "react";
+import { renderToString } from "react-dom/server";
+import { StaticRouter } from "react-router-dom/server";
+import { createServer } from "vite";
 import { ROUTES_META } from "../src/data/routesMeta.js";
 
 const dist = resolve(process.cwd(), "dist");
@@ -11,6 +15,15 @@ function escapeAttr(value) {
     .replaceAll('"', "&quot;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;");
+}
+
+let App;
+let vite;
+try {
+  vite = await createServer({ configFile: "./vite.config.js", server: { middlewareMode: true }, appType: "custom" });
+  ({ default: App } = await vite.ssrLoadModule("/src/App.jsx"));
+} catch (error) {
+  console.warn("React static rendering could not be initialised; metadata-only HTML shells will be generated.", error);
 }
 
 for (const [route, meta] of Object.entries(ROUTES_META)) {
@@ -30,10 +43,23 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
   ].join("");
 
   html = html.replace("</head>", `${headInject}</head>`);
+
+  if (App && !["/insights/", "/services/"].includes(route)) {
+    try {
+      const markup = renderToString(
+        React.createElement(StaticRouter, { location: route }, React.createElement(App)),
+      );
+      html = html.replace('<div id="root"></div>', `<div id="root">${markup}</div>`);
+    } catch (error) {
+      console.warn(`Static content rendering skipped for ${route}; metadata shell retained.`, error.message);
+    }
+  }
+
   const relative = route === "/" ? "index.html" : `${route.replace(/^\/+|\/+$/g, "")}/index.html`;
   const target = join(dist, relative);
   await mkdir(dirname(target), { recursive: true });
   await writeFile(target, html, "utf8");
 }
 
-console.log(`Generated SEO metadata HTML shells for ${Object.keys(ROUTES_META).length} routes. Page content is still rendered by the React client.`);
+if (vite) await vite.close();
+console.log(`Generated SEO HTML for ${Object.keys(ROUTES_META).length} routes (static page content where server rendering succeeds).`);
