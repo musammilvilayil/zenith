@@ -14,32 +14,26 @@ function escapeAttr(value) {
 }
 
 for (const [route, meta] of Object.entries(ROUTES_META)) {
-  let html = baseHtml.replace(
-    /<title>[\s\S]*?<\/title>/i,
-    `<title>${escapeAttr(meta.title)}</title>`,
-  );
-  html = html.replace(
-    /<meta\s+name="description"[\s\S]*?\/>/i,
-    `<meta name="description" content="${escapeAttr(meta.description)}" />`,
-  );
+  let html = baseHtml.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeAttr(meta.title)}</title>`);
+  html = html.replace(/<meta\s+name="description"[\s\S]*?\/>/i, `<meta name="description" content="${escapeAttr(meta.description)}" />`);
 
-  const headInject =
-    `<link rel="canonical" href="${escapeAttr(meta.canonical)}" />` +
-    `<meta property="og:title" content="${escapeAttr(meta.ogTitle || meta.title)}" />` +
-    `<meta property="og:description" content="${escapeAttr(meta.ogDescription || meta.description)}" />` +
-    `<meta property="og:type" content="website" />` +
-    `<meta property="og:url" content="${escapeAttr(meta.canonical)}" />` +
-    `<meta property="og:site_name" content="Zenith Softworks" />` +
-    `<meta name="twitter:title" content="${escapeAttr(meta.ogTitle || meta.title)}" />` +
-    `<meta name="twitter:description" content="${escapeAttr(meta.ogDescription || meta.description)}" />`;
+  const headInject = [
+    `<link rel="canonical" href="${escapeAttr(meta.canonical)}" />`,
+    `<meta property="og:title" content="${escapeAttr(meta.ogTitle || meta.title)}" />`,
+    `<meta property="og:description" content="${escapeAttr(meta.ogDescription || meta.description)}" />`,
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:url" content="${escapeAttr(meta.canonical)}" />`,
+    `<meta property="og:site_name" content="Zenith Softworks" />`,
+    `<meta name="twitter:title" content="${escapeAttr(meta.ogTitle || meta.title)}" />`,
+    `<meta name="twitter:description" content="${escapeAttr(meta.ogDescription || meta.description)}" />`,
+    meta.robots ? `<meta name="robots" content="${escapeAttr(meta.robots)}" />` : "",
+  ].join("");
 
   html = html.replace("</head>", `${headInject}</head>`);
-
-  const relative =
-    route === "/" ? "index.html" : `${route.replace(/^\/+|\/+$/g, "")}/index.html`;
+  const relative = route === "/" ? "index.html" : `${route.replace(/^\/+|\/+$/g, "")}/index.html`;
   const target = join(dist, relative);
   await mkdir(dirname(target), { recursive: true });
   await writeFile(target, html, "utf8");
 }
 
-console.log(`Generated SEO HTML shells for ${Object.keys(ROUTES_META).length} React routes.`);
+console.log(`Generated SEO metadata HTML shells for ${Object.keys(ROUTES_META).length} routes. Page content is still rendered by the React client.`);
