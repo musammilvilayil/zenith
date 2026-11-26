@@ -77,3 +77,10 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var
 .zn-site main .z-lede,.zn-site main .text-muted{color:#4f5b6b!important}
 .zn-site main .z-card .text-muted{color:#4f5b6b!important}
 .zn-site main .z-glass .text-muted{color:#d0d9e5!important}
+
+
+/* Dark project-section contrast: keep labels light on the dark surface. */
+.zn-work .zn-overline{color:#c5d4e8}
+.zn-work .zn-project-type{color:#c5d4e8}
+.zn-work .zn-project-caption p{color:#d5dfeb}
+.zn-contact-band .zn-overline{color:#304965}
