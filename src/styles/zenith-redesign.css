@@ -50,3 +50,31 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var
 .zn-site main .z-glass{color:#edf3ff}
 .zn-site main .z-glass p{color:#bdc9d8}
 .zn-site main .z-glass h1,.zn-site main .z-glass h2,.zn-site main .z-glass h3{color:#f0f4fa}
+
+
+/* Lighthouse accessibility contrast refinements */
+:root{--zn-muted:#4f5b6b;--zn-line:rgba(12,25,44,.2)}
+.zn-brand span{color:#4c5868}
+.zn-desktop-nav a{color:#465365}
+.zn-eyebrow{color:#d0d9e5}
+.zn-hero-index{color:#c2ccda}
+.zn-intro .zn-overline,.zn-section .zn-overline{color:#4d5b6e}
+.zn-intro h2 span,.zn-section-heading h2 span,.zn-faq h2 span{color:#687587}
+.zn-intro-copy,.zn-section-heading>p,.zn-capability>p,.zn-method-copy>p:not(.zn-overline),.zn-faq-grid>div:first-child>p:not(.zn-overline),.zn-faq-list details p{color:#4f5b6b}
+.zn-cap-meta,.zn-project-type{color:#526176}
+.zn-method-copy .zn-overline,.zn-faq .zn-overline,.zn-principles>.zn-wrap>.zn-overline{color:#4d5b6e}
+.zn-principle-grid p{color:#4f5b6b}
+.zn-pathway .zn-overline{color:#d2ddeb}
+.zn-pathway p{color:#d0d9e5}
+.zn-project-caption p{color:#d0d9e5}
+.zn-footer-brand p,.zn-footer-columns a,.zn-footer-columns span{color:#bdc7d4}
+.zn-footer-columns h3{color:#fff}
+.zn-footer-bottom{color:#b4bfce}
+.zn-footer-bottom a{color:#c8d1dd}
+.zn-contact-band .zn-overline{color:#304965}
+.zn-steps span{color:#52657e}
+.zn-site main .z-label{color:#43546b}
+.zn-site main .z-label-accent{color:#285486}
+.zn-site main .z-lede,.zn-site main .text-muted{color:#4f5b6b!important}
+.zn-site main .z-card .text-muted{color:#4f5b6b!important}
+.zn-site main .z-glass .text-muted{color:#d0d9e5!important}
