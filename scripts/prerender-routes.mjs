@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import React from "react";
 import { renderToString } from "react-dom/server";
@@ -7,6 +7,8 @@ import { ROUTES_META } from "../src/data/routesMeta.js";
 
 const dist = resolve(process.cwd(), "dist");
 const baseHtml = await readFile(join(dist, "index.html"), "utf8");
+const fontFiles = (await readdir(join(dist, "assets"))).filter((f) => /^(archivo|inter-tight)-latin-wght-normal-.*\.woff2$/.test(f));
+const fontPreloads = fontFiles.map((f) => `<link rel="preload" as="font" type="font/woff2" href="/assets/${f}" crossorigin />`).join("");
 const manifest = JSON.parse(await readFile(join(dist, ".vite", "manifest.json"), "utf8"));
 
 // The SSR pass (vite dev server) emits source paths such as /src/assets/images/x.webp.
@@ -73,6 +75,7 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
   html = setMeta(html, "name", "twitter:title", meta.ogTitle || meta.title);
   html = setMeta(html, "name", "twitter:description", meta.ogDescription || meta.description);
   html = setCanonical(html, meta.canonical);
+  html = html.replace("</head>", `${fontPreloads}</head>`);
 
   const pageSchema = {
     "@context": "https://schema.org",

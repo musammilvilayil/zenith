@@ -42,9 +42,9 @@ export default function SiteLayout({ children }) {
       <a className="zn-skip" href="#main-content">Skip to content</a>
       <header className={"zn-header " + (scrolled ? "is-scrolled" : "")}>
         <div className="zn-nav-wrap">
-          <Link to="/" className="zn-brand" aria-label="Zenith Softworks home">
+          <Link to="/" className="zn-brand">
             <img src={BRAND_IMAGES.markLogo} alt="Zenith Softworks logo" width="46" height="46" />
-            <span className="zn-brand-text"><b>ZENITH</b><i>SOFTWORKS</i></span>
+            <span className="zn-brand-text"><b>ZENITH</b> <i>SOFTWORKS</i></span>
           </Link>
           <nav className="zn-desktop-nav" aria-label="Main navigation">
             {links.map((link) => (
@@ -116,7 +116,7 @@ export default function SiteLayout({ children }) {
         </div>
       </footer>
 
-      <a className="zn-whatsapp" href={SITE.whatsappHref} target="_blank" rel="noreferrer" aria-label="Chat with Zenith Softworks on WhatsApp">
+      <a className="zn-whatsapp" href={SITE.whatsappHref} target="_blank" rel="noreferrer" aria-label="WhatsApp us to chat with Zenith Softworks">
         <MessageCircle size={19} /><span>WhatsApp us</span>
       </a>
     </div>

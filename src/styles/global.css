@@ -23,8 +23,8 @@
   --color-light-muted: #4b5563;
   --color-light-accent: #0a66b2;
 
-  --font-sans: "Inter Tight", "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-display: "Archivo", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Tight", "Inter Tight Fallback", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Archivo", "Archivo Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
 
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
