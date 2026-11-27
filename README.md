@@ -5,12 +5,9 @@ Native **React 19 + Vite 6 + Tailwind CSS v4** application for [zenithsoftworks.
 ## Stack & Features
 
 - **Native React Router (`src/App.jsx`):** All 26 public routes (`/`, `/services/`, `/work/`, `/about/`, `/solutions/`, `/talent/`, `/student-projects/`, `/student-projects/sustainability/`, `/academic-services/`, `/insights/`, `/contact/`, `/privacy/`, `/terms/`, plus service, case-study, and insight detail pages).
-- **Canvas Visual Components (`src/components/fx/`):**
-  - `GhostFibers` (homepage hero)
-  - `LuminousFilaments` (homepage story & page heroes)
-  - `InterferenceRibbons` (homepage approach & CTA banners)
-  - `VoxelArc` (Student Lab section)
-- **Bundled Image Assets (`src/assets/images/`):** Original Zenith logos (`zenith-original-navbar.png`, `zenith-logo-footer.svg`, `zenith-mark.svg`) and custom generated section/case-study visuals (`hero-abstract.jpg`, `work-megham.jpg`, `work-carematrix.jpg`, `work-she-shield.jpg`, `work-projexify.jpg`, `student-lab.jpg`).
+- **Design system (light mode):** paper/white sections with dark "stage" accents and a single blue accent; Archivo + Inter Tight. Home layouts: centred hero, media/text split, timeline, scroll-pinned showcase (`src/components/ui/PinnedShowcase.jsx`), hover rows, tall cards, wave footer. Tokens live in `src/styles/global.css` and `src/styles/zenith-redesign.css`.
+- **Brand assets:** `src/assets/images/zenith-logo.webp`, `zenith-mark.webp`; favicons, `apple-touch-icon.png` and the 1200×630 `og-zenith.png` are in `public/`.
+- **Docs:** `docs/UI-AUDIT.md` (audit + redesign notes) and `docs/SEO-STRATEGY.md` (keyword plan, schema, blog and off-page plan).
 - **Enquiry API (`api/enquiry.js`):** Preserved Vercel serverless endpoint with honeypot, validation, and WhatsApp fallback.
 
 ## Local Development
