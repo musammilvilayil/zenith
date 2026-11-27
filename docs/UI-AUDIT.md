@@ -32,7 +32,7 @@ Audit of the previous site (light "editorial" theme) and what the redesign chang
 
 1. Compress case-study JPGs to WebP (~80 KB each).
 2. Replace the numeric blog URLs (`/resources/1/`) with keyword slugs + 301s.
-3. Add `/student-project-ideas/` to `sitemap.xml`.
+3. `/student-project-ideas/` is intentionally `noindex` (see routesMeta) and is kept out of `sitemap.xml`.
 4. Run Lighthouse on the deployed Vercel preview and fix any inner-page contrast regressions page by page.
 
 ## 4. Light-mode notes
