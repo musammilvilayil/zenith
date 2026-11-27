@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router";
 import App from "./App.jsx";
+import pages from "./pages/lazy.js";
 import "./styles/global.css";
 import "./styles/zenith-redesign.css";
 
@@ -9,7 +10,7 @@ const root = document.getElementById("root");
 const app = (
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <App pages={pages} />
     </BrowserRouter>
   </React.StrictMode>
 );

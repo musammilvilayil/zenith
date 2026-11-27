@@ -1,23 +1,12 @@
+import { Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router";
 import SiteLayout from "@/components/layout/SiteLayout";
-import AboutPage from "@/pages/AboutPage";
-import ContactPage from "@/pages/ContactPage";
-import HomePage from "@/pages/HomePage";
-import InsightDetailPage from "@/pages/InsightDetailPage";
-import InsightsPage from "@/pages/InsightsPage";
-import LegalPage from "@/pages/LegalPage";
-import NotFoundPage from "@/pages/NotFoundPage";
-import StudentProjectsPage from "@/pages/StudentProjectsPage";
-import TalentPage from "@/pages/TalentPage";
-import WorkDetailPage from "@/pages/WorkDetailPage";
-import WorkPage from "@/pages/WorkPage";
-import BusinessPage from "@/pages/BusinessPage";
-import StudentProjectLandingPage from "@/pages/StudentProjectLandingPage";
-import LocationPage from "@/pages/LocationPage";
 
-export default function App() {
+export default function App({ pages }) {
+  const { AboutPage, ContactPage, HomePage, InsightDetailPage, InsightsPage, LegalPage, NotFoundPage, StudentProjectsPage, TalentPage, WorkDetailPage, WorkPage, BusinessPage, StudentProjectLandingPage, LocationPage } = pages;
   return (
     <SiteLayout>
+      <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/website-development-company-kollam/" element={<LocationPage location="kollam" />} />
@@ -49,6 +38,7 @@ export default function App() {
         <Route path="/insights/:id/*" element={<InsightDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      </Suspense>
     </SiteLayout>
   );
 }

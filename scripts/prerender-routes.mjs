@@ -193,7 +193,11 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
   if (StaticApp && !["/insights/", "/services/"].includes(route)) {
     try {
       const markup = renderToString(React.createElement(StaticApp, { location: route }));
-      html = html.replace('<div id="root"></div>', `<div id="root">${fixAssetUrls(markup)}</div>`);
+      // React inlines hoisted <link rel="preload"> tags in the markup; move them into <head> so the preload scanner finds them first.
+      const preloadTags = [];
+      const cleaned = fixAssetUrls(markup).replace(/<link rel="preload"[^>]*\/?>/g, (tag) => { preloadTags.push(tag); return ""; });
+      html = html.replace("</head>", `${preloadTags.join("")}</head>`);
+      html = html.replace('<div id="root"></div>', `<div id="root">${cleaned}</div>`);
     } catch (error) {
       console.warn(`Static content rendering skipped for ${route}; metadata shell retained.`, error.message);
     }
