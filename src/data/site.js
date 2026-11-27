@@ -1,11 +1,11 @@
 import logoLockup from "@/assets/images/zenith-logo.webp";
 import markLogo from "@/assets/images/zenith-mark.webp";
-import heroAbstractImg from "@/assets/images/hero-abstract.jpg";
-import workMeghamImg from "@/assets/images/work-megham.jpg";
-import workCarematrixImg from "@/assets/images/work-carematrix.jpg";
-import workSheShieldImg from "@/assets/images/work-she-shield.jpg";
-import workProjexifyImg from "@/assets/images/work-projexify.jpg";
-import studentLabImg from "@/assets/images/student-lab.jpg";
+import heroAbstractImg from "@/assets/images/hero-abstract.webp";
+import workMeghamImg from "@/assets/images/work-megham.webp";
+import workCarematrixImg from "@/assets/images/work-carematrix.webp";
+import workSheShieldImg from "@/assets/images/work-she-shield.webp";
+import workProjexifyImg from "@/assets/images/work-projexify.webp";
+import studentLabImg from "@/assets/images/student-lab.webp";
 
 export const BRAND_IMAGES = { logoLockup, markLogo, heroAbstractImg, workMeghamImg, workCarematrixImg, workSheShieldImg, workProjexifyImg, studentLabImg };
 

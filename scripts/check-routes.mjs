@@ -43,12 +43,12 @@ const requiredImages = [
   "src/assets/images/zenith-logo.webp",
   "public/og-zenith.png",
   "src/assets/images/zenith-mark.webp",
-  "src/assets/images/hero-abstract.jpg",
-  "src/assets/images/work-megham.jpg",
-  "src/assets/images/work-carematrix.jpg",
-  "src/assets/images/work-she-shield.jpg",
-  "src/assets/images/work-projexify.jpg",
-  "src/assets/images/student-lab.jpg",
+  "src/assets/images/hero-abstract.webp",
+  "src/assets/images/work-megham.webp",
+  "src/assets/images/work-carematrix.webp",
+  "src/assets/images/work-she-shield.webp",
+  "src/assets/images/work-projexify.webp",
+  "src/assets/images/student-lab.webp",
 ];
 
 for (const img of requiredImages) {

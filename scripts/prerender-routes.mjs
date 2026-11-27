@@ -7,6 +7,16 @@ import { ROUTES_META } from "../src/data/routesMeta.js";
 
 const dist = resolve(process.cwd(), "dist");
 const baseHtml = await readFile(join(dist, "index.html"), "utf8");
+const manifest = JSON.parse(await readFile(join(dist, ".vite", "manifest.json"), "utf8"));
+
+// The SSR pass (vite dev server) emits source paths such as /src/assets/images/x.webp.
+// Map them to the hashed files produced by the production build so no 404s ship in static HTML.
+function fixAssetUrls(markup) {
+  return markup.replace(/\/src\/assets\/[^"'\s)]+/g, (match) => {
+    const entry = manifest[match.slice(1).split("?")[0]];
+    return entry ? `/${entry.file}` : match;
+  });
+}
 
 function escapeAttr(value) {
   return String(value)
@@ -180,7 +190,7 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
   if (StaticApp && !["/insights/", "/services/"].includes(route)) {
     try {
       const markup = renderToString(React.createElement(StaticApp, { location: route }));
-      html = html.replace('<div id="root"></div>', `<div id="root">${markup}</div>`);
+      html = html.replace('<div id="root"></div>', `<div id="root">${fixAssetUrls(markup)}</div>`);
     } catch (error) {
       console.warn(`Static content rendering skipped for ${route}; metadata shell retained.`, error.message);
     }
