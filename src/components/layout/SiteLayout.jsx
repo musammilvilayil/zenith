@@ -43,7 +43,7 @@ export default function SiteLayout({ children }) {
       <header className={"zn-header " + (scrolled ? "is-scrolled" : "")}>
         <div className="zn-nav-wrap">
           <Link to="/" className="zn-brand" aria-label="Zenith Softworks home">
-            <img src={BRAND_IMAGES.markLogo} alt="" width="44" height="39" />
+            <img src={BRAND_IMAGES.markLogo} alt="Zenith Softworks logo" width="46" height="46" />
             <span className="zn-brand-text"><b>ZENITH</b><i>SOFTWORKS</i></span>
           </Link>
           <nav className="zn-desktop-nav" aria-label="Main navigation">
@@ -74,11 +74,11 @@ export default function SiteLayout({ children }) {
         <div className="zn-footer-wave" aria-hidden="true" />
         <div className="zn-wrap">
           <div className="zn-footer-brand">
-            <img src={BRAND_IMAGES.markLogo} alt="" width="56" height="50" loading="lazy" />
+            <img src={BRAND_IMAGES.markLogo} alt="Zenith Softworks logo mark" width="56" height="50" loading="lazy" />
             <p>An independent digital development studio building websites, e-commerce stores, custom software and student projects from Kollam, Kerala.</p>
           </div>
           <nav className="zn-footer-nav" aria-label="Footer">
-            <Link to="/">Home</Link><Link to="/about/">About</Link><Link to="/business/">Business</Link><Link to="/student-projects/">Student projects</Link><Link to="/projects/">Work</Link><Link to="/resources/">Insights</Link><Link to="/contact/">Contact</Link>
+            <Link to="/">Home page</Link><Link to="/about/">About Zenith</Link><Link to="/business/">Business solutions</Link><Link to="/student-projects/">Student project help</Link><Link to="/projects/">Selected work</Link><Link to="/resources/">Guides and insights</Link><Link to="/contact/">Contact us</Link>
           </nav>
           <div className="zn-footer-columns">
             <div>
@@ -96,10 +96,10 @@ export default function SiteLayout({ children }) {
             </div>
             <div>
               <h3>Locations</h3>
-              <Link to="/website-development-company-kollam/">Kollam</Link>
-              <Link to="/software-development-company-kochi/">Kochi</Link>
-              <Link to="/software-development-company-trivandrum/">Trivandrum</Link>
-              <Link to="/website-development-company-calicut/">Calicut</Link>
+              <Link to="/website-development-company-kollam/">Kollam web services</Link>
+              <Link to="/software-development-company-kochi/">Kochi software services</Link>
+              <Link to="/software-development-company-trivandrum/">Trivandrum software services</Link>
+              <Link to="/website-development-company-calicut/">Calicut web services</Link>
             </div>
             <div>
               <h3>Contact</h3>

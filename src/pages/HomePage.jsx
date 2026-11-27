@@ -13,10 +13,10 @@ const services = [
 ];
 
 const showcase = [
-  { short: "Websites", tag: "Website development", ghost: "WEBSITES", title: "Websites that explain and convert.", text: "Fast, responsive business websites with clear navigation, search-friendly structure and an easy way for customers to enquire.", href: "/business/website-development/", image: BRAND_IMAGES.workMeghamImg, alt: "Cloud file management web application interface" },
-  { short: "E-commerce", tag: "E-commerce development", ghost: "STOREFRONTS", title: "Online stores built around how you sell.", text: "Product catalogues, checkout, payments and order management shaped to your products, pricing and delivery.", href: "/business/ecommerce-development/", image: BRAND_IMAGES.workProjexifyImg, alt: "Project collaboration platform dashboard" },
-  { short: "Software", tag: "Custom software", ghost: "SOFTWARE", title: "Software for real workflows.", text: "Web applications, dashboards and internal tools that replace spreadsheets and manual follow-ups with one reliable system.", href: "/business/custom-software-development/", image: BRAND_IMAGES.workCarematrixImg, alt: "Hospital intelligence dashboard" },
-  { short: "Student projects", tag: "BCA · BTech · MCA", ghost: "STUDENTS", title: "Projects you can build and explain.", text: "Guided project development with documentation and code walkthroughs, so you understand every module at viva.", href: "/student-projects/", image: BRAND_IMAGES.studentLabImg, alt: "Students working on a software project" },
+  { short: "Websites", cta: "Explore website development", tag: "Website development", ghost: "WEBSITES", title: "Websites that explain and convert.", text: "Fast, responsive business websites with clear navigation, search-friendly structure and an easy way for customers to enquire.", href: "/business/website-development/", image: BRAND_IMAGES.workMeghamImg, alt: "Cloud file management web application interface" },
+  { short: "E-commerce", cta: "Explore e-commerce development", tag: "E-commerce development", ghost: "STOREFRONTS", title: "Online stores built around how you sell.", text: "Product catalogues, checkout, payments and order management shaped to your products, pricing and delivery.", href: "/business/ecommerce-development/", image: BRAND_IMAGES.workProjexifyImg, alt: "Project collaboration platform dashboard" },
+  { short: "Software", cta: "Explore custom software", tag: "Custom software", ghost: "SOFTWARE", title: "Software for real workflows.", text: "Web applications, dashboards and internal tools that replace spreadsheets and manual follow-ups with one reliable system.", href: "/business/custom-software-development/", image: BRAND_IMAGES.workCarematrixImg, alt: "Hospital intelligence dashboard" },
+  { short: "Student projects", cta: "Explore student project help", tag: "BCA · BTech · MCA", ghost: "STUDENTS", title: "Projects you can build and explain.", text: "Guided project development with documentation and code walkthroughs, so you understand every module at viva.", href: "/student-projects/", image: BRAND_IMAGES.studentLabImg, alt: "Students working on a software project" },
 ];
 
 const steps = [
@@ -55,7 +55,7 @@ export default function HomePage() {
       {/* 1 — centred hero with glow mark and bottom meta bar */}
       <section className="zn-hero zn-hero-center zn-paper">
         <div className="zn-wrap zn-hero-inner">
-          <div className="zn-hero-tile" aria-hidden="true"><img src={BRAND_IMAGES.markLogo} alt="" width="240" height="212" fetchPriority="high" /></div>
+          <div className="zn-hero-tile"><img src={BRAND_IMAGES.markLogo} alt="Zenith Softworks Z logo" width="240" height="212" fetchPriority="high" /></div>
           <span className="zn-pill">Digital development studio · Kollam, Kerala</span>
           <h1>Software &amp; Website Development Company in <em>Kerala</em></h1>
           <p className="zn-lede">We turn clear requirements into responsive websites, online stores and custom software for businesses across India, with a written scope from day one.</p>
@@ -81,7 +81,7 @@ export default function HomePage() {
           <div className="zn-split-copy">
             <p className="zn-label">About the studio</p>
             <h2 className="zn-h2 zn-h2-md">Websites and software built around <em>how you work.</em></h2>
-            <p className="zn-copy">Zenith Softworks is an independent digital development studio in Kollam, Kerala. We build business websites, e-commerce stores and custom software for clients across India, working remotely with clear communication from the first call to the final handover.</p>
+            <p className="zn-copy">Zenith Softworks is a software and website development company in Kollam, Kerala. We build business websites, e-commerce stores and custom software for clients across India, working remotely with clear communication from the first call to the final handover.</p>
             <p className="zn-copy">Every project starts with your requirement: who the users are, what they need to do and how success will be measured. Only then do we choose the technology and agree a scope in writing. We also help BCA, BTech and MCA students build academic projects they understand and can explain at viva.</p>
             <p className="zn-copy">If you are planning a new website, an online store or an internal tool, tell us what you need and we will suggest a sensible next step.</p>
           </div>
@@ -127,13 +127,13 @@ export default function HomePage() {
           </div>
           <div className="zn-rows">
             {CASE_STUDIES.map((project) => (
-              <Link to={"/projects/" + project.slug + "/"} className="zn-row" key={project.slug}>
+              <article className="zn-row" key={project.slug}>
                 <img src={project.image} alt={project.imageAlt} loading="lazy" decoding="async" />
                 <span className="zn-row-num">{project.index}</span>
-                <div><h3>{project.title}</h3><p>{project.homeSummary}</p></div>
+                <div><h3><Link to={"/projects/" + project.slug + "/"}>{project.title}</Link></h3><p>{project.homeSummary}</p></div>
                 <span className="zn-row-cat">{project.category}</span>
-                <ArrowUpRight className="zn-row-arrow" size={22} />
-              </Link>
+                <ArrowUpRight className="zn-row-arrow" size={22} aria-hidden="true" />
+              </article>
             ))}
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function HomePage() {
           <div className="zn-tall">
             {principles.map(({ icon: Icon, title, text }, i) => (
               <article className={"zn-tall-" + (i + 1)} key={title}>
-                <span className="zn-tall-top"><b>0{i + 1}</b><Icon size={22} /></span>
+                <span className="zn-tall-top"><span className="n">0{i + 1}</span><Icon size={22} aria-hidden="true" /></span>
                 <div><h3>{title}</h3><p>{text}</p></div>
               </article>
             ))}
