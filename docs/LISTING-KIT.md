@@ -6,11 +6,11 @@ Use the same name, phone, email and website everywhere. Only state facts you can
 ## Core facts
 - **Name:** Zenith Softworks
 - **Website:** https://zenithsoftworks.in/
-- **Email:** `[BUSINESS EMAIL – use the address shown on https://zenithsoftworks.in/contact/]`
-- **Phone / WhatsApp:** `[PHONE – use the number shown on the website footer]`
-- **Location:** Kollam, Kerala, India — `[STREET ADDRESS, PIN CODE]`
-- **Service area:** Kerala (remote delivery across India)
-- **Hours:** `[e.g. Mon–Sat, 10:00–18:00]`
+- **Email:** `[CONFIRM ONE ADDRESS – the website currently uses the address on https://zenithsoftworks.in/contact/; use exactly the same one on every listing]`
+- **Phone / WhatsApp:** +91 94976 65504 (primary, also the WhatsApp number on the website) · +91 62821 35504 (secondary)
+- **Location:** Kollam, Kerala, India. No street address has been provided, so list Zenith as a **service-area business** (hide the address on Google Business Profile). Add `[STREET ADDRESS, PIN CODE]` only if you want a public address.
+- **Service area:** Kollam, Kerala (remote delivery across India)
+- **Hours:** Remote, flexible working hours (by appointment). On Google Business Profile, choose "Open by appointment" or "Open 24 hours" only if that is accurate.
 - **Founded:** `[YEAR – only if you want to state it]`
 - **Logo:** https://zenithsoftworks.in/icon-512.png · **Banner:** https://zenithsoftworks.in/og-zenith.png
 
