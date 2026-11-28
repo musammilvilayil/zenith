@@ -83,17 +83,27 @@
       "permanent": true
     },
     {
-      "source": "/services/:path*",
+      "source": "/services/:slug/",
       "destination": "/business/",
       "permanent": true
     },
     {
-      "source": "/solutions/:path*",
+      "source": "/solutions/",
       "destination": "/business/",
       "permanent": true
     },
     {
-      "source": "/academic-services/:path*",
+      "source": "/solutions/:slug/",
+      "destination": "/business/",
+      "permanent": true
+    },
+    {
+      "source": "/academic-services/",
+      "destination": "/student-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/academic-services/:slug/",
       "destination": "/student-projects/",
       "permanent": true
     },
