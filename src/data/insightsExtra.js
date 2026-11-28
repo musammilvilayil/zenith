@@ -128,7 +128,7 @@ export const INSIGHTS_EXTRA = {
       ["Can I take help for my project?", "Guided help with planning, implementation and explanation is reasonable, but you must take part and understand your own work, because you will be questioned on it."],
       ["Does Zenith Softworks support BCA projects?", "Yes. We offer guided project development with agreed documentation and code walkthroughs, remotely across Kerala and India."],
     ],
-  },,
+  },
   "5": {
     "summary": "A practical checklist for comparing website development companies in Kerala, reviewing proposals, ownership, communication and post-launch support.",
     "sections": [
