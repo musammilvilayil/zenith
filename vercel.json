@@ -53,6 +53,51 @@
   ],
   "redirects": [
     {
+      "source": "/services/",
+      "destination": "/business/",
+      "permanent": true
+    },
+    {
+      "source": "/services/web-platforms/",
+      "destination": "/business/website-development/",
+      "permanent": true
+    },
+    {
+      "source": "/services/ai-automation/",
+      "destination": "/business/custom-software-development/",
+      "permanent": true
+    },
+    {
+      "source": "/services/mobile-apps/",
+      "destination": "/business/custom-software-development/",
+      "permanent": true
+    },
+    {
+      "source": "/services/iot-solutions/",
+      "destination": "/business/custom-software-development/",
+      "permanent": true
+    },
+    {
+      "source": "/services/cloud-devops/",
+      "destination": "/business/custom-software-development/",
+      "permanent": true
+    },
+    {
+      "source": "/services/:path*",
+      "destination": "/business/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/:path*",
+      "destination": "/business/",
+      "permanent": true
+    },
+    {
+      "source": "/academic-services/:path*",
+      "destination": "/student-projects/",
+      "permanent": true
+    },
+    {
       "source": "/images/zenith-original-navbar.png",
       "destination": "/zenith-logo.png",
       "permanent": true
