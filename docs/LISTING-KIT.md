@@ -6,9 +6,10 @@ Use the same name, phone, email and website everywhere. Only state facts you can
 ## Core facts
 - **Name:** Zenith Softworks
 - **Website:** https://zenithsoftworks.in/
-- **Email:** `[CONFIRM ONE ADDRESS – the website currently uses the address on https://zenithsoftworks.in/contact/; use exactly the same one on every listing]`
+- **Email:** info@zenithsoftworks.in (confirmed – use exactly this on every listing)
 - **Phone / WhatsApp:** +91 94976 65504 (primary, also the WhatsApp number on the website) · +91 62821 35504 (secondary)
-- **Location:** Kollam, Kerala, India. No street address has been provided, so list Zenith as a **service-area business** (hide the address on Google Business Profile). Add `[STREET ADDRESS, PIN CODE]` only if you want a public address.
+- **Address:** Kadappa, Mynagappally, Kollam, Kerala, India — `[PIN CODE]` (add the exact PIN and any house/building name before submitting).
+- **Google Business Profile:** because the team works remotely with flexible hours and does not receive walk-in customers, choose **"service-area business"** and hide the street address; verification may still ask for it. Use the same address text on every other listing that requires one.
 - **Service area:** Kollam, Kerala (remote delivery across India)
 - **Hours:** Remote, flexible working hours (by appointment). On Google Business Profile, choose "Open by appointment" or "Open 24 hours" only if that is accurate.
 - **Founded:** `[YEAR – only if you want to state it]`
