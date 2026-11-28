@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router";
+import { Link, Navigate, useParams } from "react-router";
 import PageHead from "@/components/layout/PageHead";
 import CtaBanner from "@/components/ui/CtaBanner";
 import PageHero from "@/components/ui/PageHero";
@@ -24,10 +24,13 @@ const RELATED_LINKS = {
 };
 
 export default function InsightDetailPage() {
-  const { id } = useParams();
-  const article = INSIGHTS.find((item) => item.id === id);
+  const { id: param } = useParams();
+  const article = INSIGHTS.find((item) => item.slug === param);
+  const legacy = !article && INSIGHTS.find((item) => item.id === param);
 
+  if (legacy) return <Navigate to={`/resources/${legacy.slug}/`} replace />;
   if (!article) return <NotFoundPage />;
+  const id = article.id;
 
   return (
     <>
@@ -54,8 +57,24 @@ export default function InsightDetailPage() {
                 {section.heading}
               </h2>
               <p className="text-base leading-relaxed text-muted">{section.body}</p>
+              {section.items && (
+                <ul className="list-disc space-y-2 pl-6 text-base leading-relaxed text-muted marker:text-ice">
+                  {section.items.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              )}
             </section>
           ))}
+          {article.faq && (
+            <section className="space-y-4">
+              <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">Frequently asked questions</h2>
+              {article.faq.map(([question, answer]) => (
+                <div key={question} className="z-card p-5">
+                  <h3 className="font-display text-lg font-bold text-ink">{question}</h3>
+                  <p className="mt-2 text-base leading-relaxed text-muted">{answer}</p>
+                </div>
+              ))}
+            </section>
+          )}
           <section className="border-t border-line pt-8">
             <h2 className="font-display text-2xl font-bold text-ink">Related services and resources</h2>
             <div className="mt-5 flex flex-wrap gap-3">

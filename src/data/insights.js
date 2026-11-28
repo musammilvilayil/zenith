@@ -1,4 +1,6 @@
-export const INSIGHTS = [
+import { INSIGHTS_EXTRA } from "./insightsExtra.js";
+
+const BASE = [
   {
     id: "1",
     title: "How to scope a custom software project",
@@ -150,3 +152,27 @@ export const INSIGHTS = [
     ]
   }
 ];
+
+export const INSIGHT_SLUGS = {
+  "1": "scope-custom-software-project",
+  "2": "when-ai-automation-is-useful",
+  "3": "mvp-does-not-mean-disposable",
+  "4": "website-development-cost-kerala-2026",
+  "5": "how-to-choose-website-development-company-kerala",
+  "6": "custom-website-vs-wordpress",
+  "7": "ecommerce-website-cost-india",
+  "8": "bca-final-year-project-ideas",
+  "9": "full-stack-project-ideas-bca-btech",
+  "10": "python-final-year-project-ideas",
+  "11": "how-to-choose-final-year-project-topic",
+  "12": "custom-software-vs-ready-made-software",
+  "13": "custom-software-development-cost-india",
+  "14": "how-long-does-website-development-take",
+  "15": "essential-features-business-website"
+};
+
+export const INSIGHTS = BASE.map((article) => ({
+  ...article,
+  ...(INSIGHTS_EXTRA[article.id] || {}),
+  slug: INSIGHT_SLUGS[article.id],
+}));

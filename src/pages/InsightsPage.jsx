@@ -29,7 +29,7 @@ export default function InsightsPage() {
                   <p className="mt-3 text-sm leading-relaxed text-muted">{article.summary}</p>
                 </div>
                 <Link
-                  to={`/resources/${article.id}/`}
+                  to={`/resources/${article.slug}/`}
                   className="mt-6 inline-flex text-xs font-bold text-ice hover:underline"
                 >
                   Read article →

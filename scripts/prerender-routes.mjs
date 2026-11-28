@@ -4,6 +4,9 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import { createServer } from "vite";
 import { ROUTES_META } from "../src/data/routesMeta.js";
+import { INSIGHTS } from "../src/data/insights.js";
+import LOCATIONS from "../src/data/locations.js";
+import { HOME_FAQ } from "../src/data/homeFaq.js";
 
 const dist = resolve(process.cwd(), "dist");
 const baseHtml = await readFile(join(dist, "index.html"), "utf8");
@@ -183,6 +186,37 @@ for (const [route, meta] of Object.entries(ROUTES_META)) {
         "acceptedAnswer": { "@type": "Answer", "text": answer }
       }))
     });
+  }
+  const locationKey = { "/website-development-company-kollam/": "kollam", "/software-development-company-kochi/": "kochi", "/software-development-company-trivandrum/": "trivandrum", "/website-development-company-calicut/": "calicut" }[route];
+  const pageFaqs = route === "/" ? HOME_FAQ : locationKey ? LOCATIONS[locationKey].faqs : null;
+  if (pageFaqs) {
+    schemaGraph.push({
+      "@type": "FAQPage",
+      "@id": `${meta.canonical}#faq`,
+      "mainEntity": pageFaqs.map(([question, answer]) => ({ "@type": "Question", "name": question, "acceptedAnswer": { "@type": "Answer", "text": answer } }))
+    });
+  }
+  const article = route.startsWith("/resources/") ? INSIGHTS.find((item) => `/resources/${item.slug}/` === route) : null;
+  if (article) {
+    schemaGraph.push({
+      "@type": "BlogPosting",
+      "@id": `${meta.canonical}#article`,
+      "headline": article.title,
+      "description": article.summary,
+      "mainEntityOfPage": { "@id": `${meta.canonical}#webpage` },
+      "image": "https://zenithsoftworks.in/og-zenith.png",
+      "dateModified": "2026-11-27",
+      "inLanguage": "en-IN",
+      "author": { "@id": "https://zenithsoftworks.in/#organization" },
+      "publisher": { "@id": "https://zenithsoftworks.in/#organization" }
+    });
+    if (article.faq) {
+      schemaGraph.push({
+        "@type": "FAQPage",
+        "@id": `${meta.canonical}#faq`,
+        "mainEntity": article.faq.map(([question, answer]) => ({ "@type": "Question", "name": question, "acceptedAnswer": { "@type": "Answer", "text": answer } }))
+      });
+    }
   }
   const schemaTag = `<script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org",

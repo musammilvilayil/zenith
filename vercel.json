@@ -53,6 +53,156 @@
   ],
   "redirects": [
     {
+      "source": "/resources/1/",
+      "destination": "/resources/scope-custom-software-project/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/2/",
+      "destination": "/resources/when-ai-automation-is-useful/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/3/",
+      "destination": "/resources/mvp-does-not-mean-disposable/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/4/",
+      "destination": "/resources/website-development-cost-kerala-2026/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/5/",
+      "destination": "/resources/how-to-choose-website-development-company-kerala/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/6/",
+      "destination": "/resources/custom-website-vs-wordpress/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/7/",
+      "destination": "/resources/ecommerce-website-cost-india/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/8/",
+      "destination": "/resources/bca-final-year-project-ideas/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/9/",
+      "destination": "/resources/full-stack-project-ideas-bca-btech/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/10/",
+      "destination": "/resources/python-final-year-project-ideas/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/11/",
+      "destination": "/resources/how-to-choose-final-year-project-topic/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/12/",
+      "destination": "/resources/custom-software-vs-ready-made-software/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/13/",
+      "destination": "/resources/custom-software-development-cost-india/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/14/",
+      "destination": "/resources/how-long-does-website-development-take/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/15/",
+      "destination": "/resources/essential-features-business-website/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/1/",
+      "destination": "/resources/scope-custom-software-project/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/2/",
+      "destination": "/resources/when-ai-automation-is-useful/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/3/",
+      "destination": "/resources/mvp-does-not-mean-disposable/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/4/",
+      "destination": "/resources/website-development-cost-kerala-2026/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/5/",
+      "destination": "/resources/how-to-choose-website-development-company-kerala/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/6/",
+      "destination": "/resources/custom-website-vs-wordpress/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/7/",
+      "destination": "/resources/ecommerce-website-cost-india/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/8/",
+      "destination": "/resources/bca-final-year-project-ideas/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/9/",
+      "destination": "/resources/full-stack-project-ideas-bca-btech/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/10/",
+      "destination": "/resources/python-final-year-project-ideas/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/11/",
+      "destination": "/resources/how-to-choose-final-year-project-topic/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/12/",
+      "destination": "/resources/custom-software-vs-ready-made-software/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/13/",
+      "destination": "/resources/custom-software-development-cost-india/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/14/",
+      "destination": "/resources/how-long-does-website-development-take/",
+      "permanent": true
+    },
+    {
+      "source": "/insights/15/",
+      "destination": "/resources/essential-features-business-website/",
+      "permanent": true
+    },
+    {
       "source": "/services/",
       "destination": "/business/",
       "permanent": true

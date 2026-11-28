@@ -15,12 +15,12 @@ const requiredRoutes = [
   "/student-projects/web-development-projects/",
   "/projects/", "/projects/megham/", "/projects/carematrix/",
   "/projects/she-shield/", "/projects/projexify/",
-  "/resources/", "/resources/1/", "/resources/2/", "/resources/3/",
+  "/resources/", "/resources/scope-custom-software-project/", "/resources/when-ai-automation-is-useful/", "/resources/mvp-does-not-mean-disposable/",
   "/website-development-company-kollam/", "/software-development-company-kochi/",
   "/software-development-company-trivandrum/", "/website-development-company-calicut/",
-  "/resources/4/", "/resources/5/", "/resources/6/", "/resources/7/",
-  "/resources/8/", "/resources/9/", "/resources/10/", "/resources/11/",
-  "/resources/12/", "/resources/13/", "/resources/14/", "/resources/15/",
+  "/resources/website-development-cost-kerala-2026/", "/resources/how-to-choose-website-development-company-kerala/", "/resources/custom-website-vs-wordpress/", "/resources/ecommerce-website-cost-india/",
+  "/resources/bca-final-year-project-ideas/", "/resources/full-stack-project-ideas-bca-btech/", "/resources/python-final-year-project-ideas/", "/resources/how-to-choose-final-year-project-topic/",
+  "/resources/custom-software-vs-ready-made-software/", "/resources/custom-software-development-cost-india/", "/resources/how-long-does-website-development-take/", "/resources/essential-features-business-website/",
   "/privacy/", "/terms/",
 ];
 

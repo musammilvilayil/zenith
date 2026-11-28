@@ -161,6 +161,8 @@ Publish ~1 post/week; give every post a keyword slug (`/resources/website-develo
 
 **5 realistic backlink ideas:** (1) Guest posts for Kerala/Indian business and college blogs on "digital presence for SMEs". (2) Free "website audit for local businesses" lead-magnet shared with Kollam business groups / chambers of commerce. (3) Partner with colleges for student-project workshops → link from college pages. (4) Open-source a small useful tool/starter template on GitHub, link back. (5) HARO-style/Qwoted/Featured.com expert answers on web development in India.
 
+> Ready-to-paste listing text and profile checklist: `docs/LISTING-KIT.md`.
+
 ## 8. Technical checklist
 
 - [x] `sitemap.xml` (43 URLs) – add `/student-project-ideas/`; submit in Search Console
@@ -172,7 +174,7 @@ Publish ~1 post/week; give every post a keyword slug (`/resources/website-develo
 - [ ] Internal linking: each service ↔ location ↔ blog; footer now links all four city pages
 - [ ] Verify domain in Google Search Console (DNS TXT) → submit sitemap → request indexing for home + 5 money pages
 - [ ] Bing Webmaster Tools: import from GSC, submit sitemap; claim Bing Places
-- [ ] Keyword slugs for `/resources/:id/` + 301s
+- [x] Keyword slugs for blog articles (`/resources/<slug>/`) with 301s from the old numeric URLs
 - [ ] Enable HTTPS-only/HSTS (already in `vercel.json`)
 
 ## 9. 30-day calendar
