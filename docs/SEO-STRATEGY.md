@@ -163,6 +163,22 @@ Publish ~1 post/week; give every post a keyword slug (`/resources/website-develo
 
 > Ready-to-paste listing text and profile checklist: `docs/LISTING-KIT.md`.
 
+### Backlink spreadsheet review (November 2026)
+
+The BAMBOOST spreadsheet was reviewed as a source of possible discovery channels, not as a bulk link-building campaign. It contains 10,000+ mixed URLs, repeated domains and questionable entries. Some DA values are inconsistent (including values above 100), so the spreadsheet's DA column must not be treated as a verified authority metric.
+
+**Prioritise relevant profiles and real audiences:**
+- Local/business profiles: Google Business Profile (only if eligible), Bing Places, Justdial, Sulekha, Foursquare, Yelp (regional relevance to be checked), Indian Yellow Pages and Yellow Pages India.
+- Agency/business profiles: LinkedIn Company Page, Clutch, GoodFirms and IndiaMART (only if B2B lead generation is appropriate).
+- Proof and discovery: YouTube, GitHub, Product Hunt (only for a real product launch), Medium, Quora and Reddit.
+- Optional visual publishing: Pinterest and genuinely useful original infographics.
+
+**Do not submit in bulk:** skip guestbooks, generic directory farms, mass article submission, automated social bookmarking, irrelevant .edu/.gov registrations, forum profile links and the huge "Other Sites" tab. Review each destination for relevance, current activity, audience and editorial standards before creating a profile.
+
+**Execution rule:** create one accurate business profile per platform, use the same real-world business identity, link to the most relevant Zenith page, and record the listing URL and status. Never invent client reviews, projects, awards, office locations or credentials. A listing is useful only if it represents the real business and can reach a relevant audience.
+
+A filtered 25-platform execution tracker was prepared separately for this project. Use it in priority order (P0, then P1, then P2); it is a manual checklist, not an automated submission instruction.
+
 ## 8. Technical checklist
 
 - [x] `sitemap.xml` (43 URLs) – add `/student-project-ideas/`; submit in Search Console
